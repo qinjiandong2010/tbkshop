@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stomato.dao.RoleDao">
+
+	<resultMap type="com.stomato.domain.Role" id="role"> 
+		<result property="id" column="id" />
+		<result property="roleName" column="role_name" />
+		<result property="status" column="status" />
+		<result property="createDate" column="create_date"/>
+	</resultMap>
+	
+	<insert id="addRole" parameterType="com.stomato.domain.Role">
+		insert into t_role(role_name, status, create_date) values(#{roleName}, 1, now())
+	</insert>
+	
+	<select id="getRole" parameterType="int" resultMap="role" >
+		select id,role_name, status, create_date from t_role where id=#{id}
+	</select>
+	 
+	<select id="listRole" parameterType="com.stomato.domain.RoleParam" resultMap="role" >
+		select id,role_name, status, create_date from t_role where 1=1
+		<if test="roleName != null">
+			and role_name like '%${roleName}%'
+		</if>
+		<if test="offset != null">limit #{offset},#{pageSize}</if>
+	</select>
+	<select id="listTotal" parameterType="com.stomato.domain.RoleParam" resultType="int">
+		select count(1) from t_role where 1=1
+		<if test="roleName != null">
+			and role_name like '%${roleName}%'
+		</if>
+	</select>
+	<update id="updateRole" parameterType="com.stomato.domain.Role">
+		update t_role
+        <set>
+            <if test="roleName != null">role_name=#{roleName},</if>
+            <if test="status != status">status=#{status},</if>
+            create_date=now()
+        </set>
+        
+		where id=#{id}
+	</update>
+	<delete id="deleteRole" parameterType="com.stomato.domain.Role">
+		delete from t_role where id=#{id}
+	</delete>
+</mapper>
