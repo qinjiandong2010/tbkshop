@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://www.91shuo.cn/admin/index/top -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body style="background:#99A2B3;padding:0">
+<div class="fanwe-header">
+	<div class="fh-top">
+		<div class="fht-logo"><img src="logo.png"></div>
+		<div class="fht-links">
+			<span>欢迎您！</span>
+			<a class="edit-pwd" href="http://www.91shuo.cn/admin/index/password" target="mainFrame">修改密码</a>
+			<a class="browse-index" href="http://www.91shuo.cn/" target="_brank">浏览首页</a>
+			<a class="browse-index" href="http://www.91shuo.cn/Preview" target="_brank">预览页面</a>
+			<a href="http://www.91shuo.cn/admin/cache/system" target="mainFrame">更新缓存</a>
+			<a href="http://www.91shuo.cn/admin/public/logout" onclick="" target="_parent">退出</a>
+		</div>
+		<div class="fht-navs">
+			<div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/1" target="leftFrame">桌面</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/4" target="leftFrame">会员</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/5" target="leftFrame">权限</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/7" target="leftFrame">系统</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/19" target="leftFrame">商品</a>
+				</p>
+			</div><div class="active">
+				<p>
+					<a href="20.htm" target="leftFrame">商家</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/22" target="leftFrame">广告</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/23" target="leftFrame">活动</a>
+				</p>
+			</div><div class="">
+				<p>
+					<a href="http://www.91shuo.cn/admin/index/left/id/24" target="leftFrame">视频</a>
+				</p>
+			</div>		</div>
+	</div>
+	<!--<div class="fh-bottom">
+		<div class="fhb-body">
+			
+		</div>
+	</div>-->
+</div>
+<div class="ajax-loading" style="top:36px; right:0;"></div>
+
+<script type="text/javascript">
+jQuery(function(){
+	$(".fht-navs div").click(function(){
+		$(".fht-navs div").removeClass("active");
+		$(this).addClass("active");
+		$('a',this).blur();
+	});
+
+});
+</script>
+</body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://www.91shuo.cn/admin/shop/index -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/Shop';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'Shop';
+var CURR_ACTION = 'index';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>商家管理 &gt; 商家列表</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+<script type="text/javascript" src="dataList.js"></script>
+<div class="handle-btns">
+    <div class="img-button "><p><input type="button" id="addData" name="addData" value="添加" onclick="addData()" class="addData"></p></div>
+    <div class="img-button "><p><input type="button" id="editData" name="editData" value="编辑" onclick="editData(this,&#39;checkList&#39;,&#39;shop_id&#39;)" class="editData"></p></div>
+    <div class="img-button "><p><input type="button" id="removeData" name="removeData" value="删除" onclick="removeData(this,&#39;checkList&#39;)" class="removeData"></p></div>
+</div>
+<!-- Think 系统列表组件开始 -->
+<table id="checkList" class="table-list list" cellpadding="0" cellspacing="0" border="0"><thead><tr><th width="30" class="first"><input type="checkbox" onclick="checkAll(&#39;checkList&#39;)"></th><th width="80"><a href="javascript:sortBy('shop_id','1','index','')" title="按照编号升序排列 ">编号<img src="desc.gif" align="absmiddle"></a></th><th width="150"><a href="javascript:sortBy('shop_name','1','index','')" title="按照商家名称升序排列 ">商家名称</a></th><th width="70"><a href="javascript:sortBy('shop_icon','1','index','')" title="按照商家LOGO升序排列 ">商家LOGO</a></th><th width="150"><a href="javascript:sortBy('shop_url','1','index','')" title="按照商家链接升序排列 ">商家链接</a></th><th width="80"><a href="javascript:sortBy('sort','1','index','')" title="按照排序升序排列 ">排序</a></th><th width="50"><a href="javascript:sortBy('status','1','index','')" title="按照状态升序排列 ">状态</a></th><th width="50">操作</th></tr></thead><tbody><tr class="even"><td class="first"><input type="checkbox" name="key" value="178"></td><td>178</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;178&#39;,&#39;shop_name&#39;)">珀莱雅艾珀莉官方专卖店</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;178&#39;,&#39;shop_url&#39;)">http://proyaapl.tmall.com/view_page-196118421.htm?spm=a1z10.4.w18011389004.6.Qn8SIJ</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;178&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;178&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;178&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;178&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="177"></td><td>177</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;177&#39;,&#39;shop_name&#39;)">牛尔官方旗舰店</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;177&#39;,&#39;shop_url&#39;)">http://niuer.tmall.com/shop/view_shop.htm?spm=a1z10.4.w607140973.1.Lc4tv2</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;177&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;177&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;177&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;177&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="176"></td><td>176</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;176&#39;,&#39;shop_name&#39;)">派乐歌</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;176&#39;,&#39;shop_url&#39;)">http://liduyd.tmall.com/?spm=a220o.1000855.0.224.7m05kL</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;176&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;176&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;176&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;176&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="175"></td><td>175</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;175&#39;,&#39;shop_name&#39;)">蓝色妖姬博尼嘉专卖</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;175&#39;,&#39;shop_url&#39;)">http://lsyjbnj.tmall.com/?spm=a220o.1000855.0.150.qEANnA</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;175&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;175&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;175&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;175&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="174"></td><td>174</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;174&#39;,&#39;shop_name&#39;)">STEBOO摄像头制造工厂</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;174&#39;,&#39;shop_url&#39;)">http://steboo.taobao.com/?spm=2013.1.1000126.21.97RKVP</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;174&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;174&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;174&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;174&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="173"></td><td>173</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;173&#39;,&#39;shop_name&#39;)">宇凡数码2008</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;173&#39;,&#39;shop_url&#39;)">http://ipkiss.taobao.com/?spm=2013.1.1000126.21.tlUW8q</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;173&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;173&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;173&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;173&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="172"></td><td>172</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;172&#39;,&#39;shop_name&#39;)">丽建商贸数码专营店</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;172&#39;,&#39;shop_url&#39;)">http://shop.paipai.com/1870488932</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;172&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;172&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;172&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;172&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="171"></td><td>171</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;171&#39;,&#39;shop_name&#39;)">天天向上</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;171&#39;,&#39;shop_url&#39;)">数码配件专营</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;171&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;171&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;171&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;171&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="170"></td><td>170</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;170&#39;,&#39;shop_name&#39;)">温碧泉</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;170&#39;,&#39;shop_url&#39;)">http://shop.paipai.com/855004513</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;170&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;170&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;170&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;170&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="169"></td><td>169</td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;169&#39;,&#39;shop_name&#39;)">清莹典藏</span></td><td></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="textEdit(this,&#39;169&#39;,&#39;shop_url&#39;)">http://qyin.taobao.com/?spm=2013.1.1000126.21.XBi4eM</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="numberEdit(this,&#39;169&#39;,&#39;sort&#39;)">100</span></td><td><span class="pointer" module="Shop" href="javascript:;" onclick="toggleStatus(this,&#39;169&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;169&#39;,&#39;shop_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;169&#39;,&#39;shop_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr></tbody></table>
+<!-- Think 系统列表组件结束 -->
+
+<div class="pager">
+     168 条记录 1/17 页  <a href="http://www.91shuo.cn/admin/shop/index?&p=2">下一页</a>     &nbsp;<span class="selected">1</span>&nbsp;<a href="http://www.91shuo.cn/admin/shop/index?&p=2">&nbsp;2&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/shop/index?&p=3">&nbsp;3&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/shop/index?&p=4">&nbsp;4&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/shop/index?&p=5">&nbsp;5&nbsp;</a>  <a href="http://www.91shuo.cn/admin/shop/index?&p=6">下5页</a> <a href="http://www.91shuo.cn/admin/shop/index?&p=17">最后一页</a>  </div>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>

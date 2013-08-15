@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)http://www.91shuo.cn/admin/brand/index -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/Brand';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'Brand';
+var CURR_ACTION = 'index';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>品牌 &gt; 品牌列表</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+<script type="text/javascript" src="dataList.js"></script>
+
+<div class="handle-btns">
+    <div class="img-button "><p><input type="button" id="addData" name="addData" value="添加" onclick="addData()" class="addData"></p></div>
+    <div class="img-button "><p><input type="button" id="editArticle" name="editArticle" value="编辑" onclick="editData(this,&#39;checkList&#39;,&#39;brand_id&#39;)" class="editArticle"></p></div>
+    <div class="img-button "><p><input type="button" id="removeArticle" name="removeArticle" value="删除" onclick="removeData(this,&#39;checkList&#39;)" class="removeArticle"></p></div>
+</div>
+
+<!-- Think 系统列表组件开始 -->
+<table id="checkList" class="table-list list" cellpadding="0" cellspacing="0" border="0"><thead><tr><th width="30" class="first"><input type="checkbox" onclick="checkAll(&#39;checkList&#39;)"></th><th width="50"><a href="javascript:sortBy('brand_id','1','index','')" title="按照编号升序排列 ">编号<img src="desc.gif" align="absmiddle"></a></th><th width="230"><a href="javascript:sortBy('brand_name','1','index','')" title="按照品牌名称升序排列 ">品牌名称</a></th><th width="70"><a href="javascript:sortBy('brand_icon','1','index','')" title="按照图片升序排列 ">图片</a></th><th width="150"><a href="javascript:sortBy('time','1','index','')" title="按照创建时间升序排列 ">创建时间</a></th><th width="50"><a href="javascript:sortBy('sort','1','index','')" title="按照排序升序排列 ">排序</a></th><th width="50"><a href="javascript:sortBy('is_top','1','index','')" title="按照推荐升序排列 ">推荐</a></th><th width="50"><a href="javascript:sortBy('status','1','index','')" title="按照状态升序排列 ">状态</a></th><th width="100">操作</th></tr></thead><tbody><tr class="even"><td class="first"><input type="checkbox" name="key" value="113"></td><td>113</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;113&#39;,&#39;brand_name&#39;)">森马</span></td><td><a href="5177430026e5f.jpg" target="_blank"><img src="5177430026e5f.jpg" width="70"></a></td><td>2013-04-16 11:54:02</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;113&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;113&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;113&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;113&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;113&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="112"></td><td>112</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;112&#39;,&#39;brand_name&#39;)">唐狮</span></td><td><a href="5177430a8ebac.jpg" target="_blank"><img src="5177430a8ebac.jpg" width="70"></a></td><td>2013-04-16 11:40:57</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;112&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;112&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;112&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;112&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;112&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="111"></td><td>111</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;111&#39;,&#39;brand_name&#39;)">阿迪达斯adidas</span></td><td><a href="517743178e83a.jpg" target="_blank"><img src="517743178e83a.jpg" width="70"></a></td><td>2013-04-15 11:36:46</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;111&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;111&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;111&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;111&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;111&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="110"></td><td>110</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;110&#39;,&#39;brand_name&#39;)">puma</span></td><td><a href="51774322e67af.gif" target="_blank"><img src="51774322e67af.gif" width="70"></a></td><td>2013-03-26 16:59:48</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;110&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;110&#39;,&#39;is_top&#39;)"><img status="0" src="status-0.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;110&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;110&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;110&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="109"></td><td>109</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;109&#39;,&#39;brand_name&#39;)">adidas</span></td><td><a href="5177432d08a6b.jpg" target="_blank"><img src="5177432d08a6b.jpg" width="70"></a></td><td>2013-03-26 16:20:23</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;109&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;109&#39;,&#39;is_top&#39;)"><img status="0" src="status-0.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;109&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;109&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;109&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="108"></td><td>108</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;108&#39;,&#39;brand_name&#39;)">曼秀雷敦</span></td><td><a href="517743364e079.jpg" target="_blank"><img src="517743364e079.jpg" width="70"></a></td><td>2013-03-26 15:47:35</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;108&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;108&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;108&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;108&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;108&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="107"></td><td>107</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;107&#39;,&#39;brand_name&#39;)">耐克NIKE</span></td><td><a href="5177433f295b6.jpg" target="_blank"><img src="5177433f295b6.jpg" width="70"></a></td><td>2013-03-25 10:18:01</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;107&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;107&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;107&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;107&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;107&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="106"></td><td>106</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;106&#39;,&#39;brand_name&#39;)">施华蔻</span></td><td><a href="5177434a2882f.jpg" target="_blank"><img src="5177434a2882f.jpg" width="70"></a></td><td>2013-03-25 10:17:25</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;106&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;106&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;106&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;106&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;106&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="105"></td><td>105</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;105&#39;,&#39;brand_name&#39;)">GXG</span></td><td><a href="51774353847cc.jpg" target="_blank"><img src="51774353847cc.jpg" width="70"></a></td><td>2013-03-25 10:16:41</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;105&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;105&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;105&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;105&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;105&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="104"></td><td>104</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="textEdit(this,&#39;104&#39;,&#39;brand_name&#39;)">达芙妮</span></td><td><a href="5177435d8b66e.jpg" target="_blank"><img src="5177435d8b66e.jpg" width="70"></a></td><td>2013-03-25 10:14:42</td><td><span class="pointer" module="Brand" href="javascript:;" onclick="numberEdit(this,&#39;104&#39;,&#39;sort&#39;)">0</span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;104&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="Brand" href="javascript:;" onclick="toggleStatus(this,&#39;104&#39;,&#39;status&#39;)"><img status="1" src="status-1.gif"></span></td><td><a href="javascript:;" onclick="editData(this,&#39;104&#39;,&#39;brand_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;104&#39;,&#39;brand_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr></tbody></table>
+<!-- Think 系统列表组件结束 -->
+
+<div class="pager"> 91 条记录 1/10 页  <a href="http://www.91shuo.cn/admin/brand/index?&p=2">下一页</a>     &nbsp;<span class="selected">1</span>&nbsp;<a href="http://www.91shuo.cn/admin/brand/index?&p=2">&nbsp;2&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/brand/index?&p=3">&nbsp;3&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/brand/index?&p=4">&nbsp;4&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/brand/index?&p=5">&nbsp;5&nbsp;</a>  <a href="http://www.91shuo.cn/admin/brand/index?&p=6">下5页</a> <a href="http://www.91shuo.cn/admin/brand/index?&p=10">最后一页</a>  </div>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>

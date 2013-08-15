@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://www.91shuo.cn/admin/index/left/id/20 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body style="background:#DEE4ED;padding:0; overflow:hidden; overflow-y:scroll;">
+	<div>
+		<div class="fanwe-menu" valign="top">
+			<dl>
+				<dt><div><strong>商家管理</strong></div></dt>
+				<dd class=""><p><a href="http://www.91shuo.cn/admin/shop/index" target="mainFrame">商家列表</a></p></dd><dd class="cur"><p><a href="add.htm" target="mainFrame">添加商家</a></p></dd>			</dl><dl>
+				<dt><div><strong>优惠劵</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/coupons/index" target="mainFrame">优惠劵列表</a></p></dd><dd><p><a href="http://www.91shuo.cn/admin/coupons/add" target="mainFrame">添加优惠劵</a></p></dd>			</dl><dl>
+				<dt><div><strong>品牌管理</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/brand/index" target="mainFrame"> 品牌列表</a></p></dd><dd><p><a href="http://www.91shuo.cn/admin/brand/add" target="mainFrame">添加品牌</a></p></dd>			</dl><dl>
+				<dt><div><strong>直通车链接</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/train_link/index" target="mainFrame">直通车链接列表</a></p></dd>			</dl>		</div>
+	</div>
+	<script>
+		if($("a:first").attr("href"))
+		{
+			top.document.getElementById("mainFrame").src = $("a:first").attr("href");
+			$("a:first").parent().parent().addClass("cur");
+			
+		};
+		
+		$("a").click(function(){
+			$("a").each(function(){
+				$(this).parent().parent().removeClass("cur");
+			});
+			$(this).parent().parent().addClass("cur");
+			$(this).blur();
+		});
+	</script>
+
+</body></html>

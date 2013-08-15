@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.91shuo.cn/admin/admin_activity/add -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/AdminActivity';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'AdminActivity';
+var CURR_ACTION = 'add';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>活动管理 &gt; 添加活动</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+<div class="handle-btns" style="width: 1306px;">
+    <div class="link-button "><p><a id="" name="" href="http://www.91shuo.cn/admin/admin_activity/index" class="">返回列表</a></p></div>
+</div>
+<form method="post" id="form" name="form" action="http://www.91shuo.cn/admin/admin_activity/insert" enctype="multipart/form-data" style="width: 1306px;">
+    <table cellpadding="4" cellspacing="0" border="0" class="table-form">
+        <tbody><tr>
+            <th width="180" class="first">活动名</th>
+            <td>
+            <input type="text" class="textinput requireinput" name="name">
+            </td>
+        </tr>
+        <tr>
+            <th class="first">活动描述</th>
+            <td><textarea name="description" class="textinput areainput" rows="5"></textarea></td>
+        </tr>
+		<tr>
+            <th class="first">活动小缩略图</th>
+            <td> 建议图片大小113*144 像素(上传文件大小最大限制：500kb) <div class="blank9"></div>
+            <input type="file" class="fileinput" name="picurl_small">
+            <div class="blank9"></div></td>
+        </tr>
+        <tr>
+            <th class="first">活动中缩略图</th>
+            <td> 建议图片大小113*144 像素(上传文件大小最大限制：500kb) <div class="blank9"></div>
+            <input type="file" class="fileinput" name="picurl_middle">
+            <div class="blank9"></div></td>
+        </tr>
+        <tr>
+            <th class="first">活动大缩略图</th>
+            <td> 建议图片大小113*144 像素(上传文件大小最大限制：500kb) <div class="blank9"></div>
+            <input type="file" class="fileinput" name="picurl_large">
+            <div class="blank9"></div></td>
+        </tr>
+        <tr>
+            <th class="first">活动链接</th>
+            <td>
+            <input type="text" class="textinput" name="url" size="50">
+            </td>
+        </tr>
+        <tr>
+            <th class="first">持续时间（单位：小时）</th>
+            <td>
+            <input type="text" class="textinput" name="period" size="10">
+            </td>
+        </tr>
+		<tr>
+            <th class="first">是否推荐</th>
+            <td><input type="radio" value="1" name="is_top">是<input type="radio" value="0" name="is_top">否</td>
+        </tr>
+        <tr>
+            <th class="first">是否显示</th>
+            <td><input type="radio" value="1" name="is_show">是<input type="radio" value="0" name="is_show">否</td>
+        </tr>
+        <tr>
+            <th class="first">排序</th>
+            <td>
+            <input type="text" class="textinput" size="5" name="order" value="100">
+            </td>
+        </tr>
+        <tr class="act">
+            <th class="first">&nbsp;</th>
+            <td>
+            <input type="submit" class="submit_btn" value="提交">
+            &nbsp;
+            <input type="reset" class="reset_btn" value="重置">
+            </td>
+        </tr>
+    </tbody></table>
+</form>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>

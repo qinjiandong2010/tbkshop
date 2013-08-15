@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)http://www.91shuo.cn/Admin/Ads/add -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/Ads';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'Ads';
+var CURR_ACTION = 'add';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+<link href="WdatePicker.css" rel="stylesheet" type="text/css"></head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>广告管理 &gt; 添加广告</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+
+<div class="handle-btns">
+	<div class="link-button"><p><a id="" name="" href="http://www.91shuo.cn/admin/ads/index" class="">返回列表</a></p></div>
+</div>
+<script>
+function ajax_check(obj)
+{
+	//1、实例化ajax对象
+	if(window.XMLHttpRequest)
+	{ 
+		ajax = new XMLHttpRequest(); //非IE浏览器实例化XMLHttpRequest对象
+	}
+	else 
+	{
+		//高版本的IE
+		ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+	}
+	
+	//2、设置回调函数
+	ajax.onreadystatechange = back_ajax_check;
+	
+	//3、打开连接
+	ajax.open('post',  '/admin/ads/cheAdsName', true);//注意这里路径的写法
+	
+	//设置传输编码
+	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	
+	//4、发送数据
+	ajax.send('n='+obj.value+'&&way=add');
+}
+
+function back_ajax_check()
+{
+	if(ajax.readyState == 4 && ajax.status == 200)
+	{
+		var span=document.getElementById('name_ts');
+		span.innerHTML=ajax.responseText;
+		
+	}
+}
+
+	function ajax_tise(obj)
+	{
+		
+
+		//1、实例化ajax对象
+		if(window.XMLHttpRequest)
+		{ 
+		ajax = new XMLHttpRequest(); //非IE浏览器实例化XMLHttpRequest对象
+		}
+		else 
+		{
+		//高版本的IE
+		ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+		}
+		
+		//2、设置回调函数
+		ajax.onreadystatechange = back_ajax_tise;
+		
+		//3、打开连接
+		ajax.open('post', '/admin/ads/getTise', true);//注意这里路径的写法
+	
+		
+		//设置传输编码
+		ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		
+		
+		
+		//4、发送数据
+		ajax.send('p_id='+obj.value);
+		
+		
+	}
+	
+	function back_ajax_tise()
+	{
+		if(ajax.readyState == 4 && ajax.status == 200)
+		{
+		
+		
+		var span=document.getElementById('tise');
+		span.innerHTML=ajax.responseText;
+		
+		}
+	}
+	
+</script>
+
+<form method="post" id="form" name="form" enctype="multipart/form-data" action="http://www.91shuo.cn/admin/ads/insert">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tbody><tr>
+		<th width="200" class="first">广告名称</th>
+		<td><input type="text" class="textinput requireinput" name="ads_name" id="ads_name" onblur="ajax_check(this)"><em style="color:#F00">*</em><span id="name_ts" style="color:#F00"></span></td>
+	</tr>
+    	 <tr>
+		<th width="200" class="first">所属广告位</th>
+		<td>
+        
+      
+           <select name="position_id" id="position_id" onchange="ajax_tise(this)">
+           			<option value="">请选择</option>
+                    <option value="154">0&nbsp;&nbsp;首页右边天天特价下方</option><option value="155">0&nbsp;&nbsp;视频-广告1</option><option value="156">0&nbsp;&nbsp;视频-广告2</option><option value="157">0&nbsp;&nbsp;视频-广告3</option><option value="158">0&nbsp;&nbsp;视频-广告4</option><option value="159">0&nbsp;&nbsp;直通车一楼</option><option value="160">0&nbsp;&nbsp;直通车一楼副标题</option><option value="161">0&nbsp;&nbsp;直通车二楼</option><option value="162">0&nbsp;&nbsp;直通车二楼副标题</option><option value="163">0&nbsp;&nbsp;直通车三楼</option><option value="164">0&nbsp;&nbsp;直通车三楼副标题</option><option value="165">0&nbsp;&nbsp;直通车四楼</option><option value="166">0&nbsp;&nbsp;直通车四楼副标题</option><option value="81">1&nbsp;&nbsp;大楚商城首页banner6轮播</option><option value="82">2&nbsp;&nbsp;大楚商城固定广告图片(左)</option><option value="83">3&nbsp;&nbsp;大楚商城固定广告图片(中)</option><option value="84">4&nbsp;&nbsp;大楚商城固定广告图片(右)</option><option value="93">5&nbsp;&nbsp;大楚商城一楼四轮播广告</option><option value="94">6&nbsp;&nbsp;大楚商城二楼四轮播广告</option><option value="121">7&nbsp;&nbsp;大楚商城三楼四轮播广告</option><option value="122">8&nbsp;&nbsp;大楚商城四楼四轮播广告</option><option value="123">9&nbsp;&nbsp;大楚商城五楼四轮播广告</option><option value="124">10&nbsp;&nbsp;大楚商城六楼四轮播广告</option><option value="152">11&nbsp;&nbsp;大楚商城首页热卖专场content左</option><option value="153">12&nbsp;&nbsp;大楚商城首页热卖专场content右</option><option value="145">13&nbsp;&nbsp;大楚商城一楼左侧栏</option><option value="146">14&nbsp;&nbsp;大楚商城二楼左侧栏</option><option value="147">15&nbsp;&nbsp;大楚商城三楼左侧栏</option><option value="148">16&nbsp;&nbsp;大楚商城四楼左侧栏</option><option value="149">17&nbsp;&nbsp;大楚商城五楼左侧栏</option><option value="150">18&nbsp;&nbsp;大楚商城六楼左侧栏</option><option value="144">19&nbsp;&nbsp;大楚商城热卖专场</option><option value="142">20&nbsp;&nbsp;大楚商城分类下面广告</option><option value="131">21&nbsp;&nbsp;大楚商城二楼右侧栏2-1</option><option value="132">22&nbsp;&nbsp;大楚商城二楼右侧栏2-2</option><option value="133">23&nbsp;&nbsp;大楚商城二楼右侧栏2-3</option><option value="134">24&nbsp;&nbsp;大楚商城二楼右侧栏2-4</option><option value="135">25&nbsp;&nbsp;大楚商城二楼右侧栏2-5</option><option value="136">26&nbsp;&nbsp;大楚商城四楼右侧栏4-1</option><option value="137">27&nbsp;&nbsp;大楚商城四楼右侧栏5-1</option><option value="138">28&nbsp;&nbsp;大楚商城</option><option value="143">29&nbsp;&nbsp;大楚商城底部</option><option value="97">30&nbsp;&nbsp;大楚商城商品详细页banner条</option><option value="99">81&nbsp;&nbsp;优惠券首页banner6轮播</option><option value="100">82&nbsp;&nbsp;优惠券详细页右侧栏1-1</option><option value="140">83&nbsp;&nbsp;优惠券详细页右侧栏1-2</option><option value="141">84&nbsp;&nbsp;优惠券详细页右侧栏1-3</option><option value="151">85&nbsp;&nbsp;优惠券分类页banner轮播</option><option value="98">91&nbsp;&nbsp;天天特价首页banner6轮播</option><option value="101">101&nbsp;&nbsp;活动首页banner6轮播</option><option value="102">102&nbsp;&nbsp;活动左banner广告</option><option value="103">103&nbsp;&nbsp;活动中banner广告</option><option value="104">104&nbsp;&nbsp;活动右banner广告</option><option value="76">110&nbsp;&nbsp;购资讯banner广告(6轮播)</option><option value="77">111&nbsp;&nbsp;资讯列表页右侧栏(上)</option><option value="78">112&nbsp;&nbsp;资讯列表页右侧栏(下)</option><option value="79">113&nbsp;&nbsp;文章页右侧栏(上)</option><option value="80">114&nbsp;&nbsp;文章页右侧栏(下)</option><option value="95">115&nbsp;&nbsp;搜索结果列表页右侧栏(上)</option><option value="96">116&nbsp;&nbsp;搜索结果列表页右侧栏(下)</option>                    
+                </select> 
+                 <span id="tise"></span>            
+        </td>
+	</tr>
+    	<tr>
+		<th class="first">广告图片</th>
+		<td>
+			
+			<input type="file" class="fileinput" name="ads_img" id="ads_img"> 
+			
+		</td>
+	</tr>
+	<tr>
+		<th class="first">广告链接</th>
+		<td><input type="text" class="textinput requireinput" name="ads_link" id="ads_link"></td>
+	</tr>
+	<tr>
+		<th class="first">广告描述</th>
+		<td><textarea cols="20" rows="3" name="ads_desciption" id="ads_desciption"></textarea></td>
+	</tr>
+    
+
+<script type="text/javascript" src="WdatePicker.js"></script>
+
+    
+    
+	<tr>
+		<th class="first">广告开始时间</th>
+        <td><input type="text" class="textinput requireinput" name="ads_start_time" id="ads_start_time" value="" onclick="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;})" readonly="readonly"> </td>
+	</tr>
+    <tr>
+		<th class="first">广告结束时间</th>
+        <td><input type="text" class="textinput requireinput" name="ads_end_time" id="ads_end_time" value="" onclick="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;})" readonly="readonly"> </td>
+	</tr>
+		<tr>
+		<th class="first">广告每月价格(万元)</th>
+        <td><input type="text" class="textinput requireinput" name="ads_price" id="ads_price">&nbsp;&nbsp;(单位:万元)</td>
+	</tr>
+    
+	<tr class="act">
+		<th class="first">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="提交">
+			<input type="reset" class="reset_btn" value="重置">
+		</td>
+	</tr>
+</tbody></table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#form").submit(function(){
+		if(!$.checkRequire($("#ads_name").val()))
+		{
+			alert("广告名称不可为空");
+			return false;
+		}
+		if(!$.checkRequire($("#position_id").val()))
+		{
+			alert("请选择所属广告位");
+			return false;
+		}
+		if(!$.checkRequire($("#ads_img").val()))
+		{
+			alert("广告图片不能为空");
+			return false;
+		}
+		
+		if(!empty($("#ads_link").val())&&!$.checkUrl($("#ads_link").val()))
+		{
+			alert("请填写规范的链接地址");
+			return false;
+		}
+		
+	
+		
+		
+		if(!$.checkDouble($("#ads_price").val()))
+		{
+			alert("请填写每月价格");
+			return false;
+		}
+		
+	
+	});
+});
+</script>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+<div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 186px; height: 198px;" src="My97DatePicker.htm" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>

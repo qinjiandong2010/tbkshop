@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://www.91shuo.cn/admin/brand/add -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/Brand';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'Brand';
+var CURR_ACTION = 'add';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>品牌 &gt; 添加品牌</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+<div class="handle-btns">
+    <div class="link-button "><p><a id="" name="" href="http://www.91shuo.cn/admin/brand/index" class="">返回列表</a></p></div>
+</div>
+<form method="post" id="form" name="form" action="http://www.91shuo.cn/admin/brand/insert" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="">
+    <table cellpadding="4" cellspacing="0" border="0" class="table-form">
+        <tbody><tr>
+            <th width="180" class="first">品牌分类</th>
+            <td>
+                <select name="cate_id">
+                    <option value="1">手机数码</option><option value="4">家纺/家居</option><option value="6">服装饰品</option><option value="7">美容护肤</option><option value="23">母婴玩具</option><option value="36">运动户外</option><option value="40">家用电器</option><option value="48">食品/饮料</option><option value="104">店家直销</option><option value="62">其它</option><option value="109">个人专栏</option><option value="115">湖北商品</option><option value="124">活动商品</option><option value="133">直通车（武汉卖家）</option><option value="141">日常消耗</option><option value="143">办公用品</option><option value="154">1元秒杀</option><option value="157">结婚季</option><option value="163"></option><option value="169">月中大促</option>                    
+                </select>                
+            </td>
+        </tr>
+        <tr>
+            <th width="180" class="first">品牌名称</th>
+            <td>
+            <input type="text" class="textinput requireinput" name="brand_name" value="">
+            </td>
+        </tr>
+                <tr>
+          <th class="first">编辑品牌图标</th>
+          <td> 建议图片大小300*200 像素(上传文件大小最大限制：500kb)
+            <div class="blank9"></div>
+            <input type="file" class="fileinput" name="brand_icon">
+            <div class="blank9"></div></td>
+        </tr>
+        <tr>
+            <th class="first">排序</th>
+            <td>
+            <input type="text" class="textinput" size="5" name="sort" value="">
+            </td>
+        </tr>
+        <tr class="act">
+            <th class="first">&nbsp;</th>
+            <td>
+            <input type="submit" class="submit_btn" value="提交">
+            &nbsp;
+            <input type="reset" class="reset_btn" value="重置">
+            </td>
+        </tr>
+    </tbody></table>
+</form>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>

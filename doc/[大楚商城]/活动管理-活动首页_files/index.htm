@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)http://www.91shuo.cn/admin/admin_activity/index -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/AdminActivity';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'AdminActivity';
+var CURR_ACTION = 'index';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>活动管理 &gt; 活动列表</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+<script type="text/javascript" src="dataList.js" style="width: 1306px;"></script>
+<div class="handle-btns" style="width: 1306px;">
+    <div class="img-button "><p><input type="button" id="addData" name="addData" value="添加" onclick="addData()" class="addData"></p></div>
+    <div class="img-button "><p><input type="button" id="editData" name="editData" value="编辑" onclick="editData(this,&#39;checkList&#39;,&#39;activity_id&#39;)" class="editData"></p></div>
+    <div class="img-button "><p><input type="button" id="removeData" name="removeData" value="删除" onclick="removeData(this,&#39;checkList&#39;)" class="removeData"></p></div>
+</div>
+<!-- Think 系统列表组件开始 -->
+<table id="checkList" class="table-list list" cellpadding="0" cellspacing="0" border="0" style="width: 1306px;"><thead><tr><th width="30" class="first"><input type="checkbox" onclick="checkAll(&#39;checkList&#39;)"></th><th width="10"><a href="javascript:sortBy('activity_id','','index','')" title="按照编号 ">编号</a></th><th width="30"><a href="javascript:sortBy('name','','index','')" title="按照活动名 ">活动名</a></th><th width="70"><a href="javascript:sortBy('picurl_small','','index','')" title="按照活动小缩略图 ">活动小缩略图</a></th><th width="70"><a href="javascript:sortBy('picurl_middle','','index','')" title="按照活动中缩略图 ">活动中缩略图</a></th><th width="70"><a href="javascript:sortBy('picurl_large','','index','')" title="按照活动大图 ">活动大图</a></th><th width="80"><a href="javascript:sortBy('url','','index','')" title="按照活动链接 ">活动链接</a></th><th width="20"><a href="javascript:sortBy('is_top','','index','')" title="按照是否推荐 ">是否推荐</a></th><th width="20"><a href="javascript:sortBy('is_show','','index','')" title="按照是否显示 ">是否显示</a></th><th width="10"><a href="javascript:sortBy('order','','index','')" title="按照排序 ">排序</a></th><th width="10"><a href="javascript:sortBy('period','','index','')" title="按照持续时间（单位：小时） ">持续时间（单位：小时）</a></th><th width="20"><a href="javascript:sortBy('create_time','','index','')" title="按照添加时间 ">添加时间</a></th><th width="50">操作</th></tr></thead><tbody><tr class="even"><td class="first"><input type="checkbox" name="key" value="1837"></td><td>1837</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1837&#39;,&#39;name&#39;)">女装专场</span></td><td><a href="513feb910aa0c.jpg" target="_blank"><img src="513feb910aa0c.jpg" width="80"></a></td><td><a href="513feb910b1db.jpg" target="_blank"><img src="513feb910b1db.jpg" width="80"></a></td><td><a href="513feb910b9ab.jpg" target="_blank"><img src="513feb910b9ab.jpg" width="80"></a></td><td></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1837&#39;,&#39;is_top&#39;)"><img status="0" src="status-0.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1837&#39;,&#39;is_show&#39;)"><img status="0" src="status-0.gif"></span></td><td>100</td><td>10</td><td>2013-03-04 11:20:15</td><td><a href="javascript:;" onclick="editData(this,&#39;1837&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1837&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="1836"></td><td>1836</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1836&#39;,&#39;name&#39;)">化妆品专场</span></td><td><a href="513ff42ed62ea.jpg" target="_blank"><img src="513ff42ed62ea.jpg" width="80"></a></td><td><a href="513ff42ed6ea2.jpg" target="_blank"><img src="513ff42ed6ea2.jpg" width="80"></a></td><td><a href="513ff42ed7e41.jpg" target="_blank"><img src="513ff42ed7e41.jpg" width="80"></a></td><td></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1836&#39;,&#39;is_top&#39;)"><img status="0" src="status-0.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1836&#39;,&#39;is_show&#39;)"><img status="0" src="status-0.gif"></span></td><td>100</td><td>10</td><td>2013-03-02 18:30:39</td><td><a href="javascript:;" onclick="editData(this,&#39;1836&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1836&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="1835"></td><td>1835</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1835&#39;,&#39;name&#39;)">数码专场</span></td><td><a href="51401590e8f97.jpg" target="_blank"><img src="51401590e8f97.jpg" width="80"></a></td><td><a href="5140166d9851c.jpg" target="_blank"><img src="5140166d9851c.jpg" width="80"></a></td><td><a href="5140166d990d6.jpg" target="_blank"><img src="5140166d990d6.jpg" width="80"></a></td><td></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1835&#39;,&#39;is_top&#39;)"><img status="0" src="status-0.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1835&#39;,&#39;is_show&#39;)"><img status="0" src="status-0.gif"></span></td><td>100</td><td>10</td><td>2013-03-02 18:29:30</td><td><a href="javascript:;" onclick="editData(this,&#39;1835&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1835&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="1840"></td><td>1840</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1840&#39;,&#39;name&#39;)">樱为爱情专场</span></td><td><a href="515a3b89204cf.jpg" target="_blank"><img src="515a3b89204cf.jpg" width="80"></a></td><td><a href="515a3b8921086.jpg" target="_blank"><img src="515a3b8921086.jpg" width="80"></a></td><td><a href="515a3b8921c3e.jpg" target="_blank"><img src="515a3b8921c3e.jpg" width="80"></a></td><td>http://91shuo.cn/Public/zt01/</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1840&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1840&#39;,&#39;is_show&#39;)"><img status="1" src="status-1.gif"></span></td><td>100</td><td>400</td><td>2013-03-15 19:15:27</td><td><a href="javascript:;" onclick="editData(this,&#39;1840&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1840&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="1864"></td><td>1864</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1864&#39;,&#39;name&#39;)">感恩母亲节</span></td><td><a href="5189e581cf147.jpg" target="_blank"><img src="5189e581cf147.jpg" width="80"></a></td><td><a href="5189e581cfcfd.jpg" target="_blank"><img src="5189e581cfcfd.jpg" width="80"></a></td><td><a href="5189e581d08b4.jpg" target="_blank"><img src="5189e581d08b4.jpg" width="80"></a></td><td></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1864&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1864&#39;,&#39;is_show&#39;)"><img status="1" src="status-1.gif"></span></td><td>100</td><td>99999</td><td>2013-05-07 10:18:14</td><td><a href="javascript:;" onclick="editData(this,&#39;1864&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1864&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="1862"></td><td>1862</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1862&#39;,&#39;name&#39;)">天堂伞·云上天堂</span></td><td><a href="51a7f05d4bded.jpg" target="_blank"><img src="51a7f05d4bded.jpg" width="80"></a></td><td><a href="51a7f05d4c9a3.jpg" target="_blank"><img src="51a7f05d4c9a3.jpg" width="80"></a></td><td><a href="51a7f05d4d55b.jpg" target="_blank"><img src="51a7f05d4d55b.jpg" width="80"></a></td><td>http://s.click.taobao.com/t?e=zGU34CA7K%2BPkqB04MQzdgG3VSuWRI1IF3n%2FzhW%2BRAw0MEPFf23KjHtMJSiu%2FdMe1QsmsQFOeIF2f3sLfdd6rjDGR2rM%3D</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1862&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1862&#39;,&#39;is_show&#39;)"><img status="1" src="status-1.gif"></span></td><td>100</td><td>999999</td><td>2013-05-04 18:32:53</td><td><a href="javascript:;" onclick="editData(this,&#39;1862&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1862&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="1845"></td><td>1845</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1845&#39;,&#39;name&#39;)">禽流感</span></td><td><a href="51692c1ae810e.jpg" target="_blank"><img src="51692c1ae810e.jpg" width="80"></a></td><td><a href="51692c1ae8cc5.jpg" target="_blank"><img src="51692c1ae8cc5.jpg" width="80"></a></td><td><a href="51692c1ae987e.jpg" target="_blank"><img src="51692c1ae987e.jpg" width="80"></a></td><td>http://91shuo.cn/Public/zt02</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1845&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1845&#39;,&#39;is_show&#39;)"><img status="1" src="status-1.gif"></span></td><td>100</td><td>9999</td><td>2013-04-13 17:57:46</td><td><a href="javascript:;" onclick="editData(this,&#39;1845&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1845&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="1854"></td><td>1854</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1854&#39;,&#39;name&#39;)">我和五一有个“约惠”</span></td><td><a href="51764e7ac2db7.jpg" target="_blank"><img src="51764e7ac2db7.jpg" width="80"></a></td><td><a href="51764e7ac3986.jpg" target="_blank"><img src="51764e7ac3986.jpg" width="80"></a></td><td><a href="51764e7ac452a.jpg" target="_blank"><img src="51764e7ac452a.jpg" width="80"></a></td><td>http://www.91shuo.cn/Public/zt03/index.html</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1854&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1854&#39;,&#39;is_show&#39;)"><img status="1" src="status-1.gif"></span></td><td>100</td><td>9999</td><td>2013-04-23 17:01:42</td><td><a href="javascript:;" onclick="editData(this,&#39;1854&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1854&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class="even"><td class="first"><input type="checkbox" name="key" value="1852"></td><td>1852</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1852&#39;,&#39;name&#39;)">为雅安送祝福</span></td><td><a href="517345484a1ec.jpg" target="_blank"><img src="517345484a1ec.jpg" width="80"></a></td><td><a href="517345484ada4.jpg" target="_blank"><img src="517345484ada4.jpg" width="80"></a></td><td><a href="517345484b573.jpg" target="_blank"><img src="517345484b573.jpg" width="80"></a></td><td>http://91shuo.cn/Public/zt04/</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1852&#39;,&#39;is_top&#39;)"><img status="0" src="status-0.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1852&#39;,&#39;is_show&#39;)"><img status="0" src="status-0.gif"></span></td><td>100</td><td>9999</td><td>2013-04-20 21:38:16</td><td><a href="javascript:;" onclick="editData(this,&#39;1852&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1852&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr><tr class=""><td class="first"><input type="checkbox" name="key" value="1857"></td><td>1857</td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="textEdit(this,&#39;1857&#39;,&#39;name&#39;)">夏季凉鞋专场</span></td><td><a href="51787fda576b7.jpg" target="_blank"><img src="51787fda576b7.jpg" width="80"></a></td><td><a href="51787fdacf0e5.jpg" target="_blank"><img src="51787fdacf0e5.jpg" width="80"></a></td><td><a href="51787fdacf875.jpg" target="_blank"><img src="51787fdacf875.jpg" width="80"></a></td><td></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1857&#39;,&#39;is_top&#39;)"><img status="1" src="status-1.gif"></span></td><td><span class="pointer" module="AdminActivity" href="javascript:;" onclick="toggleStatus(this,&#39;1857&#39;,&#39;is_show&#39;)"><img status="1" src="status-1.gif"></span></td><td>100</td><td>9999</td><td>2013-04-23 17:50:08</td><td><a href="javascript:;" onclick="editData(this,&#39;1857&#39;,&#39;activity_id&#39;)">编辑</a>&nbsp;&nbsp;<a href="javascript:;" onclick="removeData(this,&#39;1857&#39;,&#39;activity_id&#39;)">删除</a>&nbsp;&nbsp;</td></tr></tbody></table>
+<!-- Think 系统列表组件结束 -->
+
+<div class="pager" style="width: 1306px;">
+     74 条记录 1/8 页  <a href="http://www.91shuo.cn/admin/admin_activity/index?&p=2">下一页</a>     &nbsp;<span class="selected">1</span>&nbsp;<a href="http://www.91shuo.cn/admin/admin_activity/index?&p=2">&nbsp;2&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/admin_activity/index?&p=3">&nbsp;3&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/admin_activity/index?&p=4">&nbsp;4&nbsp;</a>&nbsp;<a href="http://www.91shuo.cn/admin/admin_activity/index?&p=5">&nbsp;5&nbsp;</a>  <a href="http://www.91shuo.cn/admin/admin_activity/index?&p=6">下5页</a> <a href="http://www.91shuo.cn/admin/admin_activity/index?&p=8">最后一页</a>  </div>
+
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>

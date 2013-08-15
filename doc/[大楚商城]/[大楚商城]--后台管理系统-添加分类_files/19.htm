@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://www.91shuo.cn/admin/index/left/id/19 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body style="background:#DEE4ED;padding:0; overflow:hidden; overflow-y:scroll;">
+	<div>
+		<div class="fanwe-menu" valign="top">
+			<dl>
+				<dt><div><strong>商品分类</strong></div></dt>
+				<dd class=""><p><a href="http://www.91shuo.cn/admin/category/index" target="mainFrame">分类列表</a></p></dd><dd class="cur"><p><a href="add.htm" target="mainFrame">添加分类</a></p></dd>			</dl><dl>
+				<dt><div><strong>商品管理</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/goods/index" target="mainFrame">商品列表</a></p></dd><dd><p><a href="http://www.91shuo.cn/admin/goods/add" target="mainFrame">通过URL添加商品</a></p></dd><dd><p><a href="http://www.91shuo.cn/admin/goods/control_add" target="mainFrame">通过表单添加商品</a></p></dd>			</dl><dl>
+				<dt><div><strong>商品评论</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/goods_comment/index" target="mainFrame">评论列表</a></p></dd>			</dl><dl>
+				<dt><div><strong>特价商品分类</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/onsale_category/index" target="mainFrame">分类管理</a></p></dd>			</dl><dl>
+				<dt><div><strong>特价商品管理</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/onsale_goods/index" target="mainFrame">特价商品</a></p></dd>			</dl><dl>
+				<dt><div><strong>商品同步</strong></div></dt>
+				<dd><p><a href="http://www.91shuo.cn/admin/sync_goods/index" target="mainFrame">更新商品</a></p></dd>			</dl>		</div>
+	</div>
+	<script>
+		if($("a:first").attr("href"))
+		{
+			top.document.getElementById("mainFrame").src = $("a:first").attr("href");
+			$("a:first").parent().parent().addClass("cur");
+			
+		};
+		
+		$("a").click(function(){
+			$("a").each(function(){
+				$(this).parent().parent().removeClass("cur");
+			});
+			$(this).parent().parent().addClass("cur");
+			$(this).blur();
+		});
+	</script>
+
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0039)http://www.91shuo.cn/admin/category/add -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/Category';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'Category';
+var CURR_ACTION = 'add';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>商品分类管理 &gt; 添加商品分类</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+<div class="handle-btns">
+    <div class="link-button "><p><a id="" name="" href="http://www.91shuo.cn/admin/category/index" class="">返回列表</a></p></div>
+</div>
+<form method="post" id="form" name="form" action="http://www.91shuo.cn/admin/category/insert" enctype="multipart/form-data">
+    <table cellpadding="4" cellspacing="0" border="0" class="table-form">
+        <tbody><tr>
+            <th width="180" class="first">分类名称</th>
+            <td>
+            <input type="text" class="textinput requireinput" name="cate_name">
+            </td>
+        </tr>
+        <tr>
+            <th class="first">所属分类</th>
+            <td>
+            <select id="parent_id" name="parent_id" onchange="" ondblclick="" class=""><option value="">顶级分类</option><option value="6">|--&nbsp;&nbsp;服装饰品</option><option value="103">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;连衣裙</option><option value="96">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;平底鞋</option><option value="98">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;遮阳帽</option><option value="11">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;服饰配件</option><option value="12">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;精品男装</option><option value="13">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;品牌女装</option><option value="27">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;精致家居</option><option value="28">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;时尚内衣</option><option value="90">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;特色单件</option><option value="93">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;精美挎包</option><option value="97">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;新款凉鞋</option><option value="165">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;精美饰品</option><option value="91">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;运动服</option><option value="1">|--&nbsp;&nbsp;手机数码</option><option value="18">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;手机</option><option value="26">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;电脑</option><option value="29">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;相机</option><option value="57">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;影音</option><option value="56">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;配件</option><option value="135">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;话费点卡</option><option value="7">|--&nbsp;&nbsp;美容护肤</option><option value="8">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;面部护肤</option><option value="9">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;时尚彩妆</option><option value="10">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;男士护肤</option><option value="21">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;经典香氛</option><option value="22">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;个人洗护</option><option value="84">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;美体瘦身</option><option value="94">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;防晒霜</option><option value="95">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;防护用品</option><option value="4">|--&nbsp;&nbsp;家纺/家居</option><option value="112">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;床上用品</option><option value="14">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;精品家纺</option><option value="32">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;家居饰品</option><option value="33">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;厨房餐饮</option><option value="34">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;时尚被毯</option><option value="35">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;居家日用</option><option value="23">|--&nbsp;&nbsp;母婴玩具</option><option value="25">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;婴儿用品</option><option value="24">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;母亲用品</option><option value="83">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;亲子类</option><option value="100">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;玩具</option><option value="101">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;旱冰鞋</option><option value="36">|--&nbsp;&nbsp;运动户外</option><option value="37">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;运动鞋服</option><option value="38">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;运动用品</option><option value="39">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;户外</option><option value="88">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;墨镜</option><option value="89">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;头巾</option><option value="99">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;我的背包</option><option value="40">|--&nbsp;&nbsp;家用电器</option><option value="41">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;厨房电器</option><option value="42">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;生活电器</option><option value="43">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;个人护理</option><option value="48">|--&nbsp;&nbsp;食品/饮料</option><option value="49">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;美食</option><option value="52">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;特产</option><option value="152">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;营养品</option><option value="104">|--&nbsp;&nbsp;店家直销</option><option value="105">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;天堂伞系列</option><option value="106">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;泳衣专卖店</option><option value="107">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;母亲节献礼</option><option value="108">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;摩亚杰卡</option><option value="111">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;夏日用品</option><option value="114">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;散热垫</option><option value="123">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;永恒颜色</option><option value="131">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;茵曼2013</option><option value="132">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;床上用品</option><option value="149">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;amii</option><option value="150">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;百分之一</option><option value="151">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;Othermix</option><option value="45">|--&nbsp;&nbsp;小说</option><option value="46">|--&nbsp;&nbsp;童书</option><option value="47">|--&nbsp;&nbsp;音像分类</option><option value="62">|--&nbsp;&nbsp;其它</option><option value="109">|--&nbsp;&nbsp;个人专栏</option><option value="110">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;小黑裙</option><option value="113">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;儿童节</option><option value="130">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;乐智小天地</option><option value="115">|--&nbsp;&nbsp;湖北商品</option><option value="116">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;潮流服装</option><option value="117">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;美容护肤</option><option value="118">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;手机数码</option><option value="120">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;日常用品</option><option value="121">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;时尚皮具</option><option value="122">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;新品潮鞋</option><option value="124">|--&nbsp;&nbsp;活动商品</option><option value="125">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;毕业大咖SHOW</option><option value="126">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;游戏点卡</option><option value="127">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;职业装</option><option value="128">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;知识进阶</option><option value="129">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;职场必备</option><option value="147">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;品牌商品</option><option value="148">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;美丽女生</option><option value="153">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;年中爆款商品大便卖</option><option value="155">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;裂帛22~28</option><option value="156">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;七夕珠宝节</option><option value="164">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;巧克力、鲜花</option><option value="166">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;8月品牌季</option><option value="167">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;8月品牌单品</option><option value="168">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;月中大促</option><option value="133">|--&nbsp;&nbsp;直通车（武汉卖家）</option><option value="134">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;连衣裙</option><option value="137">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;迷你裙、裤</option><option value="138">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;皮包</option><option value="140">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;鞋</option><option value="141">|--&nbsp;&nbsp;日常消耗</option><option value="142">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;特卖专场</option><option value="143">|--&nbsp;&nbsp;办公用品</option><option value="144">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;办公室必需品</option><option value="145">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;办公室消耗品</option><option value="146">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;员工福利</option><option value="154">|--&nbsp;&nbsp;1元秒杀</option><option value="157">|--&nbsp;&nbsp;结婚季</option><option value="158">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;婚纱</option><option value="159">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;礼服</option><option value="160">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;旗袍</option><option value="161">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;婚鞋</option><option value="162">&nbsp;&nbsp;&nbsp;&nbsp;|--&nbsp;&nbsp;配饰</option><option value="163">|--&nbsp;&nbsp;</option><option value="169">|--&nbsp;&nbsp;月中大促</option></select>
+            </td>
+        </tr>
+        <tr>
+            <th class="first">副名称</th>
+            <td>
+            <input type="text" class="textinput" name="short_name">
+            </td>
+        </tr>
+        <tr>
+            <th class="first">分类图标</th>
+            <td><div class="blank9"></div>
+            <input type="file" class="fileinput" name="cate_icon">
+            <div class="blank9"></div></td>
+        </tr>
+        <tr>
+            <th class="first">排序</th>
+            <td>
+            <input type="text" class="textinput" size="5" name="sort" value="100">
+            </td>
+        </tr>
+        <tr>
+            <th class="first">分类描述</th>
+            <td>            <textarea name="desc" class="textinput areainput" rows="3"></textarea></td>
+        </tr>
+        <tr class="act">
+            <th class="first">&nbsp;</th>
+            <td>
+            <input type="submit" class="submit_btn" value="提交">
+            &nbsp;
+            <input type="reset" class="reset_btn" value="重置">
+            </td>
+        </tr>
+    </tbody></table>
+</form>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>

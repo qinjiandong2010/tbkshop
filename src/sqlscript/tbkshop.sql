@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-08-15 18:33:39
+Date: 2013-08-15 18:42:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -480,6 +480,11 @@ CREATE TABLE `t_users` (
   `user_pwd` varchar(255) DEFAULT NULL COMMENT '登录密码',
   `user_phone` varchar(255) DEFAULT NULL COMMENT '用户手机号',
   `user_email` varchar(255) DEFAULT NULL COMMENT '邮件地址',
+  `user_sex` tinyint(1) DEFAULT NULL COMMENT '性别',
+  `user_integral` int(11) DEFAULT NULL COMMENT '用户积分',
+  `user_olduser` varchar(255) DEFAULT NULL COMMENT '推荐用户',
+  `name` varchar(255) DEFAULT NULL COMMENT '姓名',
+  `user_img` varchar(255) DEFAULT NULL COMMENT '头像',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

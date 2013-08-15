@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://www.91shuo.cn/Admin/AdsPosition/add -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<link href="http://www.91shuo.cn/Public/Static/Css/style.css" rel="stylesheet">
+<link href="http://www.91shuo.cn/Public/Static/Css/dialog.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="json.js"></script>
+<script type="text/javascript" src="jQueryDialog.js"></script>
+<script type="text/javascript" src="jquery.pngFix.js"></script>
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址 
+var URL = '/Admin/AdsPosition';
+var ROOT_PATH = '';
+var APP	 =	 '';
+var STATIC = '/Public/Static';
+var VAR_MODULE = 'm';
+var VAR_ACTION = 'a';
+var CURR_MODULE = 'AdsPosition';
+var CURR_ACTION = 'add';
+
+//定义JS中使用的语言变量
+var CONFIRM_DELETE = '你确定要删除选择项吗？';
+var AJAX_LOADING = '提交请求中，请稍候...';
+var AJAX_ERROR = 'AJAX请求发生错误！';
+var ALREADY_REMOVE = '已删除';
+var SEARCH_LOADING = '搜索中...';
+var CLICK_EDIT_CONTENT = '点击修改内容';
+//-->
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="fanwe-body">
+		<div class="fb-title"><div><p><span>广告位管理 &gt; 添加广告位</span></p></div></div>
+		<div class="fb-body">
+			<table class="body-table" cellpadding="0" cellspacing="1" border="0">
+				<tbody><tr>
+					<td class="body-table-td">
+						<div class="body-table-div" style="height: 644px;">
+
+<div class="handle-btns">
+	<div class="link-button"><p><a id="" name="" href="http://www.91shuo.cn/admin/ads_position/index" class="">返回列表</a></p></div>
+</div>
+<script>
+function ajax_check(obj)
+{
+	//1、实例化ajax对象
+	if(window.XMLHttpRequest)
+	{ 
+		ajax = new XMLHttpRequest(); //非IE浏览器实例化XMLHttpRequest对象
+	}
+	else 
+	{
+		//高版本的IE
+		ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+	}
+	
+	//2、设置回调函数
+	ajax.onreadystatechange = back_ajax_check;
+	
+	//3、打开连接
+	ajax.open('post',  '/admin/ads_position/chePositionName', true);//注意这里路径的写法
+	
+	//设置传输编码
+	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	
+	//4、发送数据
+	ajax.send('n='+obj.value+'&&way=add');
+}
+
+function back_ajax_check()
+{
+	if(ajax.readyState == 4 && ajax.status == 200)
+	{
+		var span=document.getElementById('name_ts');
+		span.innerHTML=ajax.responseText;
+		
+	}
+}
+</script>
+
+<form method="post" id="form" name="form" action="http://www.91shuo.cn/admin/ads_position/insert">
+<table cellpadding="4" cellspacing="0" border="0" class="table-form">
+	<tbody><tr>
+		<th width="200" class="first">广告位名称</th>
+		<td><input type="text" class="textinput requireinput" name="position_name" id="position_name" onblur="ajax_check(this)"><em style="color:#F00">*</em><span id="name_ts" style="color:#F00"></span></td>
+	</tr>
+	<tr>
+		<th class="first">广告位长度</th>
+		<td><input type="text" class="textinput requireinput" name="position_length" id="position_length">&nbsp;px</td>
+	</tr>
+	<tr>
+		<th class="first">广告位宽度</th>
+		<td><input type="text" class="textinput requireinput" name="position_width" id="position_width">&nbsp;px</td>
+	</tr>
+	<tr>
+		<th class="first">广告位所属类别</th>
+		<td>
+        <select name="position_category" id="position_category">
+        	
+        	<option value="0">图片类型</option>
+            <option value="1">灯箱类型</option>
+        </select>
+			&nbsp;&nbsp;<span><font color="#FF0000">图片类型最多只能显示一条广告</font></span>
+		</td>
+	</tr>
+    
+    <tr>
+		<th class="first">广告显示条数</th>
+		<td><input type="text" class="textinput requireinput" name="position_ads_limit" id="position_ads_limit" value="1"></td>
+	</tr>
+   
+    <tr>
+		<th class="first">备注</th>
+		<td>
+        <textarea cols="50" rows="6" id="position_remark" name="position_remark"></textarea>
+		
+		</td>
+	</tr>
+	<tr class="act">
+		<th class="first">&nbsp;</th>
+		<td>
+			<input type="submit" class="submit_btn" value="提交">
+			<input type="reset" class="reset_btn" value="重置">
+		</td>
+	</tr>
+</tbody></table>
+</form>
+<script type="text/javascript">
+jQuery(function($){
+	$("#form").submit(function(){
+		if(!$.checkRequire($("#position_name").val()))
+		{
+			alert("广告位名称不可为空");
+			return false;
+		}
+		
+		if(!$.checkNumber($("#position_length").val()))
+		{
+			alert("长度不可为空且必须为数字");
+			return false;
+		}
+		
+		if(!$.checkNumber($("#position_width").val()))
+		{
+			alert("宽度不可为空且必须为数字");
+			return false;
+		}
+
+	
+	});
+});
+</script>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+	<div class="ajax-loading"></div>
+
+<script type="text/javascript">
+jQuery(function($){
+	updateBodyDivHeight();
+	$(window).resize(function(){
+		updateBodyDivHeight();
+	});
+});
+
+function updateBodyDivHeight()
+{
+	jQuery(".body-table-div").height(jQuery(".fanwe-body").height() - 36);
+	if(jQuery(".body-table-div").get(0).scrollHeight > jQuery(".body-table-div").height())
+	{
+		var width = jQuery(".body-table-div").width() - 16;
+		jQuery(".body-table-div > *").each(function(){
+			if(!$(this).hasClass('ajax-loading'))
+			{
+				$(this).width(width)	
+			}
+		});
+	}
+}
+</script>
+</body></html>
