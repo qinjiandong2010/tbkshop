@@ -10,10 +10,22 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-08-12 16:19:30
+Date: 2013-08-15 18:33:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `t_admin`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_admin`;
+CREATE TABLE `t_admin` (
+  `id` bigint(20) DEFAULT NULL COMMENT '管理员ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_admin
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `t_app_type`
@@ -57,6 +69,43 @@ INSERT INTO `t_app_type` VALUES ('22', '射击飞行', '', '2', '1', '20');
 INSERT INTO `t_app_type` VALUES ('23', '体育竞技', '', '2', '1', '21');
 INSERT INTO `t_app_type` VALUES ('24', '网游游戏', '', '2', '1', '22');
 INSERT INTO `t_app_type` VALUES ('25', '模拟游戏', '', '2', '1', '23');
+
+-- ----------------------------
+-- Table structure for `t_brand`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_brand`;
+CREATE TABLE `t_brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '品牌编号ID',
+  `brand_name` varchar(255) DEFAULT NULL COMMENT '品牌名称',
+  `brand_link` varchar(255) DEFAULT NULL COMMENT '品牌链接',
+  `createtime` datetime DEFAULT NULL COMMENT '添加时间',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_brand
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_cart`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cart`;
+CREATE TABLE `t_cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '购物车ID',
+  `product_name` varchar(200) DEFAULT NULL COMMENT '商品名称',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `product_id` bigint(20) DEFAULT NULL COMMENT '商品编号ID',
+  `product_price` double DEFAULT '0' COMMENT '商品价格',
+  `product_integral` int(11) DEFAULT '0' COMMENT '商品积分',
+  `product_count` int(11) DEFAULT NULL COMMENT '商品数量',
+  `product_imgurl` text COMMENT '商品图片来源',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_cart
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `t_config`
@@ -116,6 +165,70 @@ INSERT INTO `t_menu` VALUES ('81', '修改资料', '', '/accounts/change_profile
 INSERT INTO `t_menu` VALUES ('82', '修改密码', '', '/accounts/change_pwd', '67', '1', '1', '0');
 INSERT INTO `t_menu` VALUES ('88', '用户审核', '', '', '0', '1', '1', '0');
 INSERT INTO `t_menu` VALUES ('89', '用户审核列表', '', '/accounts/userReviewList.html', '88', '1', '1', '0');
+
+-- ----------------------------
+-- Table structure for `t_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order`;
+CREATE TABLE `t_order` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) DEFAULT NULL COMMENT '用户姓名',
+  `product_name` varchar(200) DEFAULT NULL COMMENT '商品名称',
+  `ordertime` datetime DEFAULT NULL COMMENT '订单时间',
+  `product_id` bigint(20) DEFAULT NULL COMMENT '商品ID',
+  `product_integral` int(11) DEFAULT NULL COMMENT '商品积分',
+  `product_price` double DEFAULT NULL COMMENT '商品价格',
+  `order_count` int(11) DEFAULT NULL COMMENT '订单数量',
+  `order_money` int(11) DEFAULT NULL COMMENT '订单金额',
+  `order_pay` varchar(255) DEFAULT NULL COMMENT '支付方式',
+  `order_distribution` varchar(255) DEFAULT NULL COMMENT '配送方式',
+  `order_status` int(11) DEFAULT NULL COMMENT '支付状态',
+  `order_uid` int(11) DEFAULT NULL COMMENT '订单用户ID',
+  `order_freight` double DEFAULT NULL COMMENT '运费',
+  `remark` varchar(255) DEFAULT NULL COMMENT ' 备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_product`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_product`;
+CREATE TABLE `t_product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '商品编号ID',
+  `product_name` varchar(200) NOT NULL COMMENT '商品名称',
+  `retailprice` double DEFAULT '0' COMMENT '商品卖价',
+  `price` double DEFAULT '0' COMMENT '商品价格',
+  `commission` double DEFAULT '0' COMMENT '佣金率',
+  `integral` int(11) DEFAULT '0' COMMENT '商品积分',
+  `brand_id` int(11) DEFAULT NULL COMMENT '品牌',
+  `stocks` int(11) DEFAULT '0' COMMENT '商品数量',
+  `volume` int(11) DEFAULT '0' COMMENT '商品浏览量',
+  `category_id` int(11) DEFAULT NULL COMMENT '商品分类',
+  `icon185` varchar(500) DEFAULT NULL COMMENT ' 图片,这里是图片的URL集合。',
+  `img` varchar(500) DEFAULT NULL COMMENT '商品图片',
+  `img_status` tinyint(1) DEFAULT NULL COMMENT ' 默认是1，表示正常状态，如果管理员发现有非法图片，可以关闭该图片，设置为0即可  ',
+  `link` varchar(500) DEFAULT NULL COMMENT '商品链接',
+  `key_word` varchar(200) DEFAULT NULL COMMENT '商品关键字搜索',
+  `buys` int(11) DEFAULT NULL COMMENT '已经卖出数',
+  `status` int(11) DEFAULT NULL COMMENT '商品状态 2、下架商品，1、上架商品 ,3、冻结商品 ',
+  `type` int(11) DEFAULT NULL COMMENT ' 商品类型，1.普通商品，2团购商品，3打折商品',
+  `uid` bigint(20) DEFAULT NULL COMMENT '录入人，最后修改人',
+  `start_date` date DEFAULT NULL COMMENT '开始日期',
+  `end_date` date DEFAULT NULL COMMENT '结束日期',
+  `brief` varchar(500) DEFAULT NULL COMMENT '商品概要描述',
+  `content` text COMMENT '商品详细描述',
+  `createtime` datetime DEFAULT NULL COMMENT '添加时间',
+  `modifytime` datetime DEFAULT NULL COMMENT '最后修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_product
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `t_reset_pwd`
@@ -356,6 +469,23 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 INSERT INTO `t_user` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@adplatform.com', '1', '', '系统管理员', '', null, '', '2013-06-02 17:43:46', 'a9b8afaab8d6463f8cc5e004e1164f28', '2013-08-12 15:38:26', '1');
 INSERT INTO `t_user` VALUES ('2', 'spadmin', 'e10adc3949ba59abbe56e057f20f883e', 'spadmin@adplatform.com', '2', '', '运营管理员', '', null, '', '2013-07-08 00:12:45', 'd22ff486aaf54ebabe74fa47e03f3bc3', '2013-08-12 15:38:19', '1');
+
+-- ----------------------------
+-- Table structure for `t_users`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_users`;
+CREATE TABLE `t_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `user_pwd` varchar(255) DEFAULT NULL COMMENT '登录密码',
+  `user_phone` varchar(255) DEFAULT NULL COMMENT '用户手机号',
+  `user_email` varchar(255) DEFAULT NULL COMMENT '邮件地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_users
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `t_user_account`
