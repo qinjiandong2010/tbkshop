@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-08-15 18:42:33
+Date: 2013-08-16 19:00:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,12 +20,30 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_admin`;
 CREATE TABLE `t_admin` (
-  `id` bigint(20) DEFAULT NULL COMMENT '管理员ID'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户编号',
+  `account_name` varchar(20) NOT NULL COMMENT '帐户名称',
+  `account_pwd` varchar(32) NOT NULL COMMENT '帐户密码',
+  `email` varchar(100) NOT NULL,
+  `type` tinyint(4) NOT NULL COMMENT '角色类型',
+  `company` varchar(100) DEFAULT NULL COMMENT '公司名称',
+  `contact_name` varchar(45) DEFAULT NULL,
+  `contact_tel` varchar(45) DEFAULT NULL,
+  `qq` varchar(20) DEFAULT NULL,
+  `website` varchar(45) DEFAULT NULL,
+  `createtime` datetime NOT NULL COMMENT '注册日期',
+  `login_token` varchar(50) DEFAULT NULL,
+  `login_token_time` datetime DEFAULT NULL,
+  `status` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`account_name`),
+  UNIQUE KEY `id_UNIQUE` (`uid`),
+  UNIQUE KEY `id_email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=1350073 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
+INSERT INTO `t_admin` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@adplatform.com', '1', '', '系统管理员', '', null, '', '2013-06-02 17:43:46', 'a9b8afaab8d6463f8cc5e004e1164f28', '2013-08-12 15:38:26', '1');
+INSERT INTO `t_admin` VALUES ('2', 'spadmin', 'e10adc3949ba59abbe56e057f20f883e', 'spadmin@adplatform.com', '2', '', '运营管理员', '', null, '', '2013-07-08 00:12:45', 'd22ff486aaf54ebabe74fa47e03f3bc3', '2013-08-12 15:38:19', '1');
 
 -- ----------------------------
 -- Table structure for `t_app_type`
@@ -105,6 +123,35 @@ CREATE TABLE `t_cart` (
 
 -- ----------------------------
 -- Records of t_cart
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_complaint`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_complaint`;
+CREATE TABLE `t_complaint` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `roleid` bigint(20) DEFAULT NULL COMMENT '角色ID',
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `content` varchar(500) DEFAULT NULL COMMENT '内容',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '创建者用户名',
+  `complaintto` bigint(20) DEFAULT NULL COMMENT '回复目标用户',
+  `complaintfrom` bigint(20) DEFAULT NULL COMMENT '回复者',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '0--unhandled complaint\r\n1--handled complaint',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `modifytime` datetime DEFAULT NULL COMMENT '修改时间',
+  `img` varchar(255) DEFAULT NULL COMMENT '头像',
+  `delflag` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ind_creater` (`roleid`),
+  KEY `ind_createtime` (`createtime`),
+  KEY `ind_complaintto` (`complaintto`),
+  KEY `ind_complaintfrom` (`complaintfrom`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 11264 kB; InnoDB free: 11264 kB; InnoDB free: 1';
+
+-- ----------------------------
+-- Records of t_complaint
 -- ----------------------------
 
 -- ----------------------------
@@ -228,6 +275,27 @@ CREATE TABLE `t_product` (
 
 -- ----------------------------
 -- Records of t_product
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_product_comm`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_product_comm`;
+CREATE TABLE `t_product_comm` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '商品评论表',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '用户姓名',
+  `title` varchar(255) DEFAULT NULL COMMENT '评论主题',
+  `createtime` datetime DEFAULT NULL COMMENT '评论时间',
+  `grade_img` varchar(500) DEFAULT NULL COMMENT '评分',
+  `merit` varchar(500) DEFAULT NULL COMMENT '优点',
+  `demerit` varchar(500) DEFAULT NULL COMMENT '缺点',
+  `pro_comment` varchar(500) DEFAULT NULL COMMENT '商品评论全部',
+  `img` varchar(500) DEFAULT NULL COMMENT '头像',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_product_comm
 -- ----------------------------
 
 -- ----------------------------
@@ -441,36 +509,6 @@ INSERT INTO `t_role_menu` VALUES ('1830', '2', '21');
 INSERT INTO `t_role_menu` VALUES ('1831', '2', '96');
 
 -- ----------------------------
--- Table structure for `t_user`
--- ----------------------------
-DROP TABLE IF EXISTS `t_user`;
-CREATE TABLE `t_user` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户编号',
-  `account_name` varchar(20) NOT NULL COMMENT '帐户名称',
-  `account_pwd` varchar(32) NOT NULL COMMENT '帐户密码',
-  `email` varchar(100) NOT NULL,
-  `type` tinyint(4) NOT NULL COMMENT '角色类型',
-  `company` varchar(100) DEFAULT NULL COMMENT '公司名称',
-  `contact_name` varchar(45) DEFAULT NULL,
-  `contact_tel` varchar(45) DEFAULT NULL,
-  `qq` varchar(20) DEFAULT NULL,
-  `website` varchar(45) DEFAULT NULL,
-  `createtime` datetime NOT NULL COMMENT '注册日期',
-  `login_token` varchar(50) DEFAULT NULL,
-  `login_token_time` datetime DEFAULT NULL,
-  `status` int(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`account_name`),
-  UNIQUE KEY `id_UNIQUE` (`uid`),
-  UNIQUE KEY `id_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=1350073 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user
--- ----------------------------
-INSERT INTO `t_user` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@adplatform.com', '1', '', '系统管理员', '', null, '', '2013-06-02 17:43:46', 'a9b8afaab8d6463f8cc5e004e1164f28', '2013-08-12 15:38:26', '1');
-INSERT INTO `t_user` VALUES ('2', 'spadmin', 'e10adc3949ba59abbe56e057f20f883e', 'spadmin@adplatform.com', '2', '', '运营管理员', '', null, '', '2013-07-08 00:12:45', 'd22ff486aaf54ebabe74fa47e03f3bc3', '2013-08-12 15:38:19', '1');
-
--- ----------------------------
 -- Table structure for `t_users`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_users`;
@@ -484,30 +522,15 @@ CREATE TABLE `t_users` (
   `user_integral` int(11) DEFAULT NULL COMMENT '用户积分',
   `user_olduser` varchar(255) DEFAULT NULL COMMENT '推荐用户',
   `name` varchar(255) DEFAULT NULL COMMENT '姓名',
+  `qq` varchar(20) DEFAULT NULL COMMENT '腾讯QQ号',
   `user_img` varchar(255) DEFAULT NULL COMMENT '头像',
+  `nick_name` varchar(255) DEFAULT NULL COMMENT '昵称',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `modifytime` datetime DEFAULT NULL COMMENT '修改时间',
+  `delflag` tinyint(4) DEFAULT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_users
 -- ----------------------------
-
--- ----------------------------
--- Table structure for `t_user_account`
--- ----------------------------
-DROP TABLE IF EXISTS `t_user_account`;
-CREATE TABLE `t_user_account` (
-  `uid` varchar(20) NOT NULL COMMENT '用户',
-  `balance` double NOT NULL COMMENT '余额',
-  `last_update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新日期',
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of t_user_account
--- ----------------------------
-INSERT INTO `t_user_account` VALUES ('1', '0', '2013-06-02 02:41:21');
-INSERT INTO `t_user_account` VALUES ('1350070', '0', '2013-06-06 16:57:00');
-INSERT INTO `t_user_account` VALUES ('1350071', '0', '2013-06-06 16:57:00');
-INSERT INTO `t_user_account` VALUES ('1350072', '0', '2013-08-09 09:43:44');
-INSERT INTO `t_user_account` VALUES ('2', '0', '2013-06-02 09:47:41');
