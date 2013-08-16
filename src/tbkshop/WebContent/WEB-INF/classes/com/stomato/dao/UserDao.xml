@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stomato.dao.UserDao">
+
+	<resultMap type="com.stomato.domain.User" id="user"> 
+		<result property="uid" column="uid" />
+		<result property="userName" column="account_name" />
+		<result property="email" column="email"/>
+        <result property="roleId" column="roleid"/>
+		<result property="company" column="company_name"/>
+		<result property="contactName" column="contact_name"/>
+		<result property="contactTel" column="contact_tel"/>
+		<result property="qq" column="qq"/>
+		<result property="website" column="website" />
+		<result property="createtime" column="createtime" />
+        <result property="loginTokenTime" column="login_token_time" />
+        <result property="status" column="status" />
+	</resultMap>
+	
+	<insert id="addUser" parameterType="com.stomato.domain.User" useGeneratedKeys="true" keyProperty="uid">
+		insert into t_user(account_name, account_pwd, roleid, email, company, contact_name, contact_tel, qq, website, createtime,status)
+					values(#{userName}, md5(#{password}), #{roleId}, #{email},#{company}, #{contactName}, #{contactTel}, #{qq}, #{website}, now(),#{status})
+	</insert>
+	<select id="getUserByUid" parameterType="int" resultMap="user" >
+		select * from t_user where uid=#{uid}
+	</select>
+	<select id="getUser" parameterType="com.stomato.domain.User" resultMap="user" >
+		select * from t_user where account_name=#{userName} and (account_pwd=md5(#{password}) or login_token=#{loginToken}) and status=1
+	</select>
+	
+	<update id="updateLoginToken" parameterType="com.stomato.domain.User">
+		update t_user set login_token=#{loginToken}, login_token_time=now() where uid=#{uid}
+	</update>
+	
+	<update id="updateUser" parameterType="com.stomato.domain.User">
+		update t_user set status=#{status},roleid=#{roleId},company=#{company},contact_name=#{contactName},contact_tel=#{contactTel},qq=#{qq},website=#{website}
+		where uid=#{uid}
+	</update>
+	
+	<update id="updatePassword" parameterType="com.stomato.domain.User">
+        update t_user set account_pwd=md5(#{password}) where uid=#{uid}
+    </update>
+    
+	<update id="updateEmail" parameterType="com.stomato.domain.User">
+        update t_user set email=#{email} where uid=#{uid}
+    </update>
+	
+	<select id="verify" parameterType="com.stomato.domain.User" resultMap="user">
+        select * from t_user where account_name=#{userName} or email=#{email} limit 0,1
+    </select>
+    
+	<select id="getUserByEmail" parameterType="String" resultMap="user">
+        select * from t_user where email=#{email}
+    </select>
+    <select id="listTotal" parameterType="com.stomato.domain.UserParam" resultType="int">
+		select count(1) from t_user where 1=1
+		<if test="userName != null">
+			and account_name like '%${userName}%'
+		</if>
+		<if test="startDate != null">
+            and createtime between concat(#{startDate}, ' 00:00:00') and concat(#{endDate}, ' 23:59:59')
+        </if>
+	</select>
+	<select id="listUser" parameterType="com.stomato.domain.UserParam" resultMap="user" >
+		select * from t_user where 1=1
+		<if test="userName != null">
+			and account_name like'%${userName}%'
+		</if>
+		<if test="startDate != null">
+            and createtime between concat(#{startDate}, ' 00:00:00') and concat(#{endDate}, ' 23:59:59')
+        </if>
+		order by login_token_time desc
+		<if test="offset != null">limit #{offset},#{pageSize}</if>
+	</select>
+</mapper>
