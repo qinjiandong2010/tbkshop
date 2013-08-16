@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
-import com.stomato.domain.Admin;
+import com.stomato.domain.User;
 
 public class LoginForm {
 
@@ -76,8 +76,8 @@ public class LoginForm {
 		return new Gson().toJson(this);
 	}
 
-	public Admin asPojo() {
-		Admin user = new Admin();
+	public User asPojo() {
+		User user = new User();
 		BeanUtils.copyProperties(this, user);
 		return user;
 	}

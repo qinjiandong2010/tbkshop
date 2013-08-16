@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.stomato.dao.MenuDao;
 import com.stomato.domain.Menu;
-import com.stomato.domain.Admin;
+import com.stomato.domain.User;
 import com.stomato.form.MenuFormParam;
 
 @Service
@@ -51,8 +51,8 @@ public class MenuService {
 		return menuDao.listMenuByIds(list);
 	}
 	
-	public List<Menu> listMenuByUser(Admin user){
-		List<Integer> idList = roleMenuService.listRoleMenu(user.getType());
+	public List<Menu> listMenuByUser(User user){
+		List<Integer> idList = roleMenuService.listRoleMenu(user.getRoleId());
 		List<Menu> menuList = listMenuByIds(idList);
 		List<Menu> levelMenuList = new ArrayList<Menu>();
 		for (Menu menu : menuList) {

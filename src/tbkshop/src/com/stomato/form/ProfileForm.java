@@ -5,7 +5,7 @@ import javax.validation.constraints.*;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
-import com.stomato.domain.Admin;
+import com.stomato.domain.User;
 
 public class ProfileForm {
 	
@@ -13,7 +13,7 @@ public class ProfileForm {
 	
 	@Min(1)
 	@Max(10)
-	private Integer type;
+	private Integer roleId;
 	
 	private String company;
 	
@@ -34,12 +34,12 @@ public class ProfileForm {
 		this.uid = uid;
 	}
 
-	public Integer getType() {
-		return type;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setType(Integer type) {
-		this.type = type;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getCompany() {
@@ -87,8 +87,8 @@ public class ProfileForm {
 		return new Gson().toJson(this);
 	}
 	
-	public Admin asPojo() {
-		Admin user = new Admin();
+	public User asPojo() {
+		User user = new User();
 		BeanUtils.copyProperties(this, user);
 		return user;
 	}

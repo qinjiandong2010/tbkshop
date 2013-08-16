@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.stomato.domain.Admin;
+import com.stomato.domain.User;
 import com.stomato.exception.ParameterException;
 import com.stomato.interceptor.LocaleInterceptor;
 import com.stomato.utils.StringUtils;
@@ -16,19 +16,19 @@ public class UserController {
 	
 	Logger logger = Logger.getLogger(this.getClass().getName());
 
-	protected Admin lookup(HttpServletRequest request) {
-		Admin user = null;
+	protected User lookup(HttpServletRequest request) {
+		User user = null;
 		HttpSession session = request.getSession();
 		if (session != null) {
 			Object obj = session.getAttribute("user");
 			if (obj != null) {
-				user = (Admin) obj;
+				user = (User) obj;
 			}
 		}
 		return user;
 	}
 	
-	protected void refreshUserSession(HttpServletRequest request, Admin user) {
+	protected void refreshUserSession(HttpServletRequest request, User user) {
 		HttpSession session = request.getSession();
 		if (session != null) {
 			user.setPassword(null);
@@ -58,7 +58,7 @@ public class UserController {
 		}
 	}
 	
-	protected void saveUserCookie(Admin user, HttpServletRequest request, HttpServletResponse response) {
+	protected void saveUserCookie(User user, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Cookie unameCookie = new Cookie("LoginName", user.getUserName());
 			unameCookie.setPath("/");
@@ -90,6 +90,24 @@ public class UserController {
 			}
 		}
 		return 0;
+	}
+	/**
+	 * 取得boolean参数的值
+	 * 
+	 * @param parameter
+	 *            参数
+	 * @return boolean 当前类别
+	 */
+	protected boolean getBooleanParameter(HttpServletRequest request,String name) {
+		String value = request.getParameter(name);
+		if (value != null) {
+			try {
+				return Boolean.parseBoolean(value);
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		return false;
 	}
 	/**
 	 * 取得整型参数的值

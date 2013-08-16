@@ -4,16 +4,18 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.stomato.domain.Admin;
-import com.stomato.service.AdminService;
+
+import com.stomato.domain.User;
+import com.stomato.service.AccountsService;
 import com.stomato.utils.StringUtils;
 
 public class UserInterceptor extends HandlerInterceptorAdapter {
 	
 	@Autowired
-	private AdminService userService;
+	private AccountsService userService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -47,7 +49,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 				}
 			}
 			if (!StringUtils.isEmpty(loginName) && !StringUtils.isEmpty(loginToken)) {
-				Admin user = new Admin();
+				User user = new User();
 				user.setUserName(loginName);
 				user.setLoginToken(loginToken);
 				
