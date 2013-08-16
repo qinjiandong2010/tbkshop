@@ -43,7 +43,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/formpage.html",method=RequestMethod.GET)
 	public String formPage(@ModelAttribute("roleForm") RoleForm roleForm){
-		return "portal/role/roleForm" ;
+		return "admin/role/roleForm" ;
 	}
 
 	/**
@@ -55,16 +55,16 @@ public class RoleController {
 	@RequestMapping(value="/formpage.html",method=RequestMethod.POST)
 	public String addRole(@Valid @ModelAttribute("roleForm") RoleForm roleForm,BindingResult result,HttpServletRequest request){
 		if (result.hasErrors()) {
-			return "portal/role/roleForm";
+			return "admin/role/roleForm";
 		}
 		if( roleService.getRoleByName( roleForm.getRoleName() ) != null ){
 			request.setAttribute("msg", "角色名称已存在,添加失败!");
-			return "portal/role/roleForm";
+			return "admin/role/roleForm";
 		}
 		roleService.addRole(roleForm.asPojo());
 		roleForm.setRoleName("");
 		request.setAttribute("msg", "添加角色信息成功!");
-		return "portal/role/roleForm";
+		return "admin/role/roleForm";
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class RoleController {
 		formParam.setTotalCount(total);
 		List<Role> list = roleService.listRole(formParam);
 		request.setAttribute("roleList", list);
-		return "portal/role/roleList";
+		return "admin/role/roleList";
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class RoleController {
 		model.addAttribute("selected", roleMenuIdList);
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("role", role);
-		return "portal/role/roleMenu" ;
+		return "admin/role/roleMenu" ;
 	}
 	
 	/**

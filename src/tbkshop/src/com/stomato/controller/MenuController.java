@@ -37,7 +37,7 @@ public class MenuController {
 	@RequestMapping(value = "/formpage.html",method=RequestMethod.GET)
 	public String formpage(@ModelAttribute("menuForm") MenuForm menuForm,HttpServletRequest request) {
 		request.setAttribute("parentMenus",menuService.listParentMenu());
-		return "portal/menu/menuForm";
+		return "admin/menu/menuForm";
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class MenuController {
 	@RequestMapping(value = "/formpage.html",method=RequestMethod.POST)
 	public String addMenu(@Valid @ModelAttribute("menuForm") MenuForm menuForm, BindingResult result, HttpServletRequest request) {
 		if (result.hasErrors()) {
-			return "portal/menu/menuForm";
+			return "admin/menu/menuForm";
 		}
 		Menu menu = menuForm.asPojo();
 		if( menu.getVisible() == null){
@@ -60,7 +60,7 @@ public class MenuController {
 		BeanUtils.copyProperties(new MenuForm(), menuForm);
 		request.setAttribute("msg", "添加菜单项成功！");
 		request.setAttribute("parentMenus",menuService.listParentMenu());
-		return "portal/menu/menuForm";
+		return "admin/menu/menuForm";
 	}
 
 	/**
@@ -77,11 +77,11 @@ public class MenuController {
 		if (StringUtils.isEmpty(menu.getName())) {
 			logger.debug("菜单项不存在！");
 			request.setAttribute("msg", "菜单项不存在！");
-			return "portal/menu/menuUpdate";
+			return "admin/menu/menuUpdate";
 		}
 		request.setAttribute("parentMenus",menuService.listParentMenu());
 		request.setAttribute("menu", menu);
-		return "portal/menu/menuUpdate";
+		return "admin/menu/menuUpdate";
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class MenuController {
 	@RequestMapping(value = "/editMenu.html",method=RequestMethod.POST)
 	public String updateMenu(@Valid @ModelAttribute("menuForm") MenuForm menuForm,BindingResult result, HttpServletRequest request) {
 		if (result.hasErrors()) {
-			return "portal/menu/menuUpdate";
+			return "admin/menu/menuUpdate";
 		}
 		Menu menu = menuForm.asPojo();
 		if( menu.getVisible() == null){
@@ -104,7 +104,7 @@ public class MenuController {
 		request.setAttribute("msg", "修改菜单信息成功！");
 		request.setAttribute("parentMenus",menuService.listParentMenu());
 		request.setAttribute("menu", menu);
-		return "portal/menu/menuUpdate";
+		return "admin/menu/menuUpdate";
 	}
 
 	/**
@@ -120,6 +120,6 @@ public class MenuController {
 		formParam.setTotalCount(total);
 		List<Menu> list = menuService.listMenu(formParam);
 		request.setAttribute("menuList", list);
-		return "portal/menu/menuList";
+		return "admin/menu/menuList";
 	}
 }

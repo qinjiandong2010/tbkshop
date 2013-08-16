@@ -5,7 +5,7 @@ import javax.validation.constraints.*;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
-import com.stomato.domain.User;
+import com.stomato.domain.Admin;
 
 public class ProfileForm {
 	
@@ -87,8 +87,8 @@ public class ProfileForm {
 		return new Gson().toJson(this);
 	}
 	
-	public User asPojo() {
-		User user = new User();
+	public Admin asPojo() {
+		Admin user = new Admin();
 		BeanUtils.copyProperties(this, user);
 		return user;
 	}

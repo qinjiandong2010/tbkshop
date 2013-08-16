@@ -53,7 +53,7 @@
 			<bean class="com.stomato.interceptor.LocaleInterceptor" />
 		</mvc:interceptor>
         <mvc:interceptor>
-	        <mvc:mapping path="/accounts/**" />
+	        <mvc:mapping path="/admin/**" />
             <mvc:mapping path="/menu/**"/>
             <mvc:mapping path="/role/**"/>
             <mvc:mapping path="/dashboard.html"/>

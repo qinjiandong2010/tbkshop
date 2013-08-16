@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.stomato.domain.User;
-import com.stomato.service.AccountsService;
+import com.stomato.domain.Admin;
+import com.stomato.service.AdminService;
 import com.stomato.utils.StringUtils;
 
 public class UserInterceptor extends HandlerInterceptorAdapter {
 	
 	@Autowired
-	private AccountsService userService;
+	private AdminService userService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -47,7 +47,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 				}
 			}
 			if (!StringUtils.isEmpty(loginName) && !StringUtils.isEmpty(loginToken)) {
-				User user = new User();
+				Admin user = new Admin();
 				user.setUserName(loginName);
 				user.setLoginToken(loginToken);
 				

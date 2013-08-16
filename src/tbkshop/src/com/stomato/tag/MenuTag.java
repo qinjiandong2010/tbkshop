@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.stomato.domain.Menu;
-import com.stomato.domain.User;
+import com.stomato.domain.Admin;
 import com.stomato.service.MenuService;
 import com.stomato.utils.SpringContextUtil;
 import com.stomato.utils.StringUtils;
@@ -27,7 +27,7 @@ public class MenuTag extends BodyTagSupport {
 	@Override
 	public int doEndTag() throws JspException {
 		HttpSession session = pageContext.getSession();
-		User user = (User) session.getAttribute("user");
+		Admin user = (Admin) session.getAttribute("user");
 		if (user == null)
 			return SKIP_BODY;
 		

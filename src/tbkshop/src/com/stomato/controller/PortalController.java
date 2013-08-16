@@ -1,37 +1,38 @@
 package com.stomato.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-
-import com.stomato.domain.Password;
-import com.stomato.domain.User;
-import com.stomato.form.LoginForm;
-import com.stomato.form.ResetByEmailForm;
-import com.stomato.form.ResetPasswordForm;
-import com.stomato.helper.MailHelper;
-import com.stomato.service.AccountsService;
-import com.stomato.service.PasswordService;
-import com.stomato.utils.StringUtils;
-import com.stomato.validator.ResetPasswordValidation;
-
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.stomato.domain.Admin;
+import com.stomato.domain.Password;
+import com.stomato.form.LoginForm;
+import com.stomato.form.ResetByEmailForm;
+import com.stomato.form.ResetPasswordForm;
+import com.stomato.helper.MailHelper;
+import com.stomato.service.AdminService;
+import com.stomato.service.PasswordService;
+import com.stomato.utils.StringUtils;
+import com.stomato.validator.ResetPasswordValidation;
 
 @Controller
 @RequestMapping("/")
 public class PortalController extends UserController {
 	
 	@Autowired
-	private AccountsService accountsService;
+	private AdminService adminService;
 	
 	@Autowired
 	private PasswordService passwordService;
@@ -41,7 +42,7 @@ public class PortalController extends UserController {
 	
 	@RequestMapping(value="/login.html", method = RequestMethod.GET)
 	public String showForm(@ModelAttribute LoginForm loginForm, Map<String, Object> model, HttpServletRequest request) {
-		return "portal/login";
+		return "admin/login";
 	}
 
 	@RequestMapping(value="/login.html", method = RequestMethod.POST)
@@ -54,18 +55,18 @@ public class PortalController extends UserController {
 			} else {
 				model.addAttribute("accountErr", true);
 			}
-			return "portal/login";
+			return "admin/login";
 		}
-		User user = loginForm.asPojo();
-		user = accountsService.getUser(user);
+		Admin user = loginForm.asPojo();
+		user = adminService.getUser(user);
 		if (user == null) {
 			model.addAttribute("accountErr", true);
-			return "portal/login";
+			return "admin/login";
 		}
 		
 		if (loginForm.getRemember()) {
 			user.setLoginToken(StringUtils.getUUID());
-			accountsService.uploadLoginToken(user);
+			adminService.uploadLoginToken(user);
 			this.saveUserCookie(user, request, response);
 		}
 		this.refreshUserSession(request, user);
@@ -91,12 +92,12 @@ public class PortalController extends UserController {
 	
 	@RequestMapping("/dashboard.html")
 	public String dashboard() {
-		return "portal/dashboard";
+		return "admin/dashboard";
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd.html", method=RequestMethod.GET)
 	public String showResetPwd(@ModelAttribute("resetForm") ResetByEmailForm form) {
-		return "portal/recover/reset_pwd";
+		return "admin/recover/reset_pwd";
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd.html", method=RequestMethod.POST)
@@ -107,14 +108,14 @@ public class PortalController extends UserController {
 			} else {
 				model.addAttribute("emailFormatErr", true);
 			}
-			return "portal/recover/reset_pwd";
+			return "admin/recover/reset_pwd";
 		}
 		
 		String email = form.getEmail();
-		User user = accountsService.getUserByEmail(email);
+		Admin user = adminService.getUserByEmail(email);
 		if (user == null) {
 			model.addAttribute("emailNotFound", true);
-			return "portal/recover/reset_pwd";
+			return "admin/recover/reset_pwd";
 		}
 		
 		String token = StringUtils.getRandomChars(3) + "-" + StringUtils.getRandomChars(3) + "-" + StringUtils.toMD5(StringUtils.getUUID() + user.getUserName()).substring(2, 22);
@@ -131,7 +132,7 @@ public class PortalController extends UserController {
 	
 	@RequestMapping(value="/recover/reset_pwd_done.html", method=RequestMethod.GET)
 	public String reset_pwd_done() {
-		return "portal/recover/reset_pwd_done";
+		return "admin/recover/reset_pwd_done";
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd_confirm/{token}", method=RequestMethod.GET)
@@ -143,7 +144,7 @@ public class PortalController extends UserController {
 		if (password == null) {
 			return "redirect:/recover/reset_pwd_unsuccess.html";
 		}
-		return "portal/recover/reset_pwd_confirm";
+		return "admin/recover/reset_pwd_confirm";
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd_confirm/{token}", method=RequestMethod.POST)
@@ -153,7 +154,7 @@ public class PortalController extends UserController {
 		}
 		resetPasswordValidation.validate(form, result);
 		if (result.hasErrors()) {
-			return "portal/recover/reset_pwd_confirm";
+			return "admin/recover/reset_pwd_confirm";
 		}
 		
 		Password password = passwordService.getToken(token);
@@ -161,26 +162,26 @@ public class PortalController extends UserController {
 			return "redirect:/recover/reset_pwd_unsuccess.html";
 		}
 		
-		User user = accountsService.getUserByEmail(password.getEmail());
+		Admin user = adminService.getUserByEmail(password.getEmail());
 		user.setPassword(form.getNew_password1());
 		passwordService.removeToken(password.getEmail());
-		accountsService.updatePassword(user);
+		adminService.updatePassword(user);
 		
 		return "redirect:/recover/reset_pwd_success.html";
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd_success.html", method=RequestMethod.GET)
 	public String reset_pwd_success() {
-		return "portal/recover/reset_pwd_success";
+		return "admin/recover/reset_pwd_success";
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd_unsuccess.html", method=RequestMethod.GET)
 	public String reset_pwd_unsuccess() {
-		return "portal/recover/reset_pwd_unsuccess";
+		return "admin/recover/reset_pwd_unsuccess";
 	}
 	
 	@RequestMapping("/notify2.html")
 	public String notify2() {
-		return "portal/notify2";
+		return "admin/notify2";
 	}
 }

@@ -14,12 +14,12 @@ public class ErrorPageController {
 	
 	@RequestMapping("/404.html")
 	public String pageNotFound2() {
-		return "portal/errors/404";
+		return "admin/errors/404";
 	}
 	
 	@RequestMapping("/500")
 	public String serverError() {
-		return "portal/errors/500";
+		return "admin/errors/500";
 	}
 	
 	@RequestMapping("/500.html")
