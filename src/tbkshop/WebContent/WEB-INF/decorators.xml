@@ -19,6 +19,7 @@
         <pattern>/category/*</pattern>
         <pattern>/accounts/*</pattern>
         <pattern>/brand/*</pattern>
+        <pattern>/goods/*</pattern>
         <pattern>/menu/*</pattern>
         <pattern>/role/*</pattern>
         <pattern>/errors/*</pattern>
