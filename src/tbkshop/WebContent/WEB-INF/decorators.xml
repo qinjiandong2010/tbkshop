@@ -16,20 +16,13 @@
     
     <decorator name="portal" page="portal.jsp">
         <pattern>/dashboard.html</pattern>
-        <pattern>/apps/*</pattern>
+        <pattern>/category/*</pattern>
         <pattern>/accounts/*</pattern>
-        <pattern>/admin/*</pattern>
+        <pattern>/brand/*</pattern>
         <pattern>/menu/*</pattern>
         <pattern>/role/*</pattern>
-        <pattern>/financial/*</pattern>
-        <pattern>/adResource/*</pattern>
-        <pattern>/adchannel/*</pattern>
-        <pattern>/company/*</pattern>
-        <pattern>/userchannel/*</pattern>
-        <pattern>/report/*</pattern>
         <pattern>/errors/*</pattern>
         <pattern>/result/*</pattern>
-        <pattern>/adpush/*</pattern>
     </decorator>
 
 </decorators>
