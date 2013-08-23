@@ -57,6 +57,7 @@
 	        <mvc:mapping path="/brand/**" />
 	        <mvc:mapping path="/category/**" />
             <mvc:mapping path="/goods/**"/>
+            <mvc:mapping path="/shop/**"/>
             <mvc:mapping path="/menu/**"/>
             <mvc:mapping path="/role/**"/>
             <mvc:mapping path="/dashboard.html"/>

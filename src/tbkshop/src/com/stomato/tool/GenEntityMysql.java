@@ -15,7 +15,7 @@ public class GenEntityMysql {
 	
 	private String packageOutPath = "com.stomato.domain";//指定实体生成所在包的路径
 	private String authorName = "jiandong";//作者名字
-	private String tablename = "t_goods";//表名
+	private String tablename = "t_shop";//表名
 	private String[] colnames; // 列名数组
 	private String[] colTypes; //列名类型数组
 	private int[] colSizes; //列名大小数组

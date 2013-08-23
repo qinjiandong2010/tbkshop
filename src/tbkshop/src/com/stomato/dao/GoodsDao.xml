@@ -121,10 +121,10 @@
 				goods_icon,
 				link_url,
 				buys,
-				delFlag,
+				del_flag,
 				createtime,
 				modifytime
-				from t_goods where id=#{id}
+				from t_goods where id=#{id} and del_flag = 0
 	</select>
 	<update id="update" parameterType="com.stomato.domain.Goods">
 		update t_goods 
@@ -154,17 +154,17 @@
 			<if test="goodsIcon != null">goodsIcon=#{goodsIcon},</if>
 			<if test="linkUrl != null">linkUrl=#{linkUrl},</if>
 			<if test="buys != null">buys=#{buys},</if>
-			<if test="delFlag != null">delFlag=#{delFlag},</if>
+			<if test="delFlag != null">del_flag=#{delFlag},</if>
 			modifytime=now()
 		</set>
-        where id = #{id}
+        where id = #{id} 
 	</update>
 	<delete id="delete" parameterType="int">
 		delete from t_goods where id = #{id}
 	</delete>
 	
 	<select id="listTotal" parameterType="com.stomato.form.GoodsFormParam" resultType="int" >
-		select count(1) from t_goods where 1=1
+		select count(1) from t_goods where 1=1 and del_flag = 0
 		<if test="goodsName != null">
 		 	and goods_name like '%${goodsName}%'
 		</if>
@@ -196,10 +196,10 @@
 				goods_icon,
 				link_url,
 				buys,
-				delFlag,
+				del_flag,
 				createtime,
 				modifytime
-				from t_goods where 1=1
+				from t_goods where 1=1 and del_flag = 0
 		<if test="goodsName != null">
 		 	and goods_name like '%${goodsName}%'
 		</if>

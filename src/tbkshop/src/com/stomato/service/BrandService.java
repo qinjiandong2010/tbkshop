@@ -43,5 +43,4 @@ public class BrandService implements BaseService<Brand> {
 	public int update(Brand bean) {
 		return brandDao.update(bean);
 	}
-
 }

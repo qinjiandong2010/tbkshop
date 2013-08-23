@@ -61,17 +61,7 @@ textarea {width:600px;}
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="displayName">商品显示名称：</label>
-					<div class="field">
-						<div class="input-prepend input-append">
-							<form:input path="displayName" maxlength="100" /> 
-							<span class="add-on">*</span>
-						</div>
-						<form:errors path="displayName" cssClass="error"/>
-					</div>
-				</div>
-				<div class="form-row">
-					<label class="field-name" for="shopId">选择商店：</label>
+					<label class="field-name" for="shopId">商家：</label>
 					<div class="field">
 						<form:select path="shopId" class="chosen">
 							<form:option value="0">免费</form:option>
