@@ -12,7 +12,7 @@
 				<li><a href="/"><i class="icon-home"></i></a><span
 					class="divider">&nbsp;</span></li>
 				<li><a href="javascript;,">商品管理</a> <span class="divider">&nbsp;</span></li>
-				<li><a href="javascript;,">商品分类列表</a> <span class="divider">&nbsp;</span></li>
+				<li><a href="javascript;,">商品分类列表</a> <span class="divider-last">&nbsp;</span></li>
 			</ul>
 		</div>
 	</div>

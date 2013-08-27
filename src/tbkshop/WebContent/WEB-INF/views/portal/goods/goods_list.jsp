@@ -12,8 +12,8 @@
 			<ul class="breadcrumb">
 				<li><a href="/"><i class="icon-home"></i></a><span
 					class="divider">&nbsp;</span></li>
-				<li><a href="#">资源管理</a> <span class="divider">&nbsp;</span></li>
-				<li><a href="#">资源列表</a><span class="divider-last">&nbsp;</span></li>
+				<li><a href="#">商品管理</a> <span class="divider">&nbsp;</span></li>
+				<li><a href="#">商品列表</a><span class="divider-last">&nbsp;</span></li>
 			</ul>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<div class="span12">
 			<div class="widget">
 				<div class="widget-header">
-					<h5>资源列表</h5>
+					<h5>商品列表</h5>
 					<form:form id="searchForm" commandName="formParam" method="post" class="form-inline">
                     <form:hidden path="pageNum" id="pageNum"/>
                     <form:hidden path="startDate" id="search_start" />
@@ -34,7 +34,7 @@
 						<li>
 							<%@include file="../includes/pagesize.jsp" %>
 						</li>
-						<li class="search-col"><form:input path="adName" type="text" class="search-input" maxlength="20" placeholder="资源名称"/></li>
+						<li class="search-col"><form:input path="adName" type="text" class="search-input" maxlength="20" placeholder="商品名称"/></li>
 						<li class="search-col"><button type="submit" class="button button-turquoise small-button">查询</button></li>
 						<li id="export-excel"><a href="javascript:;"><img src="/img/icon/14x14/light/download4.png" title="导出excel"></a></li>
 					</ul>
@@ -46,13 +46,9 @@
 							<thead>
 								<tr align="left">
 								   <th>#</th>
-<<<<<<< HEAD
 								   <th>Icon</th>
-=======
-								   <th>Icon/th>
->>>>>>> 42ced0df4820e50cecb81e9dbc472f54a7a846c7
 			                       <th>广告渠道</th>
-			                       <th>资源名称</th>
+			                       <th>商品名称</th>
 			                       <!--<th>应用包名</th>
 			                       <th>文件大小</th>
 			                       -->

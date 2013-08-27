@@ -42,7 +42,8 @@ public class Category {
 	}
 
 	public Integer getParent() {
-		if( parent == null )parent = 0;
+		if (parent == null)
+			parent = 0;
 		return parent;
 	}
 
@@ -65,17 +66,18 @@ public class Category {
 	public void setOrderNo(Integer orderNo) {
 		this.orderNo = orderNo;
 	}
+
 	/**
 	 * 非持久化对象
 	 */
-	private List<Category> sunTypeList = new ArrayList<Category>();
+	private List<Category> listNode = new ArrayList<Category>();
 
-	public List<Category> getSunTypeList() {
-		return sunTypeList;
+	public List<Category> getListNode() {
+		return listNode;
 	}
 
-	public void setSunTypeList(List<Category> sunTypeList) {
-		this.sunTypeList = sunTypeList;
+	public void setListNode(List<Category> listNode) {
+		this.listNode = listNode;
 	}
- 
+
 }
