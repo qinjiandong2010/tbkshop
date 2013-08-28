@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.stomato.domain.Menu;
+import com.stomato.form.MenuFormParam;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:META-INF/applicationContext.xml")
@@ -60,9 +61,8 @@ public class MenuDaoTest extends AbstractJUnit4SpringContextTests{
 	}
 	@Test
 	public void listMenu(){
-		Menu menu = new Menu();
-		menu.setParent(2);
-		List<Menu> MenuList = menuDao.listMenu(menu);
+		MenuFormParam formParam = new MenuFormParam();
+		List<Menu> MenuList = menuDao.listMenu(formParam);
 		assert MenuList.size() > 0;
 	}
 }

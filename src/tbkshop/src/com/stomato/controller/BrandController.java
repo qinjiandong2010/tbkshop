@@ -14,19 +14,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.stomato.domain.Category;
 import com.stomato.domain.Brand;
+import com.stomato.domain.Category;
+import com.stomato.exception.DaoException;
+import com.stomato.exception.ServiceException;
 import com.stomato.form.BrandForm;
 import com.stomato.form.BrandFormParam;
+import com.stomato.service.BaseService;
 import com.stomato.service.CategoryService;
-import com.stomato.service.BrandService;
 
 @Controller
 @RequestMapping("/brand")
 public class BrandController extends UserController {
 
 	@Autowired
-	private BrandService brandService;
+	private BaseService baseService;
 	@Autowired
 	private CategoryService categoryService;
 	
@@ -37,9 +39,9 @@ public class BrandController extends UserController {
 		return "portal/brand/brand_form";
 	}
 	@RequestMapping(value="/add.html",method=RequestMethod.POST)
-	public String addBrand(@Valid @ModelAttribute("brandForm") BrandForm brandForm,BindingResult result,HttpServletRequest request,Model model){
+	public String addBrand(@Valid @ModelAttribute("brandForm") BrandForm brandForm,BindingResult result,HttpServletRequest request,Model model) throws ServiceException, DaoException{
 		brandForm.setBrandIcon("");
-		brandService.add(brandForm.asPojo());
+		baseService.insert("com.stomato.dao.BrandDao.add",brandForm.asPojo());
 		model.addAttribute("success", true);
 		return "portal/brand/brand_form";
 	}
@@ -57,10 +59,10 @@ public class BrandController extends UserController {
 		return "redirect:/admin/brand/list.html";
 	}	
 	@RequestMapping(value="/list.html")
-	public String list(@ModelAttribute("formParam") BrandFormParam formParam,Model model){
-		int total = brandService.listTotal(formParam);
+	public String list(@ModelAttribute("formParam") BrandFormParam formParam,Model model) throws ServiceException, DaoException{
+		int total = baseService.queryForEntity("com.stomato.dao.BrandDao.listTotal",Integer.class,formParam);
 		formParam.setTotalCount(total);
-		List<Brand> brandList = brandService.list(formParam);
+		List<Brand> brandList = baseService.queryForListEntity("com.stomato.dao.BrandDao.list",Brand.class,formParam);
 		model.addAttribute("brandList", brandList);
 		return "portal/brand/brand_list";
 	}

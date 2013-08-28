@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.stomato.constant.Constant;
 import com.stomato.domain.User;
 import com.stomato.enums.AccountTypeEnum;
+import com.stomato.exception.DaoException;
+import com.stomato.exception.ServiceException;
 import com.stomato.form.RegistrationForm;
 import com.stomato.service.AccountsService;
 import com.stomato.validator.RegistrationValidation;
@@ -45,7 +47,7 @@ public class RegistrationController {
 											 @RequestParam("file1") MultipartFile file1,
 											 @RequestParam("file2") MultipartFile file2,
 											 Model model,
-											 HttpServletRequest request) {
+											 HttpServletRequest request) throws ServiceException, DaoException {
 		registrationValidation.validate(form, result);
 		if (result.hasErrors()) {
 			model.addAttribute("type", form.getType());
@@ -81,7 +83,7 @@ public class RegistrationController {
 	
 	@ResponseBody
 	@RequestMapping("/checkreg.html")
-	public Object checkreg(HttpServletRequest request) {
+	public Object checkreg(HttpServletRequest request) throws ServiceException, DaoException {
 		String email = request.getParameter("email");
 		String userName = request.getParameter("userName");
 		User verifier = new User();
