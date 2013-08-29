@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 
 import com.stomato.domain.Password;
 import com.stomato.domain.User;
+import com.stomato.exception.DaoException;
+import com.stomato.exception.ServiceException;
 import com.stomato.form.LoginForm;
 import com.stomato.form.ResetByEmailForm;
 import com.stomato.form.ResetPasswordForm;
@@ -45,7 +47,7 @@ public class PortalController extends UserController {
 	}
 
 	@RequestMapping(value="/login.html", method = RequestMethod.POST)
-	public String processForm(@Valid @ModelAttribute LoginForm loginForm, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String processForm(@Valid @ModelAttribute LoginForm loginForm, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) throws ServiceException, DaoException {
 		if (result.hasErrors()) {
 			if (StringUtils.isEmpty(loginForm.getUserName())) {
 				model.addAttribute("usernameEmpty", true);
@@ -100,7 +102,7 @@ public class PortalController extends UserController {
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd.html", method=RequestMethod.POST)
-	public String processResetPwd(@Valid @ModelAttribute("resetForm") ResetByEmailForm form, BindingResult result, Model model) {
+	public String processResetPwd(@Valid @ModelAttribute("resetForm") ResetByEmailForm form, BindingResult result, Model model) throws ServiceException, DaoException {
 		if (result.hasErrors()) {
 			if (StringUtils.isEmpty(form.getEmail())) {
 				model.addAttribute("emailEmpty", true);
@@ -147,7 +149,7 @@ public class PortalController extends UserController {
 	}
 	
 	@RequestMapping(value="/recover/reset_pwd_confirm/{token}", method=RequestMethod.POST)
-	public String processResetPwdCofirm(@Valid @ModelAttribute("confirmForm") ResetPasswordForm form, BindingResult result, @PathVariable String token) {
+	public String processResetPwdCofirm(@Valid @ModelAttribute("confirmForm") ResetPasswordForm form, BindingResult result, @PathVariable String token) throws ServiceException, DaoException {
 		if (StringUtils.isEmpty(token)) {
 			return "redirect:/recover/reset_pwd_unsuccess.html";
 		}

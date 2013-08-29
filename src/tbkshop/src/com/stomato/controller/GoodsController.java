@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+<<<<<<< HEAD
 import com.stomato.domain.Shop;
+=======
+import com.stomato.exception.DaoException;
+import com.stomato.exception.ServiceException;
+>>>>>>> d8b526d1e6de33f7611ef10569d357bcde41691f
 import com.stomato.form.GoodsForm;
 import com.stomato.service.BrandService;
 import com.stomato.service.GoodsService;
@@ -38,7 +43,11 @@ public class GoodsController extends UserController {
 	}
 
 	@RequestMapping(value = "/add.html", method = RequestMethod.POST)
+<<<<<<< HEAD
 	public String formpage(@Valid @ModelAttribute("goodsForm") GoodsForm productForm,BindingResult result,Model model) {
+=======
+	public String formpage(@Valid @ModelAttribute("goodsForm") GoodsForm productForm,Model model) throws ServiceException, DaoException {
+>>>>>>> d8b526d1e6de33f7611ef10569d357bcde41691f
 		goodsService.add(productForm.asPojo());
 		return "portal/goods/goods_form";
 	}

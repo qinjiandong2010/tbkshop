@@ -40,7 +40,7 @@ public class CategoryController {
 	 */
 	@RequestMapping(value="/add.html",method=RequestMethod.GET)
 	public String fromPage(@ModelAttribute("categoryForm") CategoryForm appTypeForm,Model model){
-		List<Category> resultList = categoryService.getListFillSun();
+		List<Category> resultList = categoryService.getListNode();
 		model.addAttribute("categoryList", resultList);
 		return "portal/category/cate_form";
 	}
@@ -99,7 +99,7 @@ public class CategoryController {
 	@RequestMapping(value="/{id}/edit.html",method=RequestMethod.GET)
 	public String editCategory(@PathVariable int id,@ModelAttribute("categoryForm")CategoryForm form,BindingResult result,Model model) throws ParseException, IOException{
 		Category category = categoryService.getCategory(id);
-		List<Category> resultList = categoryService.getListFillSun();
+		List<Category> resultList = categoryService.getListNode();
 		model.addAttribute("categoryList", resultList);
 		BeanUtils.copyProperties(category, form);
 		return "portal/category/cate_edit";

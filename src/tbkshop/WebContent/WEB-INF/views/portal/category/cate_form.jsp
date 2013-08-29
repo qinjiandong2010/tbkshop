@@ -50,7 +50,7 @@
 					    	<option value="0">一级分类</option>
                         <c:forEach var="category" items="${categoryList }">
                             <option value="${category.id }">${category.typeName }</option>
-                            <c:forEach var="category2" items="${category.sunTypeList }">
+                            <c:forEach var="category2" items="${category.listNode }">
                                 <option value="${category2.id }">->>${category2.typeName }</option>
                             </c:forEach>
                         </c:forEach>

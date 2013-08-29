@@ -57,7 +57,7 @@ public class AccountsController extends UserController {
 	}
 	
 	@RequestMapping(value="/change_pwd", method=RequestMethod.POST)
-	public String updatePwd(@Valid @ModelAttribute("pwdForm") PasswordForm form, BindingResult result, HttpServletRequest request, Model model) {
+	public String updatePwd(@Valid @ModelAttribute("pwdForm") PasswordForm form, BindingResult result, HttpServletRequest request, Model model) throws Exception {
 		passwordValidation.validate(form, result);
 		if (!result.hasErrors()) {
 			User sessionUser = this.lookup(request);
@@ -90,7 +90,7 @@ public class AccountsController extends UserController {
 	}
 	
 	@RequestMapping(value="/change_profile", method=RequestMethod.POST)
-	public String updateProfile(@Valid @ModelAttribute("profileForm") ProfileForm form, BindingResult result, HttpServletRequest request, Model model) {
+	public String updateProfile(@Valid @ModelAttribute("profileForm") ProfileForm form, BindingResult result, HttpServletRequest request, Model model) throws Exception {
 		if (result.hasErrors()) {
 			return "portal/accounts/change_profile";
 		}
@@ -121,7 +121,7 @@ public class AccountsController extends UserController {
 	}
 	
 	@RequestMapping(value="/change_email", method=RequestMethod.POST)
-	public String changeEmail(@Valid @ModelAttribute("emailForm") EmailForm emailForm, BindingResult results, Model model, HttpServletRequest request) {
+	public String changeEmail(@Valid @ModelAttribute("emailForm") EmailForm emailForm, BindingResult results, Model model, HttpServletRequest request) throws Exception {
 		if (results.hasErrors()) {
 			return "portal/accounts/change_email";
 		}
@@ -161,9 +161,10 @@ public class AccountsController extends UserController {
 	 * @return
 	 * @throws InvocationTargetException 
 	 * @throws IllegalAccessException 
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/formpage.html",method=RequestMethod.POST)
-	public String addUser(@Valid @ModelAttribute("userForm")UserForm userForm,BindingResult result,Model model) throws IllegalAccessException, InvocationTargetException{
+	public String addUser(@Valid @ModelAttribute("userForm")UserForm userForm,BindingResult result,Model model) throws Exception{
 
 		model.addAttribute("roleList", roleService.listRole(null));
 		if( !userForm.getPassword().equals(userForm.getConfirmPassword()) ){
@@ -196,7 +197,7 @@ public class AccountsController extends UserController {
 		return "portal/user/userForm";
 	}
 	@RequestMapping(value="/listUser.html")
-	public String list(@ModelAttribute("formParam")UserFormParam formParam,BindingResult result,Model model){
+	public String list(@ModelAttribute("formParam")UserFormParam formParam,BindingResult result,Model model) throws Exception{
 		int total = accountsService.listTotal(formParam);
 		formParam.setTotalCount(total);
 		List<User> userList = accountsService.listUser(formParam);
@@ -204,7 +205,7 @@ public class AccountsController extends UserController {
 		return "portal/user/userList";
 	}
 	@RequestMapping(value="/editUser.html",method=RequestMethod.GET)
-	public String updateUser(@ModelAttribute("profileForm")ProfileForm form,int id,Model model){
+	public String updateUser(@ModelAttribute("profileForm")ProfileForm form,int id,Model model) throws Exception{
 		User user = accountsService.getUserByUid(id);
 		model.addAttribute("editUser", user);
 		model.addAttribute("role", roleService.getRole(user.getRoleId()));
@@ -212,7 +213,7 @@ public class AccountsController extends UserController {
 		return "portal/user/userUpdate";
 	}
 	@RequestMapping(value="/editUser.html",method=RequestMethod.POST)
-	public String updateUser(@Valid @ModelAttribute("profileForm")ProfileForm form,BindingResult result,Model model,HttpServletRequest request){
+	public String updateUser(@Valid @ModelAttribute("profileForm")ProfileForm form,BindingResult result,Model model,HttpServletRequest request) throws Exception{
 
 		model.addAttribute("roleList", roleService.listRole(null));
 		if(result.hasErrors()){
@@ -239,7 +240,7 @@ public class AccountsController extends UserController {
 		return "portal/user/userUpdate";
 	}
 	@RequestMapping(value="/userReviewList.html")
-	public String listToReview(@ModelAttribute("formParam")UserFormParam formParam,BindingResult result,Model model){
+	public String listToReview(@ModelAttribute("formParam")UserFormParam formParam,BindingResult result,Model model) throws Exception{
 		int total = accountsService.listTotal(formParam);
 		formParam.setTotalCount(total);
 		List<User> userList = accountsService.listUser(formParam);
@@ -250,9 +251,10 @@ public class AccountsController extends UserController {
 	 * 用户审核通过
 	 * @param id
 	 * @param model
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/{id}/userApproved.html")
-	public String approvedUser(@PathVariable int id,Model model){
+	public String approvedUser(@PathVariable int id,Model model) throws Exception{
 		User user = accountsService.getUserByUid(id);
 		if( user == null ){
 			model.addAttribute("success", false);
@@ -267,9 +269,10 @@ public class AccountsController extends UserController {
 	 * 用户审核通过
 	 * @param id
 	 * @param model
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/{id}/userNoPass.html")
-	public String noPassUser(@PathVariable int id,Model model){
+	public String noPassUser(@PathVariable int id,Model model) throws Exception{
 		User user = accountsService.getUserByUid(id);
 		if( user == null ){
 			model.addAttribute("success", false);
@@ -284,15 +287,16 @@ public class AccountsController extends UserController {
 	 * 用户审核不�1�7�过，向用户发�1�7�驳回理甄1�7
 	 * @param request
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/{id}/userRebut.html",method=RequestMethod.GET)
-	public String rebutUser(@PathVariable int id,Model model){
+	public String rebutUser(@PathVariable int id,Model model) throws Exception{
 		User user = accountsService.getUserByUid(id);
 		model.addAttribute("user", user);
 		return "portal/user/userRebut";
 	}
 	@RequestMapping(value="/{id}/userRebut.html",method=RequestMethod.POST)
-	public String rebutUser(@PathVariable int id,String describe,HttpServletRequest request,Model model){
+	public String rebutUser(@PathVariable int id,String describe,HttpServletRequest request,Model model) throws Exception{
 		User user = accountsService.getUserByUid(id);
 		MailHelper.sendRegisterRebutEmail(user.getEmail(), user.getContactName(), describe, "zh");
 		model.addAttribute("success", true);

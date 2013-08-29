@@ -2,46 +2,37 @@ package com.stomato.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.stomato.dao.GoodsDao;
 import com.stomato.domain.Goods;
+import com.stomato.exception.DaoException;
+import com.stomato.exception.ServiceException;
 
 @Service
-public class GoodsService implements BaseService<Goods> {
+public class GoodsService extends BaseServiceImpl{
 
-	@Autowired
-	private GoodsDao goodsDao;
-
-	@Override
-	public int delete(int id) {
-		return goodsDao.delete(id);
+	public int delete(int id) throws ServiceException, DaoException {
+		return delete("com.stomato.dao.GoodsDao.delete", id);
 	}
 
-	@Override
-	public int add(Goods bean) {
-		return goodsDao.add(bean);
+	public int add(Goods bean) throws ServiceException, DaoException {
+		return insert("com.stomato.dao.GoodsDao.add", bean);
 	}
 
-	@Override
-	public int update(Goods bean) {
-		return goodsDao.update(bean);
+	public int update(Goods bean) throws ServiceException, DaoException {
+		return update("com.stomato.dao.GoodsDao.update", bean);
 	}
 
-	@Override
-	public List<Goods> list(Object formParam) {
-		return goodsDao.list(formParam);
+	public List<Goods> list(Object formParam) throws ServiceException, DaoException {
+		return queryForListEntity("com.stomato.dao.GoodsDao.list", Goods.class, formParam);
 	}
 
-	@Override
-	public int listTotal(Object formParam) {
-		return goodsDao.listTotal(formParam);
+	public int listTotal(Object formParam) throws ServiceException, DaoException {
+		return queryForEntity("com.stomato.dao.GoodsDao.listTotal", Integer.class, formParam);
 	}
 
-	@Override
-	public Goods get(int id) {
-		return goodsDao.get(id);
+	public Goods get(int id) throws ServiceException, DaoException {
+		return queryForEntity("com.stomato.dao.GoodsDao.get", Goods.class, id);
 	}
 	 
 }

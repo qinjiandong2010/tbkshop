@@ -43,8 +43,25 @@ public class CategoryService {
 		formParam.setParent(0);
 		return categoryDao.listCategory(formParam);
 	}
+	public List<Category> getListNode(){
+		List<Category> list = getListByParent();
+		for (Category category : list) {
+			getListNode(category);
+		}
+		return list;
+	}
 	
-	public List<Category> getListFillSun(){
+	public void getListNode(Category parent){
+		CategoryFormParam formParam = new CategoryFormParam();
+		formParam.setVisible(true);
+		formParam.setParent(parent.getId());
+		List<Category> list = categoryDao.listCategory(formParam);
+		parent.setListNode(list);
+		for (Category category : list) {
+			getListNode(category);
+		}
+	}   
+	public List<Category> getAllChilds(){
 		CategoryFormParam formParam = new CategoryFormParam();
 		formParam.setVisible(true);
 		List<Category> CategoryList = categoryDao.listCategory(formParam);
@@ -62,7 +79,7 @@ public class CategoryService {
 						sunType.add(category);
 					}
 				}
-				level.setSunTypeList(sunType);
+				level.setListNode(sunType);
 			}
 		}
 		return levelList;
