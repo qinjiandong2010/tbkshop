@@ -15,7 +15,7 @@ import com.stomato.exception.DaoException;
  * @version 1.0
  * @history 2013-7-23 create
  */
-public interface BaseDAO {
+public interface BaseDao {
 
 	/**
 	 * 添加数据
