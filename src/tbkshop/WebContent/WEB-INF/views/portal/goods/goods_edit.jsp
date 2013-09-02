@@ -98,33 +98,43 @@ textarea {width:600px;}
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="shopPrice">商品价格：</label>
+					<label class="field-name" for="sellPrice">单价：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
-							<form:input path="shopPrice" maxlength="20" /> 
+							<form:input path="sellPrice" maxlength="20" /> 
 							<span class="add-on">* 单位（元）</span>
 						</div>
-						<form:errors path="shopPrice" cssClass="error"/>
+						<form:errors path="sellPrice" cssClass="error"/>
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="marketPrice">市场价：</label>
+					<label class="field-name" for="costPrice">原价：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
-							<form:input path="marketPrice" maxlength="20" /> 
+							<form:input path="costPrice" maxlength="20" /> 
 							<span class="add-on">* 单位（元）</span>
 						</div>
-						<form:errors path="marketPrice" cssClass="error"/>
+						<form:errors path="costPrice" cssClass="error"/>
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="commission">佣金：</label>
+					<label class="field-name" for="commPrice">佣金：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
-							<form:input path="commission" maxlength="20" /> 
+							<form:input path="commPrice" maxlength="20"/> 
 							<span class="add-on">* 单位（元）</span>
 						</div>
-						<form:errors path="commission" cssClass="error"/>
+						<form:errors path="commPrice" cssClass="error"/>
+					</div>
+				</div>
+				<div class="form-row">
+					<label class="field-name" for="commRate">佣金比率：</label>
+					<div class="field">
+						<div class="input-prepend input-append">
+							<form:input path="commRate" maxlength="20" /> 
+							<span class="add-on">%</span>
+						</div>
+						<form:errors path="commRate" cssClass="error"/>
 					</div>
 				</div>
 				<div class="form-row">
@@ -135,10 +145,17 @@ textarea {width:600px;}
 					<form:errors path="linkUrl" cssClass="error"/>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="goodsIcon">商品图标：</label>
+					<label class="field-name" for="sIcon">小图标：</label>
 					<div class="field">
-						<form:input path="goodsIcon" maxlength="200" /> 
-						<form:errors path="goodsIcon" cssClass="error"/>
+						<form:input path="sIcon" maxlength="200" /> 
+						<form:errors path="sIcon" cssClass="error"/>
+					</div>
+				</div>
+				<div class="form-row">
+					<label class="field-name" for="lIcon">大图标：</label>
+					<div class="field">
+						<form:input path="lIcon" maxlength="200" /> 
+						<form:errors path="lIcon" cssClass="error"/>
 					</div>
 				</div>
 			    <c:forEach var="imgUrl" items="${goodsForm.goodsPics }" varStatus="status">

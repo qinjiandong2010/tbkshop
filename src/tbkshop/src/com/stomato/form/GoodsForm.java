@@ -20,11 +20,13 @@ public class GoodsForm {
 	private Integer brandId;
 	private Integer createrUid;
 	private Integer cateId;
-	private Double shopPrice;
-	private Double marketPrice;
-	private Double commission;
+	private Double sellPrice;
+	private Double costPrice;
+	private Double commRate;
+	private Double commPrice;
 	private String goodsPic;
-	private String goodsIcon;
+	private String lIcon;
+	private String sIcon;
 	private String likeNum;
 	private Boolean isTop;
 	private Boolean isHot;
@@ -108,35 +110,44 @@ public class GoodsForm {
 		this.cateId = cateId;
 	}
 
-	public Double getShopPrice() {
-		return shopPrice;
+	public Double getSellPrice() {
+		return sellPrice;
 	}
 
-	public void setShopPrice(Double shopPrice) {
-		this.shopPrice = shopPrice;
+	public void setSellPrice(Double sellPrice) {
+		this.sellPrice = sellPrice;
 	}
 
-	public Double getMarketPrice() {
-		return marketPrice;
+	public Double getCostPrice() {
+		return costPrice;
 	}
 
-	public void setMarketPrice(Double marketPrice) {
-		this.marketPrice = marketPrice;
+	public void setCostPrice(Double costPrice) {
+		this.costPrice = costPrice;
 	}
 
-	public Double getCommission() {
-		return commission;
+	public Double getCommRate() {
+		return commRate;
 	}
 
-	public void setCommission(Double commission) {
-		this.commission = commission;
+	public void setCommRate(Double commRate) {
+		this.commRate = commRate;
+	}
+
+	public Double getCommPrice() {
+		return commPrice;
+	}
+
+	public void setCommPrice(Double commPrice) {
+		this.commPrice = commPrice;
 	}
 
 	public String getGoodsPic() {
-		if( goodsPics != null ){
-			if( goodsPic == null ) goodsPic="";
+		if (goodsPics != null) {
+			if (goodsPic == null)
+				goodsPic = "";
 			for (int i = 0; i < goodsPics.length; i++) {
-				goodsPic+=","+goodsPics[i];
+				goodsPic += "," + goodsPics[i];
 			}
 		}
 		return goodsPic;
@@ -146,12 +157,20 @@ public class GoodsForm {
 		this.goodsPic = goodsPic;
 	}
 
-	public String getGoodsIcon() {
-		return goodsIcon;
+	public String getlIcon() {
+		return lIcon;
 	}
 
-	public void setGoodsIcon(String goodsIcon) {
-		this.goodsIcon = goodsIcon;
+	public void setlIcon(String lIcon) {
+		this.lIcon = lIcon;
+	}
+
+	public String getsIcon() {
+		return sIcon;
+	}
+
+	public void setsIcon(String sIcon) {
+		this.sIcon = sIcon;
 	}
 
 	public String getLikeNum() {
@@ -281,9 +300,10 @@ public class GoodsForm {
 	public void setModifytime(Date modifytime) {
 		this.modifytime = modifytime;
 	}
- 
+
 	public String[] getGoodsPics() {
-		if( goodsPic != null ) goodsPics = goodsPic.split(",");
+		if (goodsPic != null)
+			goodsPics = goodsPic.split(",");
 		return goodsPics;
 	}
 

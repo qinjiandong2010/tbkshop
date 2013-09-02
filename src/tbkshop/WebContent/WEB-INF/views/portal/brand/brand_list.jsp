@@ -87,10 +87,10 @@
 					                        <td class=" ">
 					                            <c:choose>
 												<c:when test="${item.status==0}">
-													<a href="javascript:," data-url="/brand/${item.id }/usable.html" onclick="ajaxBtn()">可用</a>
+													<a href="/brand/${item.id }/usable.html">可用</a>
 												</c:when>
 												<c:otherwise>
-													<a href="javascript:," data-url="/brand/${item.id }/disable.html" onclick="ajaxBtn()">禁用</a>
+													<a href="/brand/${item.id }/disable.html">禁用</a>
 												</c:otherwise>
 											</c:choose>
 					                        	<a href="/brand/${item.id }/edit.html">编辑</a>
@@ -108,24 +108,4 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-function ajaxBtn() {
-  var actionUrl = $(this).prop("data-url");
-  alert(actionUrl);
-  jQuery.ajax( {  
-    type : 'GET',     
-    contentType : 'application/json',     
-    url : actionUrl,     
-    dataType : 'json',     
-    success : function(data) {     
-       if (data && (data.code == "0" || data.code == "00" || data.code == "000")) {     
-           alert(data.message);        
-        }                      
-    },     
-    error : function(data) {     
-      alert("error")     
-    }     
-  });     
-};     
-</script>
 </body>

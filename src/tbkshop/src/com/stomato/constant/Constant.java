@@ -28,10 +28,6 @@ public interface Constant {
 		
 		String filesDirPath = "files_path";
 		
-		String appIconDirSuffix = "Icons";
-		
-		String appDirSuffix = "Dir";
-
 		String iconDir = "icon";
 
 	}
@@ -44,12 +40,7 @@ public interface Constant {
 		int disable = 1;
 		
 	}
-	
-	//Credential 证件类型
-	interface CredentialsType{
-		int identityCard = 1;
-		int businessLicense = 2;
-	}
+
 	//用户状态
 	interface UserStatus{
 		int newRegist = 3;
@@ -57,17 +48,5 @@ public interface Constant {
 		int noPASS = 0;
 		
 		int approved = 1;
-	}
-	//广告资源状态
-	interface AdResourceStatus{
-		//上架
-		int onShelf = 1;
-		//下架
-		int offShelf = 0;
-	}
-	//广告推送控制
-	interface AdPushStatus{
-		boolean open = true;
-		boolean close = false;
 	}
 }

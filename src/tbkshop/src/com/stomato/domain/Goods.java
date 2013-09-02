@@ -11,11 +11,13 @@ public class Goods {
 	private Integer brandId;
 	private Integer createrUid;
 	private Integer cateId;
-	private Double shopPrice;
-	private Double marketPrice;
-	private Double commission;
+	private Double sellPrice;
+	private Double costPrice;
+	private Double commRate;
+	private Double commPrice;
 	private String goodsPic;
-	private String goodsIcon;
+	private String sIcon;
+	private String lIcon;
 	private String likeNum;
 	private Boolean isTop;
 	private Boolean isHot;
@@ -97,28 +99,36 @@ public class Goods {
 		this.cateId = cateId;
 	}
 
-	public Double getShopPrice() {
-		return shopPrice;
+	public Double getSellPrice() {
+		return sellPrice;
 	}
 
-	public void setShopPrice(Double shopPrice) {
-		this.shopPrice = shopPrice;
+	public void setSellPrice(Double sellPrice) {
+		this.sellPrice = sellPrice;
 	}
 
-	public Double getMarketPrice() {
-		return marketPrice;
+	public Double getCostPrice() {
+		return costPrice;
 	}
 
-	public void setMarketPrice(Double marketPrice) {
-		this.marketPrice = marketPrice;
+	public void setCostPrice(Double costPrice) {
+		this.costPrice = costPrice;
 	}
 
-	public Double getCommission() {
-		return commission;
+	public Double getCommRate() {
+		return commRate;
 	}
 
-	public void setCommission(Double commission) {
-		this.commission = commission;
+	public void setCommRate(Double commRate) {
+		this.commRate = commRate;
+	}
+
+	public Double getCommPrice() {
+		return commPrice;
+	}
+
+	public void setCommPrice(Double commPrice) {
+		this.commPrice = commPrice;
 	}
 
 	public String getGoodsPic() {
@@ -217,12 +227,20 @@ public class Goods {
 		this.stocks = stocks;
 	}
 
-	public String getGoodsIcon() {
-		return goodsIcon;
+	public String getsIcon() {
+		return sIcon;
 	}
 
-	public void setGoodsIcon(String goodsIcon) {
-		this.goodsIcon = goodsIcon;
+	public void setsIcon(String sIcon) {
+		this.sIcon = sIcon;
+	}
+
+	public String getlIcon() {
+		return lIcon;
+	}
+
+	public void setlIcon(String lIcon) {
+		this.lIcon = lIcon;
 	}
 
 	public String getLinkUrl() {

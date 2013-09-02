@@ -2,16 +2,12 @@ package com.stomato.controller;
 
 import java.io.File;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import net.sf.cglib.core.Local;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.stomato.constant.Constant;
@@ -35,7 +30,6 @@ import com.stomato.service.CategoryService;
 import com.stomato.service.ConfigService;
 import com.stomato.utils.DateUtils;
 import com.stomato.utils.StringUtils;
-import com.stomato.vo.RetObjt;
 
 @Controller
 @RequestMapping("/brand")
@@ -47,8 +41,6 @@ public class BrandController extends UserController {
 	private ConfigService configService;
 	@Autowired
 	private BrandService brandService;
-	@Autowired
-	private MessageSource messageSource;
 	
 	@RequestMapping(value="/add.html",method=RequestMethod.GET)
 	public String fromPage(@ModelAttribute("brandForm") BrandForm brandForm,Model model){
@@ -141,27 +133,25 @@ public class BrandController extends UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/{id}/usable.html")
-	public @ResponseBody RetObjt usableStatus(@PathVariable int id,Model model,Locale locale){
+	public String usableStatus(@PathVariable int id,Model model){
 		Brand brand = brandService.get(id);
 		if( Constant.BrandStatus.disable == brand.getStatus()){
 			brand.setStatus(Constant.BrandStatus.usable);
 			brandService.update(brand);
 		}
-		String message = messageSource.getMessage(RetObjt.EDIT_SUCCESS, null, locale);
-		return new RetObjt(RetObjt.EDIT_SUCCESS,message,null);
+		return "redirect:/brand/list.html";
 	}
 	/**
 	 * 编辑禁用
 	 * @return
 	 */
 	@RequestMapping(value="/{id}/disable.html")
-	public @ResponseBody RetObjt disableStatus(@PathVariable int id,Model model,Locale locale){
+	public String disableStatus(@PathVariable int id,Model model){
 		Brand brand = brandService.get(id);
 		if( Constant.BrandStatus.usable == brand.getStatus()){
 			brand.setStatus(Constant.BrandStatus.disable);
 			brandService.update(brand);
 		}
-		String message = messageSource.getMessage(RetObjt.EDIT_SUCCESS, null, locale);
-		return new RetObjt(RetObjt.EDIT_SUCCESS,message,null);
+		return "redirect:/brand/list.html";
 	}	
 }

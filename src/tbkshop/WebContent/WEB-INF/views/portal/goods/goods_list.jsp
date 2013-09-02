@@ -53,8 +53,8 @@
 			                       <th>商家</th>
 			                       <th>品牌</th>
 			                       <th>分类</th>
-			                       <th>商品价格</th>
-			                       <th>市场价格</th>
+			                       <th>单价</th>
+			                       <th>原价</th>
 			                       <th>佣金</th>
 			                       <th>购买数</th>
 			                       <th>创建日期</th>
@@ -91,9 +91,9 @@
 						                        	</c:if>
 					                        	</c:forEach>
 											</td>
-					                        <td>${item.shopPrice }</td>
-					                        <td>${item.marketPrice }</td>
-					                        <td>${item.commission }</td>
+					                        <td>${item.sellPrice }</td>
+					                        <td>${item.costPrice }</td>
+					                        <td>${item.commPrice }</td>
 					                        <td>${item.buys }</td>
 					                        <td><fmt:formatDate value="${item.createtime }" pattern="yyyy-MM-dd" /></td>
 					                        <td>

@@ -10,9 +10,10 @@
 		<result property="brandId" column="brand_id"/>
 		<result property="createrUid" column="creater_uid"/>
 		<result property="cateId" column="cate_id"/>
-		<result property="shopPrice" column="shop_price"/>
-		<result property="marketPrice" column="market_price"/>
-		<result property="commission" column="commission"/>
+		<result property="sellPrice" column="sell_price"/>
+		<result property="costPrice" column="cost_price"/>
+		<result property="commRate" column="comm_rate"/>
+		<result property="commPrice" column="comm_price"/>
 		<result property="goodsPic" column="goods_pic"/>
 		<result property="brief" column="brief"/>
 		<result property="content" column="content"/>
@@ -25,45 +26,50 @@
 		<result property="sort" column="sort"/>
 		<result property="keyword" column="keyword"/>
 		<result property="stocks" column="stocks"/>
-		<result property="goodsIcon" column="goods_icon"/>
+		<result property="lIcon" column="l_icon"/>
+		<result property="sIcon" column="s_icon"/>
 		<result property="linkUrl" column="link_url"/>
 		<result property="buys" column="buys"/>
 		<result property="delFlag" column="del_flag"/>
 		<result property="createtime" column="createtime"/>
 		<result property="modifytime" column="modifytime"/>
 	</resultMap>
-	
+	<sql id="public_column">
+	    id,
+		goods_code,
+		goods_name,
+		display_name,
+		shop_id,
+		brand_id,
+		creater_uid,
+		cate_id,
+		sell_price,
+		cost_price,
+		comm_rate,
+		comm_price,
+		goods_pic,
+		brief,
+		content,
+		like_num,
+		is_top,
+		is_hot,
+		index_hot,
+		status,
+		preview,
+		sort,
+		keyword,
+		stocks,
+		l_icon,
+		s_icon,
+		link_url,
+		buys,
+		del_flag,
+		createtime,
+		modifytime
+	</sql>
 	<insert id="add" parameterType="com.stomato.domain.Goods">
-		insert into t_goods (
-				goods_code,
-				goods_name,
-				display_name,
-				shop_id,
-				brand_id,
-				creater_uid,
-				cate_id,
-				shop_price,
-				market_price,
-				commission,
-				goods_pic,
-				brief,
-				content,
-				like_num,
-				is_top,
-				is_hot,
-				index_hot,
-				status,
-				preview,
-				sort,
-				keyword,
-				stocks,
-				goods_icon,
-				link_url,
-				buys,
-				del_flag,
-				createtime,
-				modifytime) 
-		values (
+		insert into t_goods (<include refid="public_column"/>) 
+		values (null,
 				#{goodsCode},
 				#{goodsName},
 				#{displayName},
@@ -71,9 +77,10 @@
 				#{brandId},
 				#{createrUid},
 				#{cateId},
-				#{shopPrice},
-				#{marketPrice},
-				#{commission},
+				#{sellPrice},
+				#{costPrice},
+				#{commRate},
+				#{commPrice},
 				#{goodsPic},
 				#{brief},
 				#{content},
@@ -86,7 +93,8 @@
 				#{sort},
 				#{keyword},
 				#{stocks},
-				#{goodsIcon},
+				#{lIcon},
+				#{sIcon},
 				#{linkUrl},
 				0,
 				0,
@@ -95,39 +103,11 @@
 	</insert>
 	
 	<select id="get" parameterType="int" resultMap="goods" >
-		select id,
-				goods_code,
-				goods_name,
-				display_name,
-				shop_id,
-				brand_id,
-				creater_uid,
-				cate_id,
-				shop_price,
-				market_price,
-				commission,
-				goods_pic,
-				brief,
-				content,
-				like_num,
-				is_top,
-				is_hot,
-				index_hot,
-				status,
-				preview,
-				sort,
-				keyword,
-				stocks,
-				goods_icon,
-				link_url,
-				buys,
-				del_flag,
-				createtime,
-				modifytime
+		select <include refid="public_column"/>
 				from t_goods where id=#{id} and del_flag = 0
 	</select>
 	<update id="update" parameterType="com.stomato.domain.Goods">
-		update t_goods 
+		update t_goods
 		<set>
 			<if test="goodsCode != null">goods_code=#{goodsCode},</if>
 			<if test="goodsName != null">goods_name=#{goodsName},</if>
@@ -136,9 +116,10 @@
 			<if test="brandId != null">brand_id=#{brandId},</if>
 			<if test="createrUid != null">creater_uid=#{createrUid},</if>
 			<if test="cateId != null">cate_id=#{cateId},</if>
-			<if test="shopPrice != null">shop_price=#{shopPrice},</if>
-			<if test="marketPrice != null">market_price=#{marketPrice},</if>
-			<if test="commission != null">commission=#{commission},</if>
+			<if test="costPrice != null">cost_price=#{costPrice},</if>
+			<if test="sellPrice != null">sell_price=#{sellPrice},</if>
+			<if test="commRate != null">comm_rate=#{commRate},</if>
+			<if test="commPrice != null">comm_price=#{commPrice},</if>
 			<if test="goodsPic != null">goods_pic=#{goodsPic},</if>
 			<if test="brief != null">brief=#{brief},</if>
 			<if test="content != null">content=#{content},</if>
@@ -151,7 +132,8 @@
 			<if test="sort != null">sort=#{sort},</if>
 			<if test="keyword != null">keyword=#{keyword},</if>
 			<if test="stocks != null">stocks=#{stocks},</if>
-			<if test="goodsIcon != null">goods_icon=#{goodsIcon},</if>
+			<if test="lIcon != null">l_icon=#{lIcon},</if>
+			<if test="sIcon != null">s_icon=#{sIcon},</if>
 			<if test="linkUrl != null">link_url=#{linkUrl},</if>
 			<if test="buys != null">buys=#{buys},</if>
 			<if test="delFlag != null">del_flag=#{delFlag},</if>
@@ -170,35 +152,7 @@
 		</if>
 	</select>
 	<select id="list" parameterType="com.stomato.form.GoodsFormParam" resultMap="goods" >
-		select  id,
-				goods_code,
-				goods_name,
-				display_name,
-				shop_id,
-				brand_id,
-				creater_uid,
-				cate_id,
-				shop_price,
-				market_price,
-				commission,
-				goods_pic,
-				brief,
-				content,
-				like_num,
-				is_top,
-				is_hot,
-				index_hot,
-				status,
-				preview,
-				sort,
-				keyword,
-				stocks,
-				goods_icon,
-				link_url,
-				buys,
-				del_flag,
-				createtime,
-				modifytime
+		select  <include refid="public_column"/>
 				from t_goods where 1=1 and del_flag = 0
 		<if test="goodsName != null">
 		 	and goods_name like '%${goodsName}%'

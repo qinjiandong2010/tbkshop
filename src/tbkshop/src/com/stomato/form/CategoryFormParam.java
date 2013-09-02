@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.stomato.utils.DateUtils;
-import com.stomato.vo.SysConfig;
 
 public class CategoryFormParam{
 
@@ -78,8 +77,12 @@ public class CategoryFormParam{
 	}
 
 	public int getPageTotal() {
-		pageTotal = SysConfig.getPageTotal(totalCount, getPageSize());
-		return pageTotal;
+		int pSize = getPageSize();
+		pageTotal = totalCount/pSize;
+		if(totalCount/pSize != 0){
+			return pageTotal+1 ;
+		}
+		return pageTotal ;
 	}
 
 	public void setPageTotal(int pageTotal) {

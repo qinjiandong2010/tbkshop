@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2013-08-20 18:30:57
+Date: 2013-09-02 18:42:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,13 +26,15 @@ CREATE TABLE `t_brand` (
   `cate_id` int(11) DEFAULT NULL COMMENT '品牌分类',
   `brand_icon` varchar(255) DEFAULT NULL COMMENT '品牌图标',
   `sort` int(11) DEFAULT NULL COMMENT '排序',
+  `status` int(11) DEFAULT '1' COMMENT '状态,1=可用,0=禁用',
+  `del_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='品牌';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='品牌';
 
 -- ----------------------------
 -- Records of t_brand
 -- ----------------------------
-INSERT INTO `t_brand` VALUES ('1', 'BEELY/彼丽', null, '35', '', '0');
+INSERT INTO `t_brand` VALUES ('2', '千百惠', null, '56', '', '0', '1', '0');
 
 -- ----------------------------
 -- Table structure for `t_cart`
@@ -66,24 +68,135 @@ CREATE TABLE `t_category` (
   `visible` tinyint(4) DEFAULT NULL COMMENT '是否可见，1=可见，0=隐藏 ',
   `order_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_category
 -- ----------------------------
-INSERT INTO `t_category` VALUES ('26', '手机数码', '', '0', '1', '0');
-INSERT INTO `t_category` VALUES ('27', '家纺/家居', '', '0', '1', '0');
-INSERT INTO `t_category` VALUES ('28', '手机', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('29', '电脑', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('30', '相机', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('31', '影音', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('32', '配件', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('33', '话费点卡', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('34', '汽车配件', '', '26', '1', '0');
-INSERT INTO `t_category` VALUES ('35', '服装饰品', '', '0', '1', '0');
-INSERT INTO `t_category` VALUES ('36', '连衣裙', '', '35', '1', '0');
-INSERT INTO `t_category` VALUES ('37', '平底鞋', '', '35', '1', '0');
-INSERT INTO `t_category` VALUES ('38', '品牌女装', '', '35', '1', '0');
+INSERT INTO `t_category` VALUES ('39', '上衣', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('40', '雪纺衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('41', 'T恤', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('42', '衬衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('43', '小衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('44', '蕾丝衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('45', '开衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('46', '小西装', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('47', '防晒衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('48', '短外套', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('49', '背心', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('50', '罩衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('51', '马甲', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('52', '针织衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('53', '吊带', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('54', '卫衣', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('55', 'polo衫', '', '39', '1', '0');
+INSERT INTO `t_category` VALUES ('56', '裙子', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('57', '连衣裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('58', '短裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('59', '半身裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('60', '长裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('61', '背心裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('62', '雪纺裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('63', '背心裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('64', '雪纺裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('65', '印花裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('66', '蕾丝裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('67', '百褶裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('68', '沙滩裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('69', '伞摆裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('70', '中长连衣裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('71', '蓬蓬裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('72', '衬衫连衣裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('73', '包臀裙', '', '56', '1', '0');
+INSERT INTO `t_category` VALUES ('74', '内衣/泳衣/家服', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('75', 'Bra', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('76', '内衣套装', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('77', '内裤', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('78', '家居服', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('79', '睡衣/睡裙', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('80', '无痕内衣', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('81', '泳衣', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('82', '隐形内衣', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('83', '安全裤', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('84', '塑身衣', '', '74', '1', '0');
+INSERT INTO `t_category` VALUES ('85', '裤子', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('86', '铅笔裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('87', '铅笔裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('88', '短裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('89', '牛仔裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('90', '裙裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('91', '连体裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('92', '背带裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('93', '西装裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('94', '高腰裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('95', '直筒裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('96', '阔腿裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('97', '休闲裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('98', '哈伦裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('99', '长裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('100', '小脚裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('101', '热裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('102', '七分裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('103', '五分裤', '', '85', '1', '0');
+INSERT INTO `t_category` VALUES ('104', '鞋子', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('105', '高跟鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('106', '凉鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('107', '单鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('108', '运动鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('109', '帆布鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('110', '松糕鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('111', '船鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('112', '布洛克鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('113', '果冻鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('114', '凉拖', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('115', '鱼嘴鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('116', '夹脚鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('117', '浅口鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('118', '平底鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('119', '豆豆鞋', '', '104', '1', '0');
+INSERT INTO `t_category` VALUES ('120', '童装', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('121', '衬衫', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('122', '哈衣', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('123', '短袖T恤', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('124', '背心/马甲', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('125', '连衣裙', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('126', '短裙', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('127', '短裤', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('128', '长裤', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('129', '长T', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('130', '小西装', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('131', '背心裙', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('132', '雪纺裙', '', '120', '1', '0');
+INSERT INTO `t_category` VALUES ('133', '包包', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('134', '单肩包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('135', '斜挎包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('136', '双肩包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('137', '链条包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('138', '机车包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('139', '钱包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('140', '邮差包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('141', '功能箱包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('142', '手拿包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('143', '手提包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('144', '水桶包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('145', '迷你包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('146', '信封包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('147', '旅行包', '', '133', '1', '0');
+INSERT INTO `t_category` VALUES ('148', '配饰', '', '0', '1', '0');
+INSERT INTO `t_category` VALUES ('149', '项链', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('150', '耳钉/耳环', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('151', '戒指', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('152', '腰带', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('153', '假领', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('154', '手链/手镯', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('155', '手表', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('156', '发饰', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('157', '丝袜', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('158', '手表', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('159', '吊坠', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('160', '脚链', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('161', '挂件', '', '148', '1', '0');
+INSERT INTO `t_category` VALUES ('162', '纹身贴', '', '148', '1', '0');
 
 -- ----------------------------
 -- Table structure for `t_complaint`
@@ -158,6 +271,27 @@ CREATE TABLE `t_coupons` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `t_extend`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_extend`;
+CREATE TABLE `t_extend` (
+  `extend_id` varchar(32) DEFAULT NULL COMMENT '主表对应GUID',
+  `keyfield` varchar(255) DEFAULT NULL COMMENT '扩展的列名',
+  `type` tinyint(4) DEFAULT NULL COMMENT '数据类型,比如 int = 1,char = 2 ,text = 3',
+  `val_varchar` varchar(500) DEFAULT NULL,
+  `val_text` text,
+  `val_char` char(255) DEFAULT NULL,
+  `val_double` double DEFAULT NULL,
+  `val_int` int(11) DEFAULT NULL,
+  UNIQUE KEY `idx_uni_extendid_keyfield` (`extend_id`,`keyfield`) USING BTREE,
+  KEY `idx_extend_id` (`extend_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_extend
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `t_goods`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_goods`;
@@ -167,13 +301,14 @@ CREATE TABLE `t_goods` (
   `goods_name` varchar(200) NOT NULL COMMENT '商品名称',
   `display_name` varchar(255) DEFAULT NULL COMMENT '显示名称',
   `shop_id` int(11) DEFAULT NULL COMMENT '商家',
-  `barnd_id` int(11) DEFAULT NULL COMMENT '所属品牌',
+  `brand_id` int(11) DEFAULT NULL COMMENT '所属品牌',
   `creater_uid` int(11) DEFAULT NULL COMMENT '创建者',
   `cate_id` int(11) DEFAULT NULL COMMENT '商品分类',
-  `shop_price` double DEFAULT NULL COMMENT '现价',
-  `market_price` double DEFAULT NULL COMMENT '市场价',
-  `commission` double DEFAULT NULL COMMENT '商品佣金',
-  `goods_pic` varchar(500) DEFAULT NULL COMMENT '图片',
+  `sell_price` double DEFAULT NULL COMMENT '销售价',
+  `cost_price` double DEFAULT NULL COMMENT '成本价',
+  `comm_rate` double DEFAULT NULL COMMENT '佣金率',
+  `comm_price` double DEFAULT NULL COMMENT '佣金额',
+  `goods_pic` text COMMENT '图片',
   `brief` varchar(255) DEFAULT NULL COMMENT '概要描述',
   `content` text COMMENT '商品介绍',
   `like_num` varchar(255) DEFAULT NULL COMMENT '用户喜欢基数',
@@ -185,18 +320,20 @@ CREATE TABLE `t_goods` (
   `sort` int(11) DEFAULT NULL COMMENT '排序',
   `keyword` varchar(100) NOT NULL DEFAULT '' COMMENT '商品关键字',
   `stocks` int(11) DEFAULT NULL COMMENT '库存量',
-  `goods_icon` varchar(500) DEFAULT NULL COMMENT '图标',
+  `l_icon` varchar(500) DEFAULT NULL COMMENT '大图标',
+  `s_icon` varchar(500) DEFAULT NULL COMMENT '小图标',
   `link_url` varchar(255) DEFAULT NULL COMMENT '商品链接地址',
   `buys` int(11) DEFAULT NULL COMMENT '商品购买数',
-  `delFlag` tinyint(4) DEFAULT NULL COMMENT '删除标记,1=已删除，0=未删除',
+  `del_flag` tinyint(4) DEFAULT NULL COMMENT '删除标记,1=已删除，0=未删除',
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `modifytime` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_goods
 -- ----------------------------
+INSERT INTO `t_goods` VALUES ('1', '20220455601', '千百惠海贝衣香丽影款2013夏装新款正品淑女装蕾丝雪纺短袖连衣裙', null, null, '2', null, '40', '120', '120', '5', '6', ',,http://i03.c.aliimg.com/img/ibank/2013/939/349/815943939_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/149/349/815943941_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/349/349/815943943_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/467/849/815948764_748786497.jpg,http://i05.c.aliimg.com/img/ibank/2013/449/349/815943944_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/649/349/815943946_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/849/349/815943948_748786497.jpg,http://i05.c.aliimg.com/img/ibank/2013/059/349/815943950_748786497.jpg,http://i03.c.aliimg.com/img/ibank/2013/939/349/815943939_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/149/349/815943941_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/349/349/815943943_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/467/849/815948764_748786497.jpg,http://i05.c.aliimg.com/img/ibank/2013/449/349/815943944_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/649/349/815943946_748786497.jpg,http://i01.c.aliimg.com/img/ibank/2013/849/349/815943948_748786497.jpg,http://i05.c.aliimg.com/img/ibank/2013/059/349/815943950_748786497.jpg', '', '', null, null, null, null, '0', null, null, '千百惠 连衣裙', null, 'http://i01.c.aliimg.com/img/ibank/2013/349/349/815943943_748786497.jpg', 'http://img02.taobaocdn.com/bao/uploaded/i2/16767022501567085/T1UzN3XAlhXXXXXXXX_!!0-item_pic.jpg_sum.jpg', 'http://s.click.taobao.com/t?e=zGU34CA7K%2BPkqB07S4%2FK0CITy7klxxrJ35Nnc0lhsbQDgzA3p3W5ZrOMFSyVOhWPH%2FMbad7Nytg1VZI3qYGUpVgU0HhfdvqI0BhjFJdB8Lenag%3D%3D', '0', '0', '2013-09-02 12:46:44', '2013-09-02 13:18:49');
 
 -- ----------------------------
 -- Table structure for `t_goods_comm`
@@ -524,6 +661,7 @@ CREATE TABLE `t_shop` (
   `sort` int(11) DEFAULT '0' COMMENT '排序',
   `remark` text COLLATE utf8_bin,
   `coupons_use` text COLLATE utf8_bin COMMENT '优惠卷使用教程',
+  `status` int(11) DEFAULT '1' COMMENT '状态,1=有效，2=无效',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -559,4 +697,4 @@ CREATE TABLE `t_user` (
 -- Records of t_user
 -- ----------------------------
 INSERT INTO `t_user` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@adplatform.com', '1', '', '系统管理员', '', null, '', '2013-06-02 17:43:46', '569f23c3263a46debb040a57236be222', '2013-08-20 01:10:37', '1');
-INSERT INTO `t_user` VALUES ('2', 'spadmin', 'e10adc3949ba59abbe56e057f20f883e', 'spadmin@adplatform.com', '2', '', '运营管理员', '', null, '', '2013-07-08 00:12:45', 'c4b04aeda42843bc805448568176d144', '2013-08-20 16:57:55', '1');
+INSERT INTO `t_user` VALUES ('2', 'spadmin', 'e10adc3949ba59abbe56e057f20f883e', 'spadmin@adplatform.com', '2', '', '运营管理员', '', null, '', '2013-07-08 00:12:45', '75ba559c3de242b08d2aac1daea621d6', '2013-09-02 13:34:00', '1');

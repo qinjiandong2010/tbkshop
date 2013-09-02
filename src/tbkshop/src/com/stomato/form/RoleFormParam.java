@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.google.gson.Gson;
 import com.stomato.utils.DateUtils;
-import com.stomato.vo.SysConfig;
 
 public class RoleFormParam{
 
@@ -110,8 +109,12 @@ public class RoleFormParam{
 	}
 
 	public int getPageTotal() {
-		pageTotal = SysConfig.getPageTotal(totalCount, getPageSize());
-		return pageTotal;
+		int pSize = getPageSize();
+		pageTotal = totalCount/pSize;
+		if(totalCount/pSize != 0){
+			return pageTotal+1 ;
+		}
+		return pageTotal ;
 	}
 
 	public void setPageTotal(int pageTotal) {
