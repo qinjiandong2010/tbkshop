@@ -8,15 +8,15 @@
 	<ul class="breadcrumb">
 		<li><a href="/"><i class="icon-home"></i></a><span
 			class="divider">&nbsp;</span></li>
-		<li><a href="#">商品管理</a> <span class="divider">&nbsp;</span></li>
-		<li><a href="/category/list.html">商品分类列表</a> <span class="divider">&nbsp;</span></li>
-		<li><a href="#">修改商品分类</a><span class="divider-last">&nbsp;</span></li>
+		<li><a href="#">品牌管理</a> <span class="divider">&nbsp;</span></li>
+		<li><a href="/brand/list.html">品牌列表</a> <span class="divider">&nbsp;</span></li>
+		<li><a href="#">修改品牌</a><span class="divider-last">&nbsp;</span></li>
 	</ul>
 
 	<div class="widget">
-		<form:form commandName="categoryForm" method="POST" class="form-horizontal form-wizard">
+		<form:form commandName="brandForm" method="POST" class="form-horizontal form-wizard" enctype="multipart/form-data">
 			<div class="widget-header">
-				<h5>修改商品分类</h5>
+				<h5>修改品牌</h5>
 			</div>
 			<div class="widget-content no-padding">
 				<c:if test="${success != null}">
@@ -25,7 +25,7 @@
                     <strong><fmt:message key="tips"/></strong> 
                     <c:choose>
                     	<c:when test="${success}">
-                    		修改商品分类成功。
+                    		修改品牌成功。
                     	</c:when>
                     	<c:otherwise>
                     		未知操作。
@@ -34,56 +34,44 @@
                 </div>
                 </c:if>
 				<div class="form-row">
-					<label class="field-name" for="typeName">分类名称：</label>
+					<label class="field-name" for="brandName">品牌名称：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
-							<form:hidden path="id" class="span12"  maxlength="20" /> 
-							<form:input path="typeName" class="span12"  maxlength="20" /> 
-							<span class="add-on">不能超过20个字符</span>
+							<form:input path="brandName" class="span12"  maxlength="40" /> 
+							<span class="add-on">不能超过40个字符</span>
 						</div>
-						<form:errors path="typeName" cssClass="error"/>
+						<form:errors path="brandName" cssClass="error"/>
 					</div>
 				</div>
-				<div class="form-row">
-					<label class="field-name" for="parent">上级分类：</label>
+			    <div class="form-row">
+					<label class="field-name" for="cateId">品牌分类：</label>
 					<div class="field">
-					    <form:select path="parent" data-placeholder="一级分类" class="chosen" tabindex="-1">
+					    <form:select path="cateId" class="chosen" tabindex="-1">
                         <c:forEach var="category" items="${categoryList }">
-                            <optgroup label="${category.typeName }">
-                            <c:forEach var="category2" items="${category.sunTypeList }">
-                                <option value="${category2.id }">${category2.typeName }</option>
-                            </c:forEach>
-                            </optgroup>
+                            <form:option value="${category.id }">${category.typeName }</form:option>
                         </c:forEach>
                         </form:select>
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="description">描述：</label>
+					<label class="field-name" for="iconFile">Icon图片：</label>
 					<div class="field">
-						<div class="input-prepend input-append">
-							<form:input path="description" class="span12" maxlength="50" /> 
-						</div>
-						<form:errors path="description" cssClass="error"/>
+						<img width="50px" src="${imgServer}${brandForm.brandIcon}"/>
+						<input type="file" name="iconFile" id="iconFile">
+						<form:errors path="iconFile" cssClass="error"/>
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="orderNo">排序编号：</label>
+					<label class="field-name" for="sort">排序：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
-							<form:input path="orderNo" class="span12" maxlength="20" /> 
+							<form:input path="sort" class="span12" maxlength="10" /> 
 						</div>
-						<form:errors path="orderNo" cssClass="error"/>
+						<form:errors path="sort" cssClass="error"/>
 					</div>
 				</div>
-				<div class="form-row">
-                    <label class="field-name">是否显示：</label>
-                    <div class="field">
-                    	<form:checkbox path="visible" class="span12 toggle" value="true"/>
-                    </div>
-                </div>
 				<div class="form-row" style="padding-left: 180px;">
-					<button type="submit" class="button button-blue">保存修改</button>
+					<button type="submit" class="button button-blue">修改品牌</button>
 				</div>
 			</div>
 		</form:form>

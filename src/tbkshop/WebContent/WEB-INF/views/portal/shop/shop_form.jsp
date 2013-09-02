@@ -8,7 +8,7 @@
 	<ul class="breadcrumb">
 		<li><a href="/"><i class="icon-home"></i></a><span
 			class="divider">&nbsp;</span></li>
-		<li><a href="#">品牌管理</a> <span class="divider">&nbsp;</span></li>
+		<li><a href="#">商家管理</a> <span class="divider">&nbsp;</span></li>
 		<li><a href="#">添加商家</a><span class="divider-last">&nbsp;</span></li>
 	</ul>
 

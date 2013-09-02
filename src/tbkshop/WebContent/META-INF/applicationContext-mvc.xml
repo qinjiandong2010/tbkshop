@@ -16,19 +16,15 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 导入 mybatis config  -->
-		<!-- <property name="configLocation" value="mybatis-config.xml" /> -->
+		<property name="configLocation" value="/META-INF/mybatis-config.xml" />
 		<!-- 自动导入mybatis config -->
-		<property name="typeAliasesPackage" value="com.stomato.dao" />
+		<!--<property name="typeAliasesPackage" value="com.stomato.dao" />-->
 	</bean>
 
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-    
-    <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.stomato.dao" />
-    </bean> -->
+
 	<bean id="springContextUtil" class="com.stomato.utils.SpringContextUtil"></bean>
 	
     <!-- config mybatis 自动配置DAO层@Repository -->

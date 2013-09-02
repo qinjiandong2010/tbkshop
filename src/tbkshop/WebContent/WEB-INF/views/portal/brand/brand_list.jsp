@@ -56,6 +56,7 @@
 			                       <th>品牌名称</th>
 			                       <th>Icon图片</th>
 			                       <th>品牌分类</th>
+			                       <th>状态</th>
 			                       <th>操作</th>
 								</tr>
 							</thead>
@@ -66,8 +67,32 @@
 					            			<td class="sorting_1">${stat.index+1}</td>
 					                        <td>${item.brandName }</td>
 					                        <td><img width="50px" src="${imgServer}${item.brandIcon}"/></td>
-					                         <th>${item.cateId}</th>
+											<td>
+												<c:forEach items="${categoryList}" var="category" >
+						                        	<c:if test="${category.id == item.cateId}">
+						                        		${category.typeName }
+						                        	</c:if>
+					                        	</c:forEach>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${item.status==1}">
+														<span class="label label-success">可用</span>
+													</c:when>
+													<c:otherwise>
+														<span class="label label-warning">禁用</span>
+													</c:otherwise>
+												</c:choose>
+											</td>
 					                        <td class=" ">
+					                            <c:choose>
+												<c:when test="${item.status==0}">
+													<a href="javascript:," data-url="/brand/${item.id }/usable.html" onclick="ajaxBtn()">可用</a>
+												</c:when>
+												<c:otherwise>
+													<a href="javascript:," data-url="/brand/${item.id }/disable.html" onclick="ajaxBtn()">禁用</a>
+												</c:otherwise>
+											</c:choose>
 					                        	<a href="/brand/${item.id }/edit.html">编辑</a>
 					                        	<a href="javascript:void(0)" onclick="deleteData('/brand/${item.id }/delete.html')">删除</a>
 					                        </td>
@@ -83,4 +108,24 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+function ajaxBtn() {
+  var actionUrl = $(this).prop("data-url");
+  alert(actionUrl);
+  jQuery.ajax( {  
+    type : 'GET',     
+    contentType : 'application/json',     
+    url : actionUrl,     
+    dataType : 'json',     
+    success : function(data) {     
+       if (data && (data.code == "0" || data.code == "00" || data.code == "000")) {     
+           alert(data.message);        
+        }                      
+    },     
+    error : function(data) {     
+      alert("error")     
+    }     
+  });     
+};     
+</script>
 </body>

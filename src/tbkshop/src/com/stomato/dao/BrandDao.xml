@@ -9,6 +9,8 @@
 		<result property="cateId" column="cate_id"/>
 		<result property="brandIcon" column="brand_icon"/>
 		<result property="sort" column="sort"/>
+		<result property="status" column="status"/>
+		<result property="delFlag" column="del_flag"/>
 	</resultMap>
 	
 	<insert id="add" parameterType="com.stomato.domain.Brand">
@@ -16,8 +18,9 @@
 							remark,
 							cate_id,
 							brand_icon,
-							sort) 
-		values (#{brandName},#{remark},#{cateId},#{brandIcon},#{sort})
+							sort,
+							status) 
+		values (#{brandName},#{remark},#{cateId},#{brandIcon},#{sort},1)
 	</insert>
 	
 	<select id="get" parameterType="int" resultMap="brand" >
@@ -26,7 +29,9 @@
 				remark,
 				cate_id,
 				brand_icon,
-				sort
+				sort,
+				status,
+				del_flag
 				from t_brand where id=#{id}
 	</select>
 	<update id="update" parameterType="com.stomato.domain.Brand">
@@ -36,6 +41,8 @@
 			<if test="remark != null">remark=#{remark},</if>
 			<if test="cateId != null">cate_id=#{cateId},</if>
 			<if test="brandIcon != null">brand_icon=#{brandIcon},</if>
+			<if test="status != null">status=#{status},</if>
+			<if test="delFlag != null">del_flag=#{delFlag},</if>
 			<if test="sort != null">sort=#{sort}</if>
 		</set>
         where id = #{id}
@@ -45,7 +52,7 @@
 	</delete>
 	
 	<select id="listTotal" parameterType="com.stomato.form.BrandFormParam" resultType="int" >
-		select count(1) from t_brand where 1=1
+		select count(1) from t_brand where del_flag=0
 		<if test="brandName != null">
 		 	and brand_name like '%${brandName}%'
 		</if>
@@ -56,8 +63,10 @@
 				remark,
 				cate_id,
 				brand_icon,
-				sort
-				from t_brand where 1=1
+				sort,
+				status,
+				del_flag
+				from t_brand where del_flag=0
 		<if test="brandName != null">
 		 	and brand_name like '%${brandName}%'
 		</if>
@@ -65,5 +74,6 @@
 			and cate_id = #{cateId}
 		</if>
 		order by sort asc
+		<if test="offset != null">limit #{offset},#{pageSize}</if>
 	</select>
 </mapper>
