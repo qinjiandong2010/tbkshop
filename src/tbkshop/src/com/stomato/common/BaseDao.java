@@ -1,4 +1,4 @@
-package com.stomato.dao;
+package com.stomato.common;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -15,7 +15,7 @@ import com.stomato.exception.DaoException;
  * @version 1.0
  * @history 2013-7-23 create
  */
-public interface BaseDAO {
+public interface BaseDao {
 
 	/**
 	 * 添加数据

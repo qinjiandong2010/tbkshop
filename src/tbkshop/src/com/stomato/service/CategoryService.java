@@ -1,9 +1,9 @@
 package com.stomato.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.stomato.dao.CategoryDao;
@@ -50,7 +50,7 @@ public class CategoryService {
 		}
 		return list;
 	}
-	
+	@Cacheable(value="category")
 	public void getListNode(Category parent){
 		CategoryFormParam formParam = new CategoryFormParam();
 		formParam.setVisible(true);
@@ -60,28 +60,5 @@ public class CategoryService {
 		for (Category category : list) {
 			getListNode(category);
 		}
-	}   
-	public List<Category> getAllChilds(){
-		CategoryFormParam formParam = new CategoryFormParam();
-		formParam.setVisible(true);
-		List<Category> CategoryList = categoryDao.listCategory(formParam);
-		List<Category> levelList = new ArrayList<Category>();
-		if( CategoryList != null ){
-			for (Category category : CategoryList) {
-				if(category.getParent().intValue() == 0){
-					levelList.add(category);
-				}
-			}
-			for (Category level : levelList) {
-				List<Category> sunType = new ArrayList<Category>();
-				for (Category category : CategoryList) {
-					if(level.getId().intValue() == category.getParent().intValue()){
-						sunType.add(category);
-					}
-				}
-				level.setListNode(sunType);
-			}
-		}
-		return levelList;
-	}
+	} 
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stomato.dao.ShopDao">
+	<resultMap type="com.stomato.domain.Shop" id="shop"> 
+		<result property="id" column="id" />
+		<result property="shopName" column="shop_name" />
+		<result property="shopLogo" column="shop_logo"/>
+		<result property="shopUrl" column="shop_url"/>
+		<result property="shopInfo" column="shop_info"/>
+		<result property="sort" column="sort"/>
+		<result property="remark" column="remark"/>
+		<result property="couponsUse" column="coupons_use"/>
+		<result property="status" column="status"/>
+	</resultMap>
+	
+	<insert id="add" parameterType="com.stomato.domain.Shop">
+		insert into t_shop (shop_name,
+							shop_logo,
+							shop_url,
+							shop_info,
+							sort,
+							remark,
+							coupons_use,
+							status) 
+		values (#{shopName},#{shopLogo},#{shopUrl},#{shopInfo},#{sort},#{remark},#{couponsUse},1)
+	</insert>
+	
+	<select id="get" parameterType="int" resultMap="shop" >
+		select id,
+				shop_name,
+				shop_logo,
+				shop_url,
+				shop_info,
+				sort,
+				remark,
+				coupons_use,
+				status
+				from t_shop where id=#{id}
+	</select>
+	<update id="update" parameterType="com.stomato.domain.Shop">
+		update t_shop 
+		<set>
+			<if test="shopName != null">shop_name=#{shopName},</if>
+			<if test="shopLogo != null">shop_logo=#{shopLogo},</if>
+			<if test="shopUrl != null">shop_url=#{shopUrl},</if>
+			<if test="shopInfo != null">shop_info=#{shopInfo},</if>
+			<if test="sort != null">sort=#{sort},</if>
+			<if test="remark != null">remark=#{remark},</if>
+			<if test="status != null">status=#{status},</if>
+			<if test="couponsUse != null">coupons_use=#{couponsUse}</if>
+		</set>
+        where id = #{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from t_shop where id = #{id}
+	</delete>
+	
+	<select id="listTotal" parameterType="com.stomato.form.ShopFormParam" resultType="int" >
+		select count(1) from t_shop where 1=1
+		<if test="shopName != null">
+		 	and shop_name like '%${shopName}%'
+		</if>
+	</select>
+	<select id="list" parameterType="com.stomato.form.ShopFormParam" resultMap="shop" >
+		select  id,
+				shop_name,
+				shop_logo,
+				shop_url,
+				shop_info,
+				sort,
+				remark,
+				coupons_use,
+				status
+				from t_shop where 1=1
+		<if test="shopName != null">
+		 	and shop_name like '%${shopName}%'
+		</if>
+		<if test="status != null">
+		 	and status = #{status}
+		</if>
+		order by sort asc
+	</select>
+</mapper>

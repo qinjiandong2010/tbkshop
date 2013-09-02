@@ -11,6 +11,24 @@ public class Brand {
 	private String brandIcon;
 	private String remark;
 	private Integer sort;
+	private Integer status;
+	private Boolean delFlag;
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Boolean getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(Boolean delFlag) {
+		this.delFlag = delFlag;
+	}
 
 	public Integer getId() {
 		return id;

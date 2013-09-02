@@ -98,12 +98,14 @@ public class CategoryFormParam{
 		this.pageNum = pageNum;
 	}
 
-	public int getOffset() {
-		this.setOffset((this.getPageNum() - 1) * this.getPageSize());
+	public Integer getOffset() {
+		if( totalCount > 0 ){
+			this.setOffset((this.getPageNum() - 1) * this.getPageSize());
+		}
 		return offset;
 	}
 
-	public void setOffset(int offset) {
+	public void setOffset(Integer offset) {
 		this.offset = offset;
 	}
 	

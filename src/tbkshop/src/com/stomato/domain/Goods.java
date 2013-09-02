@@ -8,7 +8,7 @@ public class Goods {
 	private String goodsName;
 	private String displayName;
 	private Integer shopId;
-	private Integer barndId;
+	private Integer brandId;
 	private Integer createrUid;
 	private Integer cateId;
 	private Double shopPrice;
@@ -73,12 +73,12 @@ public class Goods {
 		this.shopId = shopId;
 	}
 
-	public Integer getBarndId() {
-		return barndId;
+	public Integer getBrandId() {
+		return brandId;
 	}
 
-	public void setBarndId(Integer barndId) {
-		this.barndId = barndId;
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
 	}
 
 	public Integer getCreaterUid() {

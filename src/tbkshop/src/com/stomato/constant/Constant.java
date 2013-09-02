@@ -4,6 +4,7 @@ public interface Constant {
 	
 	public static final String BUILD_EXAMPLE_ANDROID_PACKAGE = "BUILD_EXAMPLE_ANDROID_PACKAGE";
 	public static final String fileSeparator = System.getProperty("file.separator");
+
 	/**
 	 * 系统公共配置
 	 */
@@ -18,11 +19,10 @@ public interface Constant {
 	}
 	//系统配置
 	interface Configs {
-		String credentialsDirPath = "credentials";
 
-		String adresourceDirPath = "adresource";
-
-		String appsDirPath = "apps";
+		String uploadDirPath = "upload";
+		
+		String brandDirPath = "brand";
 
 		String tmpsDirPath = "tmps";
 		
@@ -32,15 +32,16 @@ public interface Constant {
 		
 		String appDirSuffix = "Dir";
 
-		String appIconDir = "icon";
+		String iconDir = "icon";
 
 	}
 	
-	//App状态
-	interface AppStatus {
-		int infoCompleted = 1;
-		
-		int sdkInstalled = 2;
+	//Brand状态
+	interface BrandStatus {
+		//可用
+		int usable = 0;
+		//禁用
+		int disable = 1;
 		
 	}
 	

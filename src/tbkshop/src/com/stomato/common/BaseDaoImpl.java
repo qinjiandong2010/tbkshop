@@ -1,4 +1,4 @@
-package com.stomato.dao.impl;
+package com.stomato.common;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.stomato.dao.BaseDAO;
 import com.stomato.exception.DaoException;
 
 /**
@@ -21,7 +20,8 @@ import com.stomato.exception.DaoException;
  * @version 1.0
  * @history 2013-7-23 create
  */
-public class BaseDAOImpl implements BaseDAO {
+@Repository("baseDao")
+public class BaseDaoImpl implements BaseDao {
 
 	@Resource
 	protected SqlSessionTemplate sqlSessionTemplate;

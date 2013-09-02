@@ -8,17 +8,16 @@ import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
 import com.stomato.domain.Goods;
-import com.stomato.utils.StringUtils;
 
 public class GoodsForm {
 	private long id;
-	@Length(max=100,min=6)
+	@Length(max = 100, min = 6)
 	private String goodsCode;
 	@NotEmpty
 	private String goodsName;
 	private String displayName;
 	private Integer shopId;
-	private Integer barndId;
+	private Integer brandId;
 	private Integer createrUid;
 	private Integer cateId;
 	private Double shopPrice;
@@ -42,11 +41,8 @@ public class GoodsForm {
 	private String content;
 	private Date createtime;
 	private Date modifytime;
-	
-	public String goodsPic1;
-	public String goodsPic2;
-	public String goodsPic3;
-	public String goodsPic4;
+
+	public String[] goodsPics;
 
 	public long getId() {
 		return id;
@@ -88,12 +84,12 @@ public class GoodsForm {
 		this.shopId = shopId;
 	}
 
-	public Integer getBarndId() {
-		return barndId;
+	public Integer getBrandId() {
+		return brandId;
 	}
 
-	public void setBarndId(Integer barndId) {
-		this.barndId = barndId;
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
 	}
 
 	public Integer getCreaterUid() {
@@ -137,17 +133,11 @@ public class GoodsForm {
 	}
 
 	public String getGoodsPic() {
-		if(goodsPic1 != null || !StringUtils.isEmpty(goodsPic1)){
-			goodsPic += ","+goodsPic1;
-		}
-		if(goodsPic2 != null || !StringUtils.isEmpty(goodsPic2)){
-			goodsPic += ","+goodsPic2;
-		}
-		if(goodsPic3 != null || !StringUtils.isEmpty(goodsPic3)){
-			goodsPic += ","+goodsPic3;
-		}
-		if(goodsPic4 != null || !StringUtils.isEmpty(goodsPic4)){
-			goodsPic += ","+goodsPic4;
+		if( goodsPics != null ){
+			if( goodsPic == null ) goodsPic="";
+			for (int i = 0; i < goodsPics.length; i++) {
+				goodsPic+=","+goodsPics[i];
+			}
 		}
 		return goodsPic;
 	}
@@ -291,37 +281,14 @@ public class GoodsForm {
 	public void setModifytime(Date modifytime) {
 		this.modifytime = modifytime;
 	}
-
-	public String getGoodsPic1() {
-		return goodsPic1;
+ 
+	public String[] getGoodsPics() {
+		if( goodsPic != null ) goodsPics = goodsPic.split(",");
+		return goodsPics;
 	}
 
-	public void setGoodsPic1(String goodsPic1) {
-		this.goodsPic1 = goodsPic1;
-	}
-
-	public String getGoodsPic2() {
-		return goodsPic2;
-	}
-
-	public void setGoodsPic2(String goodsPic2) {
-		this.goodsPic2 = goodsPic2;
-	}
-
-	public String getGoodsPic3() {
-		return goodsPic3;
-	}
-
-	public void setGoodsPic3(String goodsPic3) {
-		this.goodsPic3 = goodsPic3;
-	}
-
-	public String getGoodsPic4() {
-		return goodsPic4;
-	}
-
-	public void setGoodsPic4(String goodsPic4) {
-		this.goodsPic4 = goodsPic4;
+	public void setGoodsPics(String[] goodsPics) {
+		this.goodsPics = goodsPics;
 	}
 
 	@Override

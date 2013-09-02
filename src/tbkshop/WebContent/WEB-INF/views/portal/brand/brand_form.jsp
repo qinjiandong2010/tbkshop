@@ -53,10 +53,10 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="brandIcon">Icon图片：</label>
+					<label class="field-name" for="iconFile">Icon图片：</label>
 					<div class="field">
-						<input type="file" name=""brandIcon"" id="file">
-						<form:errors path="brandIcon" cssClass="error"/>
+						<input type="file" name="iconFile" id="iconFile">
+						<form:errors path="iconFile" cssClass="error"/>
 					</div>
 				</div>
 				<div class="form-row">
