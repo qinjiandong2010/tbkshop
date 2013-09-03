@@ -167,45 +167,28 @@ textarea {width:600px;}
 					</div>
 				</div>
 				 <div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片2：</label>
+					<label class="field-name" for="goodsPics2">商品图片2：</label>
 					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
+						<form:input path="goodsPics" maxlength="200" id="goodsPics2"/> 
 					</div>
 				</div>
 				 <div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片3：</label>
+					<label class="field-name" for="goodsPics3">商品图片3：</label>
 					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
+						<form:input path="goodsPics" maxlength="200" id="goodsPics3"/> 
 					</div>
 				</div>
 				 <div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片4：</label>
+					<label class="field-name" for="goodsPics4">商品图片4：</label>
 					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
+						<form:input path="goodsPics" maxlength="200" id="goodsPics4"/> 
 					</div>
 				</div>
 				<div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片5：</label>
+					<label class="field-name" for="goodsPics5">商品图片5：</label>
 					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
-					</div>
-				</div>
-				<div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片6：</label>
-					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
-					</div>
-				</div>
-				<div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片7：</label>
-					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
-					</div>
-				</div>
-				<div class="form-row">
-					<label class="field-name" for="goodsPics">商品图片8：</label>
-					<div class="field">
-						<form:input path="goodsPics" maxlength="200" /> 
+						<form:input path="goodsPics" maxlength="200" id="goodsPics5"/>
+						<a href="javascript:void(0)" id="add_input">新增</a>
 					</div>
 				</div>
 				<div class="form-row">
@@ -239,4 +222,21 @@ textarea {width:600px;}
 			</div>
 		</form:form>
 	</div>
+<script type="text/javascript">
+	(function() {
+		var imgLength = 5;
+        $('#add_input').live("click",function(event,data) {
+        	var $lastImgInput = $("label[for='goodsPics"+imgLength+"']").last().parent();
+        	imgLength++;
+        	var goodsPicsHTML = "<div class=\"form-row\">"+
+									"<label class=\"field-name\" for=\"goodsPics"+imgLength+"\">商品图片"+imgLength+"：</label>"+
+									"<div class=\"field\">"+
+										"<input id=\"goodsPics"+imgLength+"\" name=\"goodsPics\" type=\"text\" maxlength=\"200\"> "+
+										"<a href=\"javascript:void(0)\" id='add_input'>新增</a>"+
+									"</div>"+
+							"</div>";
+        	$lastImgInput.after(goodsPicsHTML);
+		});
+    })();
+</script>
 </body>

@@ -17,6 +17,7 @@ textarea {width:600px;}
 		<li><a href="/"><i class="icon-home"></i></a><span
 			class="divider">&nbsp;</span></li>
 		<li><a href="#">商品管理</a> <span class="divider">&nbsp;</span></li>
+		<li><a href="/goods/list.html">商品列表</a> <span class="divider">&nbsp;</span></li>
 		<li><a href="#">修改商品</a><span class="divider-last">&nbsp;</span></li>
 	</ul>
 
@@ -160,9 +161,12 @@ textarea {width:600px;}
 				</div>
 			    <c:forEach var="imgUrl" items="${goodsForm.goodsPics }" varStatus="status">
 					<div class="form-row">
-						<label class="field-name" for="goodsPics">商品图片${status.index }：</label>
+						<label class="field-name" for="goodsPics${status.index+1 }">商品图片${status.index+1 }：</label>
 						<div class="field">
-							<form:input path="goodsPics" value="${imgUrl}" /> 
+							<form:input path="goodsPics" value="${imgUrl}" />
+							<c:if test="${fn:length(goodsForm.goodsPics) == status.index+1}">
+								<a href="javascript:void(0)" id="add_input">新增</a>
+							</c:if>
 						</div>
 					</div>
 				</c:forEach>
@@ -197,4 +201,21 @@ textarea {width:600px;}
 			</div>
 		</form:form>
 	</div>
+<script type="text/javascript">
+	(function() {
+		var imgLength = "${fn:length(goodsForm.goodsPics)}";
+        $('#add_input').live("click",function(event,data) {
+        	var $lastImgInput = $("label[for='goodsPics"+imgLength+"']").last().parent();
+        	imgLength++;
+        	var goodsPicsHTML = "<div class=\"form-row\">"+
+									"<label class=\"field-name\" for=\"goodsPics"+imgLength+"\">商品图片"+imgLength+"：</label>"+
+									"<div class=\"field\">"+
+										"<input id=\"goodsPics"+imgLength+"\" name=\"goodsPics\" type=\"text\" maxlength=\"200\"> "+
+										"<a href=\"javascript:void(0)\" id='add_input'>新增</a>"+
+									"</div>"+
+							"</div>";
+        	$lastImgInput.after(goodsPicsHTML);
+		});
+    })();
+</script>
 </body>

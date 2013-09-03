@@ -35,9 +35,9 @@ public interface Constant {
 	//Brand状态
 	interface BrandStatus {
 		//可用
-		int usable = 0;
+		int usable = 1;
 		//禁用
-		int disable = 1;
+		int disable = 0;
 		
 	}
 

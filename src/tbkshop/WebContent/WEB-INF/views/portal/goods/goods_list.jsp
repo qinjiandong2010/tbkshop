@@ -66,7 +66,7 @@
 								<c:forEach items="${goodsList}" var="item" varStatus="stat">
 					            		<tr class="gradeX ${(stat.index%2) == 0 ? 'odd':'even' }">
 					            			<td class="sorting_1">${stat.index+1}</td>
-					                        <td><img width="100px" src="${item.goodsIcon}"/></td>
+					                        <td><img width="100px" src="${item.sIcon}"/></td>
 					                        <td>${item.goodsCode}</td>
 					                        <td>${item.goodsName}</td>
 					                        <td>${item.displayName}</td>
@@ -122,15 +122,4 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-	//导出excel
-	(function() {
-        $('#export-excel').bind("click",function(event,data) {
-        	$form = $("#searchForm");
-        	url = $form.attr("action");
-        	$form.attr("action", "/adResource/export-excel").submit();
-        	$form.attr("action",url);
-		});
-    })();
-</script>
 </body>

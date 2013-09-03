@@ -110,6 +110,7 @@ public class BrandController extends UserController {
 			brandForm.setBrandIcon(uploadIcon(this.lookup(request), iconFile, result));
 		}
 		brandService.update(brandForm.asPojo());
+		model.addAttribute("success", true);
 		return editPage(id, brandForm, result, model);
 	}
 	@RequestMapping(value="/{id}/delete.html",method=RequestMethod.GET)
