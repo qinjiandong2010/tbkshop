@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- END CONTAINER -->
-</div>
 <div id="footer">
     2013 © Admin Lab Dashboard.
     <div class="span pull-right">

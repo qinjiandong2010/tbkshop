@@ -10,6 +10,7 @@
 <link type="text/css" rel="stylesheet" href="/css/bootstrap-responsive.min.css" media="screen">
 <link type="text/css" rel="stylesheet" href="/css/font-awesome.css" media="screen">
 <link type="text/css" rel="stylesheet" href="/css/style.css" media="screen">
+<link type="text/css" rel="stylesheet" href="/css/plugins/select2.css" media="screen">
 <link type="text/css" rel="stylesheet" href="/css/style_responsive.css" media="screen">
 <link type="text/css" rel="stylesheet" href="/css/style_default.css" media="screen">
 <script src="/js/jquery-1.8.3.min.js"></script>
