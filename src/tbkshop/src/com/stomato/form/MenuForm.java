@@ -8,7 +8,7 @@ import com.stomato.domain.Menu;
 
 public class MenuForm{
 	
-private Integer id ;
+	private Integer id ;
 	
 	/**
 	 * 菜单名称

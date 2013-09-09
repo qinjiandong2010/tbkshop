@@ -1,7 +1,7 @@
 package com.stomato.form;
 
 
-public class BrandFormParam extends SearchFormParam{
+public class BrandFormParam extends PublicParamForm{
    
 	private String brandName;
 	private String cateId;

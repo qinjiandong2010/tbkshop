@@ -55,6 +55,7 @@ public class GoodsController extends UserController {
 
 	@RequestMapping(value = "/add.html", method = RequestMethod.POST)
 	public String formpage(@Valid @ModelAttribute("goodsForm") GoodsForm productForm,HttpServletRequest request,Model model) throws ServiceException, DaoException {
+		productForm.setCreaterUid(this.lookup(request).getUid());
 		goodsService.add(productForm.asPojo());
 		BeanUtils.copyProperties(new GoodsForm(), productForm);
 		model.addAttribute("success", true);
