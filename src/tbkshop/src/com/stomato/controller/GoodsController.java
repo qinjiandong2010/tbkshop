@@ -1,10 +1,13 @@
 package com.stomato.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.stomato.common.BaseDao;
 import com.stomato.domain.Brand;
 import com.stomato.domain.Category;
 import com.stomato.domain.Goods;
@@ -28,11 +33,13 @@ import com.stomato.service.BrandService;
 import com.stomato.service.CategoryService;
 import com.stomato.service.GoodsService;
 import com.stomato.service.ShopService;
+import com.stomato.utils.ExcelUtils;
 
 @Controller
 @RequestMapping("/goods")
 public class GoodsController extends UserController {
 
+	private static final Logger LOG = Logger.getLogger(GoodsController.class);
 	@Autowired
 	private GoodsService goodsService;
 	@Autowired
@@ -41,6 +48,8 @@ public class GoodsController extends UserController {
 	private BrandService brandService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private BaseDao baseDao;
 
 	@RequestMapping(value = "/add.html", method = RequestMethod.GET)
 	public String formpage(@ModelAttribute("goodsForm") GoodsForm productForm,Model model) throws DaoException {
@@ -106,6 +115,42 @@ public class GoodsController extends UserController {
 		}
 		goodsService.update(productForm.asPojo());
 		model.addAttribute("success", true);
+		return gotoPage;
+	}
+	/**
+	 * 导入Excel
+	 * @return
+	 */
+	@RequestMapping(value="/import.html",method=RequestMethod.GET)
+	public String importExcel(){
+		return "portal/goods/import";
+	}
+	@RequestMapping(value="/import.html",method=RequestMethod.POST)
+	public String importExcel(MultipartFile excelFile,BindingResult result){
+		String gotoPage = "portal/goods/import";
+		if( !excelFile.isEmpty() ){
+			if( !excelFile.getContentType().contains("excel") ){
+				result.rejectValue("excelFile", "20000", "C[20000]File format error.");
+			}
+			if( result.hasErrors() ){
+				return gotoPage;
+			}
+			String[] columnNames = {"date","image","title","price","link","shop","s_link","comm_ratio","m_link"};
+			try {
+				List<Map<String,Object>> list = ExcelUtils.readExcel(columnNames, excelFile.getInputStream());
+				List<Goods> goodsList = new ArrayList<Goods>();
+				for (Map<String, Object> map : list) {
+					Goods goods = new Goods();
+					goods.setGoodsName((String)map.get("title"));
+					goods.setGoodsPic((String)map.get("image"));
+					goodsList.add(goods);
+				}
+				baseDao.operateItemBatch("com.stomato.dao.GoodsDao", goodsList);
+			} catch (Exception err) {
+				result.rejectValue("excelFile", "20001", "C[20001]Import failure.");
+				LOG.error("导入Excel失败", err);
+			}
+		}
 		return gotoPage;
 	}
 
