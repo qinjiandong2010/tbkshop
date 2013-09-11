@@ -101,7 +101,43 @@
 				now(),
 				now())
 	</insert>
-	
+	<insert id="addBatch" parameterType="java.util.List">
+		insert into t_goods (<include refid="public_column"/>) 
+		values
+		<foreach collection="list" item="bean" index="index" separator="," >  
+		        (null,
+				#{bean.goodsCode},
+				#{bean.goodsName},
+				#{bean.displayName},
+				#{bean.shopId},
+				#{bean.brandId},
+				#{bean.createrUid},
+				#{bean.cateId},
+				#{bean.sellPrice},
+				#{bean.costPrice},
+				#{bean.commRate},
+				#{bean.commPrice},
+				#{bean.goodsPic},
+				#{bean.brief},
+				#{bean.content},
+				#{bean.likeNum},
+				#{bean.isTop},
+				#{bean.isHot},
+				#{bean.indexHot},
+				0,
+				#{bean.preview},
+				#{bean.sort},
+				#{bean.keyword},
+				#{bean.stocks},
+				#{bean.lIcon},
+				#{bean.sIcon},
+				#{bean.linkUrl},
+				0,
+				0,
+				now(),
+				now())
+		</foreach>
+	</insert>
 	<select id="get" parameterType="int" resultMap="goods" >
 		select <include refid="public_column"/>
 				from t_goods where id=#{id} and del_flag = 0

@@ -9,7 +9,7 @@ public interface ShopDao {
 
 	public int delete(int id);
 
-	public Shop get(int id);
+	public Shop get(Shop shop);
 
 	public List<Shop> list(Object formParam);
 

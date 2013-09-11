@@ -13,6 +13,14 @@
 		<result property="couponsUse" column="coupons_use"/>
 		<result property="status" column="status"/>
 	</resultMap>
+	<sql id="public_condition">
+		<if test="id != null">
+					and id=#{id}
+		</if>
+		<if test="shopName != null">
+					and shop_name=#{shopName}
+		</if>
+	</sql>
 	
 	<insert id="add" parameterType="com.stomato.domain.Shop">
 		insert into t_shop (shop_name,
@@ -24,9 +32,12 @@
 							coupons_use,
 							status) 
 		values (#{shopName},#{shopLogo},#{shopUrl},#{shopInfo},#{sort},#{remark},#{couponsUse},1)
+		<selectKey  keyProperty="id" resultType="int"> 
+		    SELECT @@IDENTITY as id
+		 </selectKey>
 	</insert>
 	
-	<select id="get" parameterType="int" resultMap="shop" >
+	<select id="get" parameterType="com.stomato.domain.Shop" resultMap="shop" >
 		select id,
 				shop_name,
 				shop_logo,
@@ -36,7 +47,8 @@
 				remark,
 				coupons_use,
 				status
-				from t_shop where id=#{id}
+				from t_shop where 1=1 
+				<include refid="public_condition"/> limit 0,1
 	</select>
 	<update id="update" parameterType="com.stomato.domain.Shop">
 		update t_shop 

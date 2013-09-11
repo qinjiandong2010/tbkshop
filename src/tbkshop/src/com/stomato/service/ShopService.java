@@ -23,8 +23,8 @@ public class ShopService{
 		return shopDao.delete(id);
 	}
 
-	public Shop get(int id) {
-		return shopDao.get(id);
+	public Shop get(Shop shop) {
+		return shopDao.get(shop);
 	}
 
 	public List<Shop> list(Object formParam) {

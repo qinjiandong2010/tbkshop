@@ -1,5 +1,7 @@
 package com.stomato.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.stomato.common.BaseDao;
 import com.stomato.domain.Brand;
@@ -29,6 +30,7 @@ import com.stomato.exception.DaoException;
 import com.stomato.exception.ServiceException;
 import com.stomato.form.GoodsForm;
 import com.stomato.form.GoodsFormParam;
+import com.stomato.form.ImportGoodsForm;
 import com.stomato.service.BrandService;
 import com.stomato.service.CategoryService;
 import com.stomato.service.GoodsService;
@@ -123,31 +125,52 @@ public class GoodsController extends UserController {
 	 */
 	@RequestMapping(value="/import.html",method=RequestMethod.GET)
 	public String importExcel(){
-		return "portal/goods/import";
+		return "portal/goods/goods_import";
 	}
 	@RequestMapping(value="/import.html",method=RequestMethod.POST)
-	public String importExcel(MultipartFile excelFile,BindingResult result){
-		String gotoPage = "portal/goods/import";
-		if( !excelFile.isEmpty() ){
-			if( !excelFile.getContentType().contains("excel") ){
+	public String importExcel(@Valid @ModelAttribute("importForm") ImportGoodsForm importForm, BindingResult result,Model model){
+		String gotoPage = "portal/goods/goods_import";
+		if( !importForm.getExcelFile().isEmpty() ){
+			if( !importForm.getExcelFile().getContentType().contains("excel") ){
 				result.rejectValue("excelFile", "20000", "C[20000]File format error.");
 			}
 			if( result.hasErrors() ){
 				return gotoPage;
 			}
-			String[] columnNames = {"date","image","title","price","link","shop","s_link","comm_ratio","m_link"};
+			String[] columnNames = {"date","image","title","price","link","shop","s_link","comm_rate","m_link"};
 			try {
-				List<Map<String,Object>> list = ExcelUtils.readExcel(columnNames, excelFile.getInputStream());
+				List<Map<String,Object>> list = ExcelUtils.readExcel(columnNames, importForm.getExcelFile().getInputStream());
 				List<Goods> goodsList = new ArrayList<Goods>();
 				for (Map<String, Object> map : list) {
+					Shop newShop = new Shop();
+					newShop.setShopName((String)map.get("shop"));
+					newShop.setShopUrl((String)map.get("s_link"));
+					Shop shop = shopService.get(newShop);
+					if( shop == null ){
+						 baseDao.insert("com.stomato.dao.ShopDao.add", newShop);
+						shop = newShop;
+					}
 					Goods goods = new Goods();
+					goods.setGoodsCode("");
+					goods.setShopId(shop.getId());
 					goods.setGoodsName((String)map.get("title"));
 					goods.setGoodsPic((String)map.get("image"));
+					goods.setlIcon(goods.getGoodsPic());
+					goods.setsIcon(goods.getlIcon());
+					goods.setCommRate(Double.parseDouble(map.get("comm_rate").toString().replace("%", "")));
+					goods.setCostPrice(Double.parseDouble((String)map.get("price")));
+					goods.setSellPrice(goods.getCostPrice());
+					// 格式化价格，取小数点后两位的浮点数
+					BigDecimal bd = new BigDecimal( String.valueOf( goods.getSellPrice() * (goods.getCommRate() / 100) ) ).setScale( 2, RoundingMode.HALF_UP );
+					goods.setCommPrice(bd.doubleValue());
+					goods.setLinkUrl((String)map.get("link"));
+					goods.setBrief((String)map.get("m_link"));
 					goodsList.add(goods);
 				}
-				baseDao.operateItemBatch("com.stomato.dao.GoodsDao", goodsList);
+				baseDao.operateItemBatch("com.stomato.dao.GoodsDao.addBatch", goodsList);
+				model.addAttribute("success", true);
 			} catch (Exception err) {
-				result.rejectValue("excelFile", "20001", "C[20001]Import failure.");
+				model.addAttribute("success", false);
 				LOG.error("导入Excel失败", err);
 			}
 		}
