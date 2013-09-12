@@ -33,7 +33,7 @@ import com.stomato.utils.StringUtil;
 public class BaseServiceImpl implements BaseService {
 	private static Logger logger = Logger.getLogger( BaseServiceImpl.class );
 	@Resource
-	private BaseDao baseDao;
+	protected BaseDao baseDao;
 
 	public <T> int insert(String statementId, T item) throws ServiceException, DaoException {
 		return baseDao.insert( statementId, item );

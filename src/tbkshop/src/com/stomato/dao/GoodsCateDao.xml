@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stomato.dao.GoodsCateDao">
+	<resultMap type="com.stomato.domain.GoodsCategory" id="goodsCate"> 
+		<result property="cateId" column="cate_id" />
+		<result property="goodsId" column="goods_id" />
+	</resultMap>
+	
+	<insert id="add" parameterType="com.stomato.domain.GoodsCategory">
+		insert into t_goods_cate (cate_id,
+							goods_id) 
+		values (#{cateId},#{goodsId})
+	</insert>
+	<insert id="addBatch" parameterType="java.util.List">
+		insert into t_goods_cate (cate_id, goods_id) 
+		values
+		<foreach collection="list" item="bean" index="index" separator="," >  
+		        (#{bean.cateId},#{bean.goodsId})
+		</foreach>
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from t_goods_cate 
+		where 
+		<if test="cateId != null">cate_id=#{cateId}</if>
+		<if test="goodsId != null">goods_id=#{goodsId}</if>
+	</delete>
+</mapper>

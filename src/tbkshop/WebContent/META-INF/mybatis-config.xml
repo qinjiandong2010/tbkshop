@@ -29,6 +29,7 @@
         <mapper resource="com/stomato/dao/PasswordDao.xml" />
         <mapper resource="com/stomato/dao/RoleDao.xml" />
         <mapper resource="com/stomato/dao/ShopDao.xml" />
+        <mapper resource="com/stomato/dao/GoodsCateDao.xml" />
     </mappers>
 
 </configuration>

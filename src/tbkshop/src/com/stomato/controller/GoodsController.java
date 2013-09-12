@@ -74,10 +74,13 @@ public class GoodsController extends UserController {
 	}
 
 	@RequestMapping(value = "/list.html")
-	public String producdtList(@ModelAttribute("formParam") GoodsFormParam formParam,Model model) throws ServiceException, DaoException {
+	public String producdtList(@ModelAttribute("formParam") GoodsFormParam formParam,BindingResult result,Model model) throws ServiceException, DaoException {
 		List<Shop> shopList = shopService.getValidShopList();
 		List<Brand> brandList = brandService.list(null);
 		List<Category> categoryList = categoryService.getListNode();
+		
+		int count = goodsService.listTotal(formParam);
+		formParam.setTotalCount(count);
 		List<Goods> goodsList = goodsService.list(formParam);
 		model.addAttribute("shopList", shopList);
 		model.addAttribute("brandList", brandList);

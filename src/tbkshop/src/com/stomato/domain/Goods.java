@@ -10,7 +10,6 @@ public class Goods {
 	private Integer shopId;
 	private Integer brandId;
 	private Integer createrUid;
-	private Integer cateId;
 	private Double sellPrice;
 	private Double costPrice;
 	private Double commRate;
@@ -34,6 +33,7 @@ public class Goods {
 	private String content;
 	private Date createtime;
 	private Date modifytime;
+	private Integer[] categorys;
 
 	public long getId() {
 		return id;
@@ -91,14 +91,6 @@ public class Goods {
 		this.createrUid = createrUid;
 	}
 
-	public Integer getCateId() {
-		return cateId;
-	}
-
-	public void setCateId(Integer cateId) {
-		this.cateId = cateId;
-	}
-
 	public Double getSellPrice() {
 		return sellPrice;
 	}
@@ -129,6 +121,14 @@ public class Goods {
 
 	public void setCommPrice(Double commPrice) {
 		this.commPrice = commPrice;
+	}
+
+	public Integer[] getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorys(Integer[] categorys) {
+		this.categorys = categorys;
 	}
 
 	public String getGoodsPic() {

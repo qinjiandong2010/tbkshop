@@ -11,25 +11,29 @@ package com.stomato.domain;
 import java.io.Serializable;
 
 /**
- * @author  jiandong
+ * @author jiandong
  * @version TS V2.0
  * @since 1.0
  */
-public class Part<F,S> implements Serializable{
+public class Part<F, S> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public Part(){}
-	public Part(F f,S s){
+	public Part() {
+	}
+
+	public Part(F f, S s) {
 		this.first = f;
 		this.second = s;
 	}
+
 	public F first;
-	
+
 	public S second;
 
 	/**
 	 * returns the first.
+	 * 
 	 * @return the first
 	 */
 	public F getFirst() {
@@ -38,7 +42,9 @@ public class Part<F,S> implements Serializable{
 
 	/**
 	 * Sets the first.
-	 * @param first the first to set
+	 * 
+	 * @param first
+	 *            the first to set
 	 */
 	public void setFirst(F first) {
 		this.first = first;
@@ -46,6 +52,7 @@ public class Part<F,S> implements Serializable{
 
 	/**
 	 * returns the second.
+	 * 
 	 * @return the second
 	 */
 	public S getSecond() {
@@ -54,7 +61,9 @@ public class Part<F,S> implements Serializable{
 
 	/**
 	 * Sets the second.
-	 * @param second the second to set
+	 * 
+	 * @param second
+	 *            the second to set
 	 */
 	public void setSecond(S second) {
 		this.second = second;

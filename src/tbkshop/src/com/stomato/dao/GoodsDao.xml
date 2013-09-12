@@ -9,7 +9,6 @@
 		<result property="shopId" column="shop_id"/>
 		<result property="brandId" column="brand_id"/>
 		<result property="createrUid" column="creater_uid"/>
-		<result property="cateId" column="cate_id"/>
 		<result property="sellPrice" column="sell_price"/>
 		<result property="costPrice" column="cost_price"/>
 		<result property="commRate" column="comm_rate"/>
@@ -34,72 +33,93 @@
 		<result property="createtime" column="createtime"/>
 		<result property="modifytime" column="modifytime"/>
 	</resultMap>
-	<sql id="public_column">
-	    id,
-		goods_code,
-		goods_name,
-		display_name,
-		shop_id,
-		brand_id,
-		creater_uid,
-		cate_id,
-		sell_price,
-		cost_price,
-		comm_rate,
-		comm_price,
-		goods_pic,
-		brief,
-		content,
-		like_num,
-		is_top,
-		is_hot,
-		index_hot,
-		status,
-		preview,
-		sort,
-		keyword,
-		stocks,
-		l_icon,
-		s_icon,
-		link_url,
-		buys,
-		del_flag,
-		createtime,
-		modifytime
+	<sql id="public_summary_column">
+	    t_goods.id,
+		t_goods.goods_code,
+		t_goods.goods_name,
+		t_goods.sell_price,
+		t_goods.like_num,
+		t_goods.is_top,
+		t_goods.is_hot,
+		t_goods.index_hot,
+		t_goods.preview,
+		t_goods.keyword,
+		t_goods.stocks,
+		t_goods.l_icon,
+		t_goods.link_url,
+		t_goods.buys
 	</sql>
+	<sql id="public_column">
+	    t_goods.id,
+		t_goods.goods_code,
+		t_goods.goods_name,
+		t_goods.display_name,
+		t_goods.shop_id,
+		t_goods.brand_id,
+		t_goods.creater_uid,
+		t_goods.sell_price,
+		t_goods.cost_price,
+		t_goods.comm_rate,
+		t_goods.comm_price,
+		t_goods.goods_pic,
+		t_goods.brief,
+		t_goods.content,
+		t_goods.like_num,
+		t_goods.is_top,
+		t_goods.is_hot,
+		t_goods.index_hot,
+		t_goods.status,
+		t_goods.preview,
+		t_goods.sort,
+		t_goods.keyword,
+		t_goods.stocks,
+		t_goods.l_icon,
+		t_goods.s_icon,
+		t_goods.link_url,
+		t_goods.buys,
+		t_goods.del_flag,
+		t_goods.createtime,
+		t_goods.modifytime
+	</sql>
+	<sql id="public_value">
+	    null,
+		#{goodsCode},
+		#{goodsName},
+		#{displayName},
+		#{shopId},
+		#{brandId},
+		#{createrUid},
+		#{sellPrice},
+		#{costPrice},
+		#{commRate},
+		#{commPrice},
+		#{goodsPic},
+		#{brief},
+		#{content},
+		#{likeNum},
+		#{isTop},
+		#{isHot},
+		#{indexHot},
+		0,
+		#{preview},
+		#{sort},
+		#{keyword},
+		#{stocks},
+		#{lIcon},
+		#{sIcon},
+		#{linkUrl},
+		0,
+		0,
+		now(),
+		now()
+	</sql>
+	
 	<insert id="add" parameterType="com.stomato.domain.Goods">
 		insert into t_goods (<include refid="public_column"/>) 
-		values (null,
-				#{goodsCode},
-				#{goodsName},
-				#{displayName},
-				#{shopId},
-				#{brandId},
-				#{createrUid},
-				#{cateId},
-				#{sellPrice},
-				#{costPrice},
-				#{commRate},
-				#{commPrice},
-				#{goodsPic},
-				#{brief},
-				#{content},
-				#{likeNum},
-				#{isTop},
-				#{isHot},
-				#{indexHot},
-				0,
-				#{preview},
-				#{sort},
-				#{keyword},
-				#{stocks},
-				#{lIcon},
-				#{sIcon},
-				#{linkUrl},
-				0,
-				0,
-				now(),
-				now())
+		values (<include refid="public_value"/> )
+		 <selectKey  keyProperty="id" resultType="int"> 
+		    SELECT @@IDENTITY as id
+		 </selectKey>
 	</insert>
 	<insert id="addBatch" parameterType="java.util.List">
 		insert into t_goods (<include refid="public_column"/>) 
@@ -112,7 +132,6 @@
 				#{bean.shopId},
 				#{bean.brandId},
 				#{bean.createrUid},
-				#{bean.cateId},
 				#{bean.sellPrice},
 				#{bean.costPrice},
 				#{bean.commRate},
@@ -151,7 +170,6 @@
 			<if test="shopId != null">shop_id=#{shopId},</if>
 			<if test="brandId != null">brand_id=#{brandId},</if>
 			<if test="createrUid != null">creater_uid=#{createrUid},</if>
-			<if test="cateId != null">cate_id=#{cateId},</if>
 			<if test="costPrice != null">cost_price=#{costPrice},</if>
 			<if test="sellPrice != null">sell_price=#{sellPrice},</if>
 			<if test="commRate != null">comm_rate=#{commRate},</if>
@@ -189,11 +207,51 @@
 	</select>
 	<select id="list" parameterType="com.stomato.form.GoodsFormParam" resultMap="goods" >
 		select  <include refid="public_column"/>
-				from t_goods where 1=1 and del_flag = 0
+				from t_goods where del_flag = 0
 		<if test="goodsName != null">
 		 	and goods_name like '%${goodsName}%'
 		</if>
 		order by sort asc
+		<if test="offset != null">limit #{offset},#{pageSize}</if>
+	</select>
+
+	<select id="querySummaryCount" parameterType="com.stomato.form.GoodsFormParam" resultType="java.lang.Integer" >
+		select count(1) from (
+				select t_goods.id
+				from t_goods LEFT JOIN t_goods_cate gc on t_goods.id = gc.goods_id
+							 LEFT JOIN t_shop s on t_goods.shop_id = s.id
+				where t_goods.del_flag = 0
+				<if test="categorys != null ">and gc.cate_id in
+			        <foreach item="item" index="index" collection="categorys" open="(" separator="," close=")">
+			            #{item}
+			        </foreach>
+				</if>
+				<if test="keyword != null ">and t_goods.keyword like '%${keyword}%' </if>
+				<if test="pricefrom != null ">and t_goods.sell_price >= #{pricefrom} </if>
+				<if test="priceto != null "><![CDATA[ and t_goods.sell_price <= #{priceto} ]]></if>
+				group by t_goods.id
+			) temp
+	</select>
+	<select id="querySummaryList" parameterType="com.stomato.form.GoodsFormParam" resultType="Map" >
+		select <include refid="public_summary_column"/>,
+		    s.shop_name,
+		    s.shop_url,
+		    group_concat(gc.cate_id) categorys
+		from t_goods 
+			LEFT JOIN t_goods_cate gc on t_goods.id = gc.goods_id
+			LEFT JOIN t_shop s on t_goods.shop_id = s.id
+	    WHERE
+			t_goods.del_flag = 0
+			<if test="categorys != null ">and gc.cate_id in
+		        <foreach item="item" index="index" collection="categorys" open="(" separator="," close=")">
+		            #{item}
+		        </foreach>
+			</if>
+			<if test="keyword != null ">and t_goods.keyword like '%${keyword}%' </if>
+			<if test="pricefrom != null ">and t_goods.sell_price >= #{pricefrom} </if>
+			<if test="priceto != null "><![CDATA[ and t_goods.sell_price <= #{priceto} ]]></if>
+		group by t_goods.id
+		order by t_goods.sort asc
 		<if test="offset != null">limit #{offset},#{pageSize}</if>
 	</select>
 </mapper>

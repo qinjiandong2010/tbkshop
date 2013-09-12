@@ -83,7 +83,7 @@ textarea {width:600px;}
 						<form:errors path="brandId" cssClass="error"/>
 					</div>
 				</div>
-				<div class="form-row">
+				<%-- <div class="form-row">
 					<label class="field-name" for="cateId">商品分类：</label>
 					<div class="field">
 						<form:select path="cateId" data-placeholder="请选择一个分类" class="chosen" tabindex="-1">
@@ -97,7 +97,7 @@ textarea {width:600px;}
                         </form:select>
 						<form:errors path="cateId" cssClass="error"/>
 					</div>
-				</div>
+				</div> --%>
 				<div class="form-row">
 					<label class="field-name" for="sellPrice">单价：</label>
 					<div class="field">

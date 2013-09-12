@@ -55,7 +55,6 @@
     <mvc:resources mapping="/files/**" location="/files/" />
     <mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
     <mvc:resources mapping="/web/**" location="/web/" />
-    <mvc:resources mapping="/index.html" location="/index.html" />
 
     <mvc:interceptors>
         <mvc:interceptor>

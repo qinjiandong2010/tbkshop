@@ -84,13 +84,13 @@
 						                        	</c:if>
 					                        	</c:forEach>
 											</td>
-											<td>
+<%-- 											<td>
 												<c:forEach items="${categoryList}" var="category" >
 						                        	<c:if test="${category.id == item.cateId}">
 						                        		${category.typeName }
 						                        	</c:if>
 					                        	</c:forEach>
-											</td>
+											</td> --%>
 					                        <td>${item.sellPrice }</td>
 					                        <td>${item.costPrice }</td>
 					                        <td>${item.commPrice }</td>

@@ -86,9 +86,9 @@ textarea {width:600px;}
 				</div>
 				
 				<div class="form-row">
-					<label class="field-name" for="cateId">商品分类：</label>
+					<label class="field-name" for=categorys>商品分类：</label>
 					<div class="field">
-					     <select id="cateId" name="cateId" multiple="" style="width:245px" class="populate select2-offscreen" tabindex="-1">
+					     <select id="categorys" name="categorys" multiple="" style="width:245px" class="populate select2-offscreen" tabindex="-1">
 				            <c:forEach var="category" items="${categoryList }">
                             <optgroup label="${category.typeName }">
 	                            <c:forEach var="childCate" items="${category.listNode }">
@@ -99,22 +99,7 @@ textarea {width:600px;}
 				        </select>
 			     	</div>
                 </div>
-				<!--<div class="form-row">
-					<label class="field-name" for="cateId">商品分类：</label>
-					<div class="field">
-						<form:select path="cateId" data-placeholder="请选择一个分类" class="chosen" tabindex="-1">
-                        <c:forEach var="category" items="${categoryList }">
-                            <optgroup label="${category.typeName }">
-                            <c:forEach var="childCate" items="${category.listNode }">
-                                <option value="${childCate.id }">${childCate.typeName }</option>
-                            </c:forEach>
-                            </optgroup>
-                        </c:forEach>
-                        </form:select>
-						<form:errors path="cateId" cssClass="error"/>
-					</div>
-				</div>
-				--><div class="form-row">
+				<div class="form-row">
 					<label class="field-name" for="sellPrice">单价：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
@@ -253,7 +238,8 @@ textarea {width:600px;}
 							"</div>";
         	$lastImgInput.after(goodsPicsHTML);
 		});
-		$("#cateId").val([40]).select2();
+		//$("#categorys").val([40]).select2();
+		$("#categorys").select2();
     })();
 </script>
 </body>

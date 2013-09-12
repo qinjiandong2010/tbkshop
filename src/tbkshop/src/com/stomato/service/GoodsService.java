@@ -1,10 +1,15 @@
 package com.stomato.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.stomato.domain.Goods;
+import com.stomato.domain.GoodsCategory;
+import com.stomato.domain.Part;
 import com.stomato.exception.DaoException;
 import com.stomato.exception.ServiceException;
 
@@ -16,7 +21,19 @@ public class GoodsService extends BaseServiceImpl{
 	}
 
 	public int add(Goods bean) throws ServiceException, DaoException {
-		return insert("com.stomato.dao.GoodsDao.add", bean);
+		if (insert("com.stomato.dao.GoodsDao.add", bean) > 0){
+			if( bean.getCategorys() != null ){
+				List<GoodsCategory> goodsCateList = new ArrayList<GoodsCategory>();
+				for (Integer cateId : bean.getCategorys()) {
+					GoodsCategory gc = new GoodsCategory();
+					gc.setCateId(cateId);
+					gc.setGoodsId(bean.getId());
+					goodsCateList.add(gc);
+				}
+				return super.baseDao.insert("com.stomato.dao.GoodsCateDao.addBatch", goodsCateList);
+			}
+		}
+		return 0;
 	}
 
 	public int update(Goods bean) throws ServiceException, DaoException {
