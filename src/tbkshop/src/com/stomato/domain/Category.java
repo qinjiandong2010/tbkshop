@@ -79,5 +79,4 @@ public class Category {
 	public void setListNode(List<Category> listNode) {
 		this.listNode = listNode;
 	}
-
 }

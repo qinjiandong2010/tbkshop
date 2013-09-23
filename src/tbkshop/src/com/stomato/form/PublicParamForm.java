@@ -95,8 +95,10 @@ public class PublicParamForm {
 		this.pageNum = pageNum;
 	}
 
-	public int getOffset() {
-		this.setOffset((this.getPageNum() - 1) * this.getPageSize());
+	public Integer getOffset() {
+		if( totalCount != 0 ){
+			this.setOffset((this.getPageNum() - 1) * this.getPageSize());
+		}
 		return offset;
 	}
 

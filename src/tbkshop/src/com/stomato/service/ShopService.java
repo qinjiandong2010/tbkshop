@@ -36,7 +36,6 @@ public class ShopService{
 	}
 
 	public int update(Shop bean) {
-		// TODO Auto-generated method stub
 		return shopDao.update(bean);
 	}
 

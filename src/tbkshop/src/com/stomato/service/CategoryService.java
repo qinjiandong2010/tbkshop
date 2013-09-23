@@ -33,7 +33,7 @@ public class CategoryService {
 	public int listTotal(CategoryFormParam param) {
 		return categoryDao.listTotal(param);
 	}
-
+	
 	public Category getCategory(int id) {
 		return categoryDao.getCategory(id);
 	}
@@ -50,15 +50,18 @@ public class CategoryService {
 		}
 		return list;
 	}
-	@Cacheable(value="category")
-	public void getListNode(Category parent){
-		CategoryFormParam formParam = new CategoryFormParam();
-		formParam.setVisible(true);
-		formParam.setParent(parent.getId());
-		List<Category> list = categoryDao.listCategory(formParam);
+	private void getListNode(Category parent){
+		List<Category> list = queryCategory(parent.getId(), true);
 		parent.setListNode(list);
 		for (Category category : list) {
 			getListNode(category);
 		}
-	} 
+	}
+	@Cacheable(value="sysConfigCache")
+	public List<Category> queryCategory(int parentId,boolean visible){
+		CategoryFormParam formParam = new CategoryFormParam();
+		formParam.setVisible(true);
+		formParam.setParent(parentId);
+		return categoryDao.listCategory(formParam); 
+	}
 }

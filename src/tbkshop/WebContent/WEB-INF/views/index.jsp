@@ -63,7 +63,7 @@
                 <!-- end btn_close -->
                 <ul class="nav3MenuList clearfix msf">
                       <c:forEach var="category" items="${categoryList }" varStatus="status">
-                      		<c:if test="${status.index / 3 == 0  }">
+                      		<c:if test="${status.index % 3 == 0  }">
                       			<li>
 		                        <dl>
                       		</c:if>
@@ -76,182 +76,11 @@
 			                                <a class="cred" href="/?categorys=${category2.id }"><span>${category2.typeName }<i></i></span></a>
 			                            </c:forEach>
 		                            </dd>
-	                         <c:if test="${status.index / 3 == 0  }">
+	                         <c:if test="${status.index % 3 == 0  }">
                       			</dl>
                       			</li>
                       		</c:if>
 	                  </c:forEach>
-                    <li>
-		                  <dl>
-                            <dt class="iepng">
-                                <a href="./web/2013流行新款所有上衣、淘宝时尚所有上衣_品牌所有上衣搭配、网购 –简单网www.J.cn.htm">上衣</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a class="cred" href="http://www.j.cn/cate/j_shangyi/98/?src=nav_c_all"><span>雪纺衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/94/?src=nav_c_all"><span>T恤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/95/?src=nav_c_all"><span>衬衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/104/?src=nav_c_all"><span>小衫<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_shangyi/96/?src=nav_c_all"><span>蕾丝衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/97/?src=nav_c_all"><span>开衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/99/?src=nav_c_all"><span>小西装<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_shangyi/100/?src=nav_c_all"><span>防晒衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/302/?src=nav_c_all"><span>短外套<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_shangyi/101/?src=nav_c_all"><span>背心<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/285/?src=nav_c_all"><span>罩衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/102/?src=nav_c_all"><span>马甲<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_shangyi/103/?src=nav_c_all"><span>针织衫<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/284/?src=nav_c_all"><span>吊带<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/287/?src=nav_c_all"><span>卫衣<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_shangyi/286/?src=nav_c_all"><span>polo衫<i></i></span>
-                                </a>
-                            </dd>
-                            <dt class="skirt iepng">
-                                <a href="http://www.j.cn/cate/j_qunzi?src=nav_c_all">裙子</a>
-                            </dt>
-                            <dd class="clearfix">
-                                 <a class="cred" href="http://www.j.cn/cate/j_qunzi/34?src=nav_c_all"><span>连衣裙<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_qunzi/17?src=nav_c_all"><span>短裙<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_qunzi/6?src=nav_c_all"><span>半身裙<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_qunzi/82?src=nav_c_all"><span>长裙<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_qunzi/8?src=nav_c_all"><span>背心裙<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_qunzi/78?src=nav_c_all"><span>雪纺裙<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_qunzi/80?src=nav_c_all"><span>印花裙<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_qunzi/33?src=nav_c_all"><span>蕾丝裙<i></i></span>
-                                </a> <a class="" href="http://www.j.cn/cate/j_qunzi/5?src=nav_c_all"><span>百褶裙<i></i></span>
-                                </a> <a class="" href="http://www.j.cn/cate/j_qunzi/50?src=nav_c_all"><span>沙滩裙<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_qunzi/48?src=nav_c_all"><span>伞摆裙<i></i></span>
-                                </a> <a class="" href="http://www.j.cn/cate/j_qunzi/87?src=nav_c_all"><span>中长连衣裙<i></i></span>
-                                </a> <a class="" href="http://www.j.cn/cate/j_qunzi/42?src=nav_c_all"><span>蓬蓬裙<i></i></span>
-                                </a> <a class="" href="http://www.j.cn/cate/j_qunzi/10?src=nav_c_all"><span>衬衫连衣裙<i></i></span>
-                                </a> <a class="" href="http://www.j.cn/cate/j_qunzi/7?src=nav_c_all"><span>包臀裙<i></i></span>
-                                </a>
-                            </dd>
-                            <dt class="underwear iepng">
-                                <a href="http://www.j.cn/j_neiyi?src=nav_c_all">内衣/泳衣/家服</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a class="cred" href="http://www.j.cn/j_neiyi/463?src=nav_c_all"><span>Bra<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/464?src=nav_c_all"><span>内衣套装<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/460?src=nav_c_all"><span>内裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_neiyi/461?src=nav_c_all"><span>家居服<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/465?src=nav_c_all"><span>睡衣/睡裙<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/468?src=nav_c_all"><span>无痕内衣<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_neiyi/462?src=nav_c_all"><span>泳衣<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/467?src=nav_c_all"><span>隐形内衣<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/469?src=nav_c_all"><span>安全裤<i></i></span>
-                                </a> <a href="http://www.j.cn/j_neiyi/466?src=nav_c_all"><span>塑身衣<i></i></span>
-                                </a>
-                            </dd>
-                        </dl></li>
-                    <li>
-                        <dl>
-                            <dt class="pants iepng">
-                                <a href="http://www.j.cn/j_kuzi?src=nav_c_all">裤子</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a href="http://www.j.cn/cate/j_kuzi/142/?src=nav_c_all"><span>铅笔裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_kuzi/143/?src=nav_c_all"><span>短裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/144/?src=nav_c_all"><span>牛仔裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/145/?src=nav_c_all"><span>裙裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_kuzi/151/?src=nav_c_all"><span>连体裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_kuzi/150/?src=nav_c_all"><span>背带裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/147/?src=nav_c_all"><span>西装裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_kuzi/148/?src=nav_c_all"><span>高腰裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/149/?src=nav_c_all"><span>直筒裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/153/?src=nav_c_all"><span>阔腿裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_kuzi/154/?src=nav_c_all"><span>休闲裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/146/?src=nav_c_all"><span>哈伦裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/172/?src=nav_c_all"><span>长裤<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_kuzi/152/?src=nav_c_all"><span>小脚裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/176/?src=nav_c_all"><span>热裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/175/?src=nav_c_all"><span>七分裤<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_kuzi/174/?src=nav_c_all"><span>五分裤<i></i></span>
-                                </a>
-                            </dd>
-                            <dt class="shoes iepng">
-                                <a href="http://www.j.cn/cate/j_xiezi?src=nav_c_all">鞋子</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a href="http://www.j.cn/cate/j_xiezi/232/?src=nav_c_all"><span>高跟鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/221/?src=nav_c_all"><span>凉鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/234/?src=nav_c_all"><span>单鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/225/?src=nav_c_all"><span>运动鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/226/?src=nav_c_all"><span>帆布鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/235/?src=nav_c_all"><span>松糕鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/224/?src=nav_c_all"><span>船鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/227/?src=nav_c_all"><span>布洛克鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/229/?src=nav_c_all"><span>果冻鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/220/?src=nav_c_all"><span>凉拖<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/233/?src=nav_c_all"><span>鱼嘴鞋<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_xiezi/411/?src=nav_c_all"><span>夹脚鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/230/?src=nav_c_all"><span>浅口鞋<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/cate/j_xiezi/236/?src=nav_c_all"><span>平底鞋<i></i></span>
-                                </a> <a href="http://www.j.cn/cate/j_xiezi/228/?src=nav_c_all"><span>豆豆鞋<i></i></span>
-                                </a>
-                            </dd>
-                            <dt class="child iepng">
-                                <a href="http://www.j.cn/j_tong?src=nav_c_all">童装</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a href="http://www.j.cn/j_tong/472?src=nav_c_all"><span>衬衫<i></i> </span>
-                                </a> <a href="http://www.j.cn/j_tong/473?src=nav_c_all"><span>哈衣<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_tong/474?src=nav_c_all"><span>短袖T恤<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/481?src=nav_c_all"><span>背心/马甲<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_tong/488?src=nav_c_all"><span>连衣裙<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/489?src=nav_c_all"><span>短裙<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_tong/502?src=nav_c_all"><span>短裤<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/499?src=nav_c_all"><span>长裤<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/475?src=nav_c_all"><span>长T<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/476?src=nav_c_all"><span>小西装<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/490?src=nav_c_all"><span>背心裙<i></i></span>
-                                </a> <a href="http://www.j.cn/j_tong/491?src=nav_c_all"><span>雪纺裙<i></i></span>
-                                </a>
-                            </dd>
-                        </dl></li>
-                    <li>
-                        <dl>
-                            <dt class="bag iepng">
-                                <a href="http://www.j.cn/j_bao?src=nav_c_all">包包</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a href="http://www.j.cn/j_bao/145?src=nav_c_all"><span>单肩包<i></i> </span>
-                                </a> <a class="cred" href="http://www.j.cn/j_bao/146?src=nav_c_all"><span>斜挎包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/147?src=nav_c_all"><span>双肩包<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_bao/455?src=nav_c_all"><span>链条包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/449?src=nav_c_all"><span>机车包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/149?src=nav_c_all"><span>钱包<i></i> </span>
-                                </a> <a class="cred" href="http://www.j.cn/j_bao/452?src=nav_c_all"><span>邮差包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/143?src=nav_c_all"><span>功能箱包<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_bao/148?src=nav_c_all"><span>手拿包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/150?src=nav_c_all"><span>手提包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/450?src=nav_c_all"><span>水桶包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/453?src=nav_c_all"><span>迷你包<i></i></span>
-                                </a> <a href="http://www.j.cn/j_bao/454?src=nav_c_all"><span>信封包<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_bao/154?src=nav_c_all"><span>旅行包<i></i></span>
-                                </a>
-                            </dd>
-                            <dt class="accessories iepng">
-                                <a href="http://www.j.cn/j_peishi?src=nav_c_all">配饰</a>
-                            </dt>
-                            <dd class="clearfix">
-                                <a class="cred" href="http://www.j.cn/j_peishi/341?src=nav_c_all"><span>项链<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/343?src=nav_c_all"><span>耳钉/耳环<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/342?src=nav_c_all"><span>戒指<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/300?src=nav_c_all"><span>腰带<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_peishi/411?src=nav_c_all"><span>假领<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/359?src=nav_c_all"><span>手链/手镯<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/339?src=nav_c_all"><span>手表<i></i></span>
-                                </a> <a class="cred" href="http://www.j.cn/j_peishi/346?src=nav_c_all"><span>发饰<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/340?src=nav_c_all"><span>丝袜<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/339?src=nav_c_all"><span>手表<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/344?src=nav_c_all"><span>吊坠<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/403?src=nav_c_all"><span>脚链<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/404?src=nav_c_all"><span>挂件<i></i></span>
-                                </a> <a href="http://www.j.cn/j_peishi/516?src=nav_c_all"><span>纹身贴<i></i></span>
-                                </a>
-                            </dd>
-                        </dl>
-                    </li>
                 </ul>
             </div>
         </div>
