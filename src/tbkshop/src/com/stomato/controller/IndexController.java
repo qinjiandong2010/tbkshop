@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stomato.common.BaseDao;
+import com.stomato.common.PublicDao;
 import com.stomato.domain.Category;
 import com.stomato.form.GoodsFormParam;
 import com.stomato.service.CategoryService;
@@ -35,16 +35,16 @@ public class IndexController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private BaseDao baseDao;
+	private PublicDao publicDao;
 	
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/")
 	public String index(@ModelAttribute("formParam") GoodsFormParam formParam,BindingResult result, Model model) {
 		try {
 			formParam.setPageSize(30);
-			int count = baseDao.queryForEntity("com.stomato.dao.GoodsDao.querySummaryCount", Integer.class, formParam);
+			int count = publicDao.queryForEntity("com.stomato.dao.GoodsDao.querySummaryCount", Integer.class, formParam);
 			formParam.setTotalCount(count);
-			List goodsList = baseDao.queryForListEntity("com.stomato.dao.GoodsDao.querySummaryList", Map.class, formParam);
+			List goodsList = publicDao.queryForListEntity("com.stomato.dao.GoodsDao.querySummaryList", Map.class, formParam);
 			List<Category> resultList = categoryService.getListNode();
 			model.addAttribute("categoryList", resultList);
 			model.addAttribute("goodsList", goodsList);

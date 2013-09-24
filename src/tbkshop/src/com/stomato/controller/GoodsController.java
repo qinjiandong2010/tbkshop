@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.stomato.common.BaseDao;
+import com.stomato.common.PublicDao;
 import com.stomato.domain.Brand;
 import com.stomato.domain.Category;
 import com.stomato.domain.Goods;
@@ -51,7 +51,7 @@ public class GoodsController extends UserController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private BaseDao baseDao;
+	private PublicDao publicDao;
 
 	@RequestMapping(value = "/add.html", method = RequestMethod.GET)
 	public String formpage(@ModelAttribute("goodsForm") GoodsForm productForm,Model model) throws DaoException {
@@ -150,7 +150,7 @@ public class GoodsController extends UserController {
 					newShop.setShopUrl((String)map.get("s_link"));
 					Shop shop = shopService.get(newShop);
 					if( shop == null ){
-						 baseDao.insert("com.stomato.dao.ShopDao.add", newShop);
+						publicDao.insert("com.stomato.dao.ShopDao.add", newShop);
 						shop = newShop;
 					}
 					Goods goods = new Goods();
@@ -170,7 +170,7 @@ public class GoodsController extends UserController {
 					goods.setBrief((String)map.get("m_link"));
 					goodsList.add(goods);
 				}
-				baseDao.operateItemBatch("com.stomato.dao.GoodsDao.addBatch", goodsList);
+				publicDao.operateItemBatch("com.stomato.dao.GoodsDao.addBatch", goodsList);
 				model.addAttribute("success", true);
 			} catch (Exception err) {
 				model.addAttribute("success", false);
