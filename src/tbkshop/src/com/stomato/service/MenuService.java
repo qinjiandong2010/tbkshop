@@ -69,16 +69,6 @@ public class MenuService {
 			}
 			levelMenu.setSunMenu(sunMenu);
 		}
-		/*List<Menu> parentMenus =  menuDao.listParentMenuByRole(user.getType());
-		if( parentMenus != null ){
-			for (Menu menu : parentMenus) {
-				MenuParam parent = new MenuParam();
-				parent.setParent(menu.getId());
-				parent.setVisible(1);
-				List<Menu> sunMenuList = menuDao.listMenu(parent);
-				menu.setSunMenu(sunMenuList);
-			}
-		}*/
 		return levelMenuList;
 	}
 }

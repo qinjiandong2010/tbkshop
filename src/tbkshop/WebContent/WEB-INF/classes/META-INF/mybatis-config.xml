@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <settings>
+        <!-- changes from the defaults for testing -->
+        <setting name="cacheEnabled" value="false" />
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="defaultExecutorType" value="REUSE" />
+        <!-- 
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="true" />
+        <setting name="multipleResultSetsEnabled" value="true" />
+        <setting name="useColumnLabel" value="true" />
+        <setting name="autoMappingBehavior" value="PARTIAL" /> 
+         -->
+    </settings>
+
+    <mappers>
+        <mapper resource="com/stomato/dao/BrandDao.xml" />
+        <mapper resource="com/stomato/dao/UserDao.xml" />
+        <mapper resource="com/stomato/dao/CategoryDao.xml" />
+        <mapper resource="com/stomato/dao/ConfigDao.xml" />
+        <mapper resource="com/stomato/dao/GoodsDao.xml" />
+        <mapper resource="com/stomato/dao/MenuDao.xml" />
+        <mapper resource="com/stomato/dao/PasswordDao.xml" />
+        <mapper resource="com/stomato/dao/RoleDao.xml" />
+        <mapper resource="com/stomato/dao/ShopDao.xml" />
+        <mapper resource="com/stomato/dao/GoodsCateDao.xml" />
+    </mappers>
+
+</configuration>
