@@ -15,7 +15,7 @@ import com.stomato.domain.Page;
 import com.stomato.service.GoodsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@ContextConfiguration(locations = "classpath:META-INF/applicationContext.xml")
 public class GoodsServiceTest {
 
 	private static final Logger log = Logger.getLogger(GoodsServiceTest.class);
@@ -29,7 +29,7 @@ public class GoodsServiceTest {
 		paramMap.put("pageSize", 5);
 		try {
 			Page<Map<String, Object>> result = goodsService.queryGoods(paramMap);
-goodsService			System.out.println(result.getDataList());
+			System.out.println(result.getDataList());
 		} catch (Exception err){
 			log.error(err);
 		}

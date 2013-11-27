@@ -51,12 +51,12 @@ public class GoodsService extends BaseServiceImpl{
 		return queryForEntity("com.stomato.dao.GoodsDao.get", Goods.class, id);
 	}
 	
-	public Page<Map<String,Object>> queryGoods(Map<String,Object> paramMap) throws ServiceException, DaoException{
+	public Page<Map<String,Object>> queryGoods(Map<String,Object> paramMap) throws ServiceException, Exception{
 		return queryInPage("com.stomato.dao.GoodsDao.queryGoodsCount","com.stomato.dao.GoodsDao.queryGoods", paramMap);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Map<String,Object> getGoodsDetail(Map<String,Object> paramMap) throws ServiceException, DaoException{
+	public Map<String,Object> getGoodsDetail(Map<String,Object> paramMap) throws ServiceException, Exception{
 		return queryForEntity("com.stomato.dao.GoodsDao.getGoodsDetail",Map.class, paramMap);
 	}
 }
