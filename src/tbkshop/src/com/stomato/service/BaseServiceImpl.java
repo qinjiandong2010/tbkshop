@@ -75,7 +75,7 @@ public class BaseServiceImpl implements BaseService {
 		return baseDao.getCount( statementId, item );
 	}
 
-	public <T> Page<T> queryInPage(String queryCountStatementId, String queryRecordStatementId, T parameter) throws DaoException, Exception {
+	public <T> Page<T> queryInPage(String queryCountStatementId, String queryRecordStatementId, T parameter) throws ServiceException, DaoException {
 		List<T> dataList = new ArrayList<T>();
 		long beginNo = 0;
 		long pageNo = 1;

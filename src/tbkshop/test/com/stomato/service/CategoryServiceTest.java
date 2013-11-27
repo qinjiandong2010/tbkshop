@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.stomato.domain.Category;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:META-INF/applicationContext.xml")
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class CategoryServiceTest {
 
 	@Autowired
@@ -24,7 +24,8 @@ public class CategoryServiceTest {
 	}
 	@Test
 	public void queryCategory(){
-		System.out.println(categoryService.queryCategory(0, true));
-		System.out.println(categoryService.queryCategory(0, true));
+		System.out.println("(1)----"+categoryService.getListNode());
+		System.out.println("(2)----"+categoryService.getListNode());
+		System.out.println("(3)----"+categoryService.getListNode());
 	}
 }

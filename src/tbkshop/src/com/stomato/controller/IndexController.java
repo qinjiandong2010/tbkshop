@@ -1,5 +1,6 @@
 package com.stomato.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -21,8 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.stomato.common.BaseDao;
 import com.stomato.domain.Category;
+import com.stomato.domain.Page;
 import com.stomato.form.GoodsFormParam;
 import com.stomato.service.CategoryService;
+import com.stomato.service.GoodsService;
 import com.stomato.service.IndexService;
 
 @Controller
@@ -35,19 +38,25 @@ public class IndexController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private BaseDao baseDao;
+	private GoodsService goodsService;
 	
-	@SuppressWarnings("rawtypes")
 	@RequestMapping("/")
 	public String index(@ModelAttribute("formParam") GoodsFormParam formParam,BindingResult result, Model model) {
 		try {
 			formParam.setPageSize(30);
-			int count = baseDao.queryForEntity("com.stomato.dao.GoodsDao.querySummaryCount", Integer.class, formParam);
-			formParam.setTotalCount(count);
-			List goodsList = baseDao.queryForListEntity("com.stomato.dao.GoodsDao.querySummaryList", Map.class, formParam);
+			
+			Map<String,Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("offset", formParam.getOffset());
+			paramMap.put("pagesize", formParam.getPageSize());
+			paramMap.put("categorys", formParam.getCategorys());
+			paramMap.put("pricefrom", formParam.getPricefrom());
+			paramMap.put("priceto", formParam.getPriceto());
+			
+			Page<Map<String,Object>> page = goodsService.queryGoods(paramMap);
+			formParam.setTotalCount((int)page.getTotalRecord());
 			List<Category> resultList = categoryService.getListNode();
 			model.addAttribute("categoryList", resultList);
-			model.addAttribute("goodsList", goodsList);
+			model.addAttribute("goodsList", page.getDataList());
 		} catch (Exception err) {
 			LOG.error("查询商品异常",err);
 		}

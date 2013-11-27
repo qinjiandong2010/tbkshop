@@ -43,6 +43,7 @@ public class CategoryService {
 		formParam.setParent(0);
 		return categoryDao.listCategory(formParam);
 	}
+	@Cacheable(value="sysConfigCache")
 	public List<Category> getListNode(){
 		List<Category> list = getListByParent();
 		for (Category category : list) {

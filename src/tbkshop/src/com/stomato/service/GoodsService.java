@@ -2,11 +2,13 @@ package com.stomato.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.stomato.domain.Goods;
 import com.stomato.domain.GoodsCategory;
+import com.stomato.domain.Page;
 import com.stomato.exception.DaoException;
 import com.stomato.exception.ServiceException;
 
@@ -48,5 +50,13 @@ public class GoodsService extends BaseServiceImpl{
 	public Goods get(int id) throws ServiceException, DaoException {
 		return queryForEntity("com.stomato.dao.GoodsDao.get", Goods.class, id);
 	}
-	 
+	
+	public Page<Map<String,Object>> queryGoods(Map<String,Object> paramMap) throws ServiceException, DaoException{
+		return queryInPage("com.stomato.dao.GoodsDao.queryGoodsCount","com.stomato.dao.GoodsDao.queryGoods", paramMap);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> getGoodsDetail(Map<String,Object> paramMap) throws ServiceException, DaoException{
+		return queryForEntity("com.stomato.dao.GoodsDao.getGoodsDetail",Map.class, paramMap);
+	}
 }
