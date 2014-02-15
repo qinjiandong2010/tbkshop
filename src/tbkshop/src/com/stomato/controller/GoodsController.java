@@ -46,7 +46,7 @@ public class GoodsController extends UserController {
 	private GoodsService goodsService;
 	@Autowired
 	private ShopService shopService;
-	@Autowired 
+	@Autowired
 	private BrandService brandService;
 	@Autowired
 	private CategoryService categoryService;

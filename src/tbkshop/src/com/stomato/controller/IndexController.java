@@ -1,5 +1,6 @@
 package com.stomato.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -21,8 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.stomato.common.PublicDao;
 import com.stomato.domain.Category;
+import com.stomato.domain.Page;
 import com.stomato.form.GoodsFormParam;
 import com.stomato.service.CategoryService;
+import com.stomato.service.GoodsService;
 import com.stomato.service.IndexService;
 
 @Controller
@@ -35,19 +38,35 @@ public class IndexController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
+<<<<<<< HEAD
 	private PublicDao publicDao;
+=======
+	private GoodsService goodsService;
+>>>>>>> c4ee6b65bc62b5c24a1fa03a4b563984bd447398
 	
-	@SuppressWarnings("rawtypes")
 	@RequestMapping("/")
 	public String index(@ModelAttribute("formParam") GoodsFormParam formParam,BindingResult result, Model model) {
 		try {
 			formParam.setPageSize(30);
+<<<<<<< HEAD
 			int count = publicDao.queryForEntity("com.stomato.dao.GoodsDao.querySummaryCount", Integer.class, formParam);
 			formParam.setTotalCount(count);
 			List goodsList = publicDao.queryForListEntity("com.stomato.dao.GoodsDao.querySummaryList", Map.class, formParam);
+=======
+			
+			Map<String,Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("offset", formParam.getOffset());
+			paramMap.put("pagesize", formParam.getPageSize());
+			paramMap.put("categorys", formParam.getCategorys());
+			paramMap.put("pricefrom", formParam.getPricefrom());
+			paramMap.put("priceto", formParam.getPriceto());
+			
+			Page<Map<String,Object>> page = goodsService.queryGoods(paramMap);
+			formParam.setTotalCount((int)page.getTotalRecord());
+>>>>>>> c4ee6b65bc62b5c24a1fa03a4b563984bd447398
 			List<Category> resultList = categoryService.getListNode();
 			model.addAttribute("categoryList", resultList);
-			model.addAttribute("goodsList", goodsList);
+			model.addAttribute("goodsList", page.getDataList());
 		} catch (Exception err) {
 			LOG.error("查询商品异常",err);
 		}
