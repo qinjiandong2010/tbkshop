@@ -215,7 +215,7 @@
 		<if test="offset != null">limit #{offset},#{pageSize}</if>
 	</select>
 
-	<select id="querySummaryCount" parameterType="com.stomato.form.GoodsFormParam" resultType="java.lang.Integer" >
+	<select id="queryGoodsCount" parameterType="java.util.Map" resultType="java.lang.Long" >
 		select count(1) from (
 				select t_goods.id
 				from t_goods LEFT JOIN t_goods_cate gc on t_goods.id = gc.goods_id
@@ -232,7 +232,7 @@
 				group by t_goods.id
 			) temp
 	</select>
-	<select id="querySummaryList" parameterType="com.stomato.form.GoodsFormParam" resultType="Map" >
+	<select id="queryGoods" parameterType="java.util.Map" resultType="Map" >
 		select <include refid="public_summary_column"/>,
 		    s.shop_name,
 		    s.shop_url,
@@ -253,5 +253,17 @@
 		group by t_goods.id
 		order by t_goods.sort asc
 		<if test="offset != null">limit #{offset},#{pageSize}</if>
+	</select>
+	<select id="getGoodsDetail" parameterType="java.util.Map" resultType="Map" >
+		select <include refid="public_column"/>,
+		    s.shop_name,
+		    s.shop_url,
+		    group_concat(gc.cate_id) categorys
+		from t_goods 
+			LEFT JOIN t_goods_cate gc on t_goods.id = gc.goods_id
+			LEFT JOIN t_shop s on t_goods.shop_id = s.id
+	    WHERE
+			t_goods.del_flag = 0
+			and t_goods.id=#{id}
 	</select>
 </mapper>
