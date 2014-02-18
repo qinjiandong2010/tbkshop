@@ -84,7 +84,6 @@ textarea {width:600px;}
 						<form:errors path="brandId" cssClass="error"/>
 					</div>
 				</div>
-				
 				<div class="form-row">
 					<label class="field-name" for=categorys>商品分类：</label>
 					<div class="field">

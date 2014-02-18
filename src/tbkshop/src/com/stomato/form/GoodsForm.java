@@ -1,5 +1,6 @@
 package com.stomato.form;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.hibernate.validator.constraints.Length;
@@ -105,7 +106,9 @@ public class GoodsForm {
 	public Integer[] getCategorys() {
 		return categorys;
 	}
-
+	public String getCategorysStr() {
+		return Arrays.toString(categorys);
+	}
 	public void setCategorys(Integer[] categorys) {
 		this.categorys = categorys;
 	}

@@ -99,6 +99,20 @@ textarea {width:600px;}
 					</div>
 				</div> --%>
 				<div class="form-row">
+					<label class="field-name" for=categorys>商品分类：</label>
+					<div class="field">
+					     <select id="categorys" name="categorys" multiple="" style="width:245px" class="populate select2-offscreen" tabindex="-1">
+				            <c:forEach var="category" items="${categoryList }">
+                            <optgroup label="${category.typeName }">
+	                            <c:forEach var="childCate" items="${category.listNode }">
+	                                <option value="${childCate.id }">${childCate.typeName }</option>
+	                            </c:forEach>
+                            </optgroup>
+                        </c:forEach>
+				        </select>
+			     	</div>
+                </div>
+				<div class="form-row">
 					<label class="field-name" for="sellPrice">单价：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
@@ -201,6 +215,7 @@ textarea {width:600px;}
 			</div>
 		</form:form>
 	</div>
+<script src="/js/select2/select2-mini.js"></script>
 <script type="text/javascript">
 	(function() {
 		var imgLength = "${fn:length(goodsForm.goodsPics)}";
@@ -216,6 +231,7 @@ textarea {width:600px;}
 							"</div>";
         	$lastImgInput.after(goodsPicsHTML);
 		});
+		$("#categorys").val(${goodsForm.categorysStr}).select2();
     })();
 </script>
 </body>

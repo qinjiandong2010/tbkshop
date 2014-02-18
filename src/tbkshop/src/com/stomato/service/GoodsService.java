@@ -29,7 +29,7 @@ public class GoodsService extends BaseServiceImpl{
 					gc.setGoodsId(bean.getId());
 					goodsCateList.add(gc);
 				}
-				return super.baseDao.insert("com.stomato.dao.GoodsCateDao.addBatch", goodsCateList);
+				return super.publicDao.insert("com.stomato.dao.GoodsCateDao.addBatch", goodsCateList);
 			}
 		}
 		return 0;

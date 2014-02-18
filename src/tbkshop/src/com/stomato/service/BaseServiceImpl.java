@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.stomato.common.BaseDao;
+import com.stomato.common.PublicDao;
 import com.stomato.constant.Constant;
 import com.stomato.domain.Page;
 import com.stomato.exception.DaoException;
@@ -33,46 +33,46 @@ import com.stomato.utils.StringUtil;
 public class BaseServiceImpl implements BaseService {
 	private static Logger logger = Logger.getLogger( BaseServiceImpl.class );
 	@Resource
-	protected BaseDao baseDao;
+	protected PublicDao publicDao;
 
 	public <T> int insert(String statementId, T item) throws ServiceException, DaoException {
-		return baseDao.insert( statementId, item );
+		return publicDao.insert( statementId, item );
 	}
 
 	public <T> int delete(String statementId, T item) throws ServiceException, DaoException {
-		return baseDao.delete( statementId, item );
+		return publicDao.delete( statementId, item );
 	}
 
 	public <T> int update(String statementId, T item) throws ServiceException, DaoException {
-		return baseDao.update( statementId, item );
+		return publicDao.update( statementId, item );
 	}
 
 	public <T> List<T> queryAll(String statementId) throws ServiceException, DaoException {
-		return baseDao.queryAll( statementId );
+		return publicDao.queryAll( statementId );
 	}
 
 	public <T, PK extends Serializable> T queryById(String statementId, PK id) throws ServiceException, DaoException {
-		return baseDao.queryById( statementId, id );
+		return publicDao.queryById( statementId, id );
 	}
 
 	public <T> List<T> queryByConditions(String statementId, T conditions) throws ServiceException, DaoException {
-		return baseDao.queryByConditions( statementId, conditions );
+		return publicDao.queryByConditions( statementId, conditions );
 	}
 
 	public <T> T queryObject(String statementId, T item) throws ServiceException, DaoException {
-		return baseDao.queryObject( statementId, item );
+		return publicDao.queryObject( statementId, item );
 	}
 
 	public <T> List<T> queryForListEntity(String statementId, Class<T> clazz, Object conditions) throws ServiceException, DaoException {
-		return baseDao.queryForListEntity( statementId, clazz, conditions );
+		return publicDao.queryForListEntity( statementId, clazz, conditions );
 	}
 
 	public <T> T queryForEntity(String statementId, Class<T> clazz, Object conditions) throws ServiceException, DaoException {
-		return baseDao.queryForEntity( statementId, clazz, conditions );
+		return publicDao.queryForEntity( statementId, clazz, conditions );
 	}
 
 	public Long getCount(String statementId, Object item) throws ServiceException, DaoException {
-		return baseDao.getCount( statementId, item );
+		return publicDao.getCount( statementId, item );
 	}
 
 	public <T> Page<T> queryInPage(String queryCountStatementId, String queryRecordStatementId, T parameter) throws ServiceException, DaoException {
@@ -107,11 +107,11 @@ public class BaseServiceImpl implements BaseService {
 		}
 
 		// 查询总记录数
-		long totalRecord = baseDao.getCount( queryCountStatementId, parameter );
+		long totalRecord = publicDao.getCount( queryCountStatementId, parameter );
 		// 查询结果集的条件是 总记录数 必需 大于 0 , 并且 起始值必需小于总记录数,
 		if (totalRecord > 0 && beginNo < totalRecord) {
 			// 查询结果集
-			dataList = baseDao.queryByConditions( queryRecordStatementId, parameter );
+			dataList = publicDao.queryByConditions( queryRecordStatementId, parameter );
 		}
 		return new Page<T>( pageNo , pageSize , totalRecord , dataList );
 	}
@@ -154,22 +154,22 @@ public class BaseServiceImpl implements BaseService {
 		}
 
 		// 查询总记录数
-		long totalRecord = baseDao.getCount( queryCountStatementId, parameter );
+		long totalRecord = publicDao.getCount( queryCountStatementId, parameter );
 		// 查询结果集的条件是 总记录数 必需 大于 0 , 并且 起始值必需小于总记录数,
 		if (totalRecord > 0 && beginNo < totalRecord) {
 			// 查询结果集
-			dataList = baseDao.queryByConditions( queryRecordStatementId, parameter );
+			dataList = publicDao.queryByConditions( queryRecordStatementId, parameter );
 		}
 		Page<T> page = new Page<T>( pageNo , pageSize , totalRecord , dataList );
 		return page;
 	}
 
 	public <T> void operateItemBatch(String statementId, Collection<T> itemList) throws ServiceException, DaoException {
-		baseDao.operateItemBatch( statementId, itemList );
+		publicDao.operateItemBatch( statementId, itemList );
 	}
 
 	public void callProcedures(String statementId, Map<String , Object> parameters) throws ServiceException, DaoException {
-		baseDao.callProcedures( statementId, parameters );
+		publicDao.callProcedures( statementId, parameters );
 	}
 
 }

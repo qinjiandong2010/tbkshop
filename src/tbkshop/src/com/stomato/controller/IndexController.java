@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stomato.common.BaseDao;
+import com.stomato.common.PublicDao;
 import com.stomato.domain.Category;
 import com.stomato.domain.Page;
 import com.stomato.form.GoodsFormParam;
@@ -38,12 +38,21 @@ public class IndexController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
+<<<<<<< HEAD
+	private PublicDao publicDao;
+=======
 	private GoodsService goodsService;
+>>>>>>> c4ee6b65bc62b5c24a1fa03a4b563984bd447398
 	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("formParam") GoodsFormParam formParam,BindingResult result, Model model) {
 		try {
 			formParam.setPageSize(30);
+<<<<<<< HEAD
+			int count = publicDao.queryForEntity("com.stomato.dao.GoodsDao.querySummaryCount", Integer.class, formParam);
+			formParam.setTotalCount(count);
+			List goodsList = publicDao.queryForListEntity("com.stomato.dao.GoodsDao.querySummaryList", Map.class, formParam);
+=======
 			
 			Map<String,Object> paramMap = new HashMap<String,Object>();
 			paramMap.put("offset", formParam.getOffset());
@@ -54,6 +63,7 @@ public class IndexController {
 			
 			Page<Map<String,Object>> page = goodsService.queryGoods(paramMap);
 			formParam.setTotalCount((int)page.getTotalRecord());
+>>>>>>> c4ee6b65bc62b5c24a1fa03a4b563984bd447398
 			List<Category> resultList = categoryService.getListNode();
 			model.addAttribute("categoryList", resultList);
 			model.addAttribute("goodsList", page.getDataList());

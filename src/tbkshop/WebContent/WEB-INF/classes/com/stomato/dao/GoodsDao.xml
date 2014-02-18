@@ -221,7 +221,8 @@
 				from t_goods LEFT JOIN t_goods_cate gc on t_goods.id = gc.goods_id
 							 LEFT JOIN t_shop s on t_goods.shop_id = s.id
 				where t_goods.del_flag = 0
-				<if test="categorys != null ">and gc.cate_id in
+				<if test="categorys != null ">
+				    and gc.cate_id in
 			        <foreach item="item" index="index" collection="categorys" open="(" separator="," close=")">
 			            #{item}
 			        </foreach>
