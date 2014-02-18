@@ -1,12 +1,15 @@
-package ${bean.packagePath}bean;
+package ${bean.packagePath}form;
 /**
  * ${bean.businessName}
  * 
  * @author ${bean.authorName}
  */
-public class ${bean.className}{
-	<#list bean.attributes as attribute>
+public class ${bean.className}Form {
+<#list bean.attributes as attribute>
 	//${attribute.description}
+	<#if !attribute.isNull>
+	@NotEmpty
+	</#if>
 	private ${attribute.dataType} ${attribute.name};
 	</#list>  
 
@@ -27,5 +30,4 @@ public class ${bean.className}{
 		this.${attribute.name} = ${attribute.name};
 	}
 	</#list>  
-
 }

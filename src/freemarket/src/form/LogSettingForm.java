@@ -1,15 +1,17 @@
-package bean;
+package form;
 /**
  * 日志配置
  * 
  * @author Jiandong
  */
-public class LogSetting{
+public class LogSettingForm {
 	//日志ID
 	private Integer id;
 	//表名
+	@NotEmpty
 	private String tableName;
 	//业务名称
+	@NotEmpty
 	private String businessName;
 	//创建用户ID
 	private Integer createUserId;
@@ -79,5 +81,4 @@ public class LogSetting{
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
 }

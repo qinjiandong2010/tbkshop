@@ -1,28 +1,30 @@
-package bean;
-
-import java.io.Serializable;
-
-public class ${tableName}{
-	<#list columnList as column>
-	//${column.description}
-	private ${column.dataType} ${column.name};
+package ${bean.packagePath}bean;
+/**
+ * ${bean.businessName}
+ * 
+ * @author ${bean.authorName}
+ */
+public class ${bean.className}{
+	<#list bean.attributes as attribute>
+	//${attribute.description}
+	private ${attribute.dataType} ${attribute.name};
 	</#list>  
 
-	public ${tableName}() {
+	public ${bean.className}() {
 	}
 
- 	<#list columnList as column>
+ 	<#list bean.attributes as attribute>
 	/*
-	 *${column.description}
+	 *${attribute.description}
 	 */
-	public ${column.dataType} get${column.name}() {
-		return ${column.name};
+	public ${attribute.dataType} get${attribute.initcapName}() {
+		return ${attribute.name};
 	}
 	/*
-	 *${column.description}
+	 *${attribute.description}
 	 */
-	public void set${column.name}(${column.dataType} ${column.name}) {
-		this.${column.name} = ${column.name};
+	public void set${attribute.initcapName}(${attribute.dataType} ${attribute.name}) {
+		this.${attribute.name} = ${attribute.name};
 	}
 	</#list>  
 

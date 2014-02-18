@@ -1,5 +1,6 @@
 package junit.test;  
   
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import bean.FtlConfig;
+import bean.FtlConfig.FtlAttribute;
+
+import util.DBUtil;
 import util.FreemarkerUtil;
   
   
@@ -22,7 +27,7 @@ public class FreemarkerTest {
     }  
       
     //1、创建简单freemarker  
-    @Test  
+    /*@Test  
     public void test01() {  
         //1、创建数据模型  
         Map<String,Object> root = new HashMap<String,Object>();  
@@ -31,7 +36,7 @@ public class FreemarkerTest {
         //3、将数据模型和模板组合的数据输出到控制台  
         fu.print("01.ftl", root);  
         fu.fprint("01.ftl", root, "01.html");  
-    }  
+    }  */
     /*//2.freemarker输出对象  
     @Test  
     public void test02() {  
@@ -65,24 +70,45 @@ public class FreemarkerTest {
         sprint("06.ftl");  
     }  
        */
-    private void sprint(String name) {  
-        fu.print(name, map);  
+    private void sprint(String dir,String name) {  
+        fu.print(dir,name, map);  
     }  
-    private void fprint(String name,String filename) {  
-        fu.fprint(name, map, filename);  
+    private void fprint(String dir,String name,String filename) {  
+        fu.fprint(dir,name, map, filename);  
+    } 
+    public void test07() {  
+    	System.out.println("开始生成代码.");
+    	FtlConfig bean = new FtlConfig();
+    	bean.setClassName("LogSetting");
+    	bean.setPackagePath("");
+    	bean.setBusinessName("日志配置");
+    	bean.setAuthorName("Jiandong");
+    	
+    	List<FtlAttribute> attributes = new ArrayList<FtlAttribute>();
+    	attributes.add(new FtlAttribute("id","Integer","日志ID",true));
+    	attributes.add(new FtlAttribute("tableName","String","表名",false));
+    	attributes.add(new FtlAttribute("businessName","String","业务名称",false));
+    	attributes.add(new FtlAttribute("createUserId","Integer","创建用户ID",true));
+    	attributes.add(new FtlAttribute("createTime","Date","创建时间",true));
+    	bean.setAttributes(attributes);
+    	
+        map.put("bean", bean);  
+        String ftlDir = "/ftl";
+        
+        fprint(ftlDir,"bean.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/bean/LogSetting.java");  
+        fprint(ftlDir,"service.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/service/LogSettingService.java");  
+        fprint(ftlDir,"dao.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/dao/LogSettingDao.java");
+        fprint(ftlDir,"controller.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/controller/LogSettingController.java");
+        fprint(ftlDir,"form.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/form/LogSettingForm.java");
+
+        fprint(ftlDir+"/web","listPage.ftl","D:/jiandong/project/tbkshop/src/freemarket/web/logSeting/LogSettingList.jsp");
+        fprint(ftlDir+"/web","editPage.ftl","D:/jiandong/project/tbkshop/src/freemarket/web/logSeting/LogSettingEdit.jsp");
+        System.out.println("生成完成.");
     } 
     @Test  
-    public void test07() {  
-        map.put("tableName", "LogSetting");  
-        List<Map<String,Object>> columnList = new ArrayList<Map<String,Object>>(); 
-        Map<String,Object> dataMap = new HashMap<String,Object>();
-        dataMap.put("name", "id");
-        dataMap.put("dataType", "Integer");
-        dataMap.put("description", "primary key");
-        columnList.add(dataMap);
-        
-        map.put("columnList",columnList);  
-        sprint("bean.ftl");  
-        fprint("bean.ftl","D:/project/freemarket/src/bean/LogSetting.java");  
-    }  
+    public void testGenerateProject() {  
+    	Connection conn = DBUtil.openConn("MySQL", "localhost", "3306", "adplatform", "root", "123456");
+    
+    	DBUtil.query
+    }
 }
