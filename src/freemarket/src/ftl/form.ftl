@@ -1,4 +1,4 @@
-package ${bean.packagePath}form;
+package ${bean.domain}.form;
 /**
  * ${bean.businessName}
  * 
@@ -13,7 +13,7 @@ public class ${bean.className}Form {
 	private ${attribute.dataType} ${attribute.name};
 	</#list>  
 
-	public ${bean.className}() {
+	public ${bean.className}Form() {
 	}
 
  	<#list bean.attributes as attribute>

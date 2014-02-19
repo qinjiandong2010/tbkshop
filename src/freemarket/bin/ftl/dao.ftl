@@ -1,5 +1,6 @@
-package ${bean.packagePath}dao;
+package ${bean.domain}.dao;
 
+import ${bean.domain}.domain.${bean.className};
 /**
  * ${bean.businessName}
  * 

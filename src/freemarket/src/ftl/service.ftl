@@ -1,4 +1,12 @@
-package ${bean.packagePath}service;
+package ${bean.domain}.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ${bean.domain}.dao.${bean.className}Dao;
+import ${bean.domain}.domain.${bean.className};
 
 /**
  * ${bean.businessName}
@@ -16,7 +24,7 @@ public class ${bean.className}Service {
 	}
 	
 	public int add(${bean.className} bean){
-		return dao.add(id);
+		return dao.add(bean);
 	}
 
 	public int update(${bean.className} bean){

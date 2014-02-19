@@ -11,8 +11,8 @@
 			<ul class="breadcrumb">
 				<li><a href="/"><i class="icon-home"></i></a><span
 					class="divider">&nbsp;</span></li>
-				<li><a href="#">日志配置管理</a> <span class="divider">&nbsp;</span></li>
-				<li><a href="#">日志配置</a><span class="divider-last">&nbsp;</span></li>
+				<li><a href="#">鏃ュ織閰嶇疆锟斤拷锟斤拷</a> <span class="divider">&nbsp;</span></li>
+				<li><a href="#">鏃ュ織閰嶇疆</a><span class="divider-last">&nbsp;</span></li>
 			</ul>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 		<div class="span12">
 			<div class="widget">
 				<div class="widget-header">
-					<h5>日志配置列表</h5>
+					<h5>鏃ュ織閰嶇疆锟叫憋拷</h5>
 					<form:form id="searchForm" commandName="formParam" method="post" class="form-inline">
                     <form:hidden path="pageNum" id="pageNum"/>
                     <form:hidden path="startDate" id="search_start" />
@@ -33,12 +33,14 @@
 						<li>
 							<%@include file="../includes/pagesize.jsp" %>
 						</li>
-						<li class="search-col"><form:input path="id" type="text" class="search-input" maxlength="20" placeholder="日志ID"/></li>
-						<li class="search-col"><form:input path="tableName" type="text" class="search-input" maxlength="20" placeholder="表名"/></li>
-						<li class="search-col"><form:input path="businessName" type="text" class="search-input" maxlength="20" placeholder="业务名称"/></li>
-						<li class="search-col"><form:input path="createUserId" type="text" class="search-input" maxlength="20" placeholder="创建用户ID"/></li>
-						<li class="search-col"><form:input path="createTime" type="text" class="search-input" maxlength="20" placeholder="创建时间"/></li>
-						<li class="search-col"><button type="submit" class="button button-turquoise small-button">查询</button></li>
+						<li class="search-col"><form:input path="id" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><form:input path="tableName" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><form:input path="businessName" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><form:input path="createUser" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><form:input path="createTime" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><form:input path="isDel" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><form:input path="status" type="text" class="search-input" maxlength="20" placeholder=""/></li>
+						<li class="search-col"><button type="submit" class="button button-turquoise small-button">锟斤拷询</button></li>
 					</ul>
 					</form:form>
 				</div>
@@ -51,9 +53,11 @@
 									<th class="sorting">id</th>
 									<th class="sorting">tableName</th>
 									<th class="sorting">businessName</th>
-									<th class="sorting">createUserId</th>
+									<th class="sorting">createUser</th>
 									<th class="sorting">createTime</th>
-									<th class="sorting">操作</th>
+									<th class="sorting">isDel</th>
+									<th class="sorting">status</th>
+									<th class="sorting">锟斤拷锟斤拷</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -63,12 +67,14 @@
 										<td>id</td>
 										<td>tableName</td>
 										<td>businessName</td>
-										<td>createUserId</td>
+										<td>createUser</td>
 										<td>createTime</td>
+										<td>isDel</td>
+										<td>status</td>
 				                        <td class=" ">
-				                        	<a href="/LogSetting/${item.id }/edit.html">编辑</a>
-				                        	<a href="/LogSetting/${item.id }/delete.html">删除</a>
-				                        	<a href="/LogSetting/${item.id }/detail.html">详细</a>
+				                        	<a href="/Log_setting/${item.id }/edit.html">锟洁辑</a>
+				                        	<a href="/Log_setting/${item.id }/delete.html">删锟斤拷</a>
+				                        	<a href="/Log_setting/${item.id }/detail.html">锟斤拷细</a>
 				                        </td>
 									</tr>
 								</c:forEach>

@@ -1,4 +1,4 @@
-package ${bean.packagePath}bean;
+package ${bean.domain}.domain;
 /**
  * ${bean.businessName}
  * 

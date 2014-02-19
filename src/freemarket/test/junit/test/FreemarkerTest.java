@@ -1,6 +1,9 @@
 package junit.test;  
   
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,106 +12,218 @@ import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bean.FtlConfig;
-import bean.FtlConfig.FtlAttribute;
-
 import util.DBUtil;
 import util.FreemarkerUtil;
+import util.StringUtil;
+
+import com.stomato.config.FtlConfig;
+import com.stomato.config.FtlConfig.FtlAttribute;
+import com.stomato.config.FtlConfig.FtlMetaData;
   
   
 public class FreemarkerTest {  
     private static FreemarkerUtil fu;  
-    private static Map<String,Object> map = null;  
       
     @BeforeClass  
     public static void setUpBeforeClass() throws Exception {  
         fu = new FreemarkerUtil();  
-        map = new HashMap<String,Object>();  
     }  
       
-    //1¡¢´´½¨¼òµ¥freemarker  
+    //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½freemarker  
     /*@Test  
     public void test01() {  
-        //1¡¢´´½¨Êı¾İÄ£ĞÍ  
+        //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½  
         Map<String,Object> root = new HashMap<String,Object>();  
-        //2¡¢ÎªÊı¾İÄ£ĞÍÌí¼ÓÖµ  
-        root.put("username", "ÕÅÈı");  
-        //3¡¢½«Êı¾İÄ£ĞÍºÍÄ£°å×éºÏµÄÊı¾İÊä³öµ½¿ØÖÆÌ¨  
+        //2ï¿½ï¿½Îªï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½Öµ  
+        root.put("username", "ï¿½ï¿½ï¿½ï¿½");  
+        //3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½Íºï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨  
         fu.print("01.ftl", root);  
         fu.fprint("01.ftl", root, "01.html");  
     }  */
-    /*//2.freemarkerÊä³ö¶ÔÏó  
+    /*//2.freemarkerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
     @Test  
     public void test02() {  
-        map.put("user", new User(1,"ÀîËÄ",16));  
+        map.put("user", new User(1,"ï¿½ï¿½ï¿½ï¿½",16));  
         sprint("03.ftl");  
         fprint("03.ftl","03.html");  
     }  
-    //4.Êä³öÊı×é  
+    //4.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
     @Test  
     public void test04() {  
-        List<User> users = Arrays.asList(new User(1,"ÕÅÈı",22),new User(2,"ÀîËÄ",33));  
+        List<User> users = Arrays.asList(new User(1,"ï¿½ï¿½ï¿½ï¿½",22),new User(2,"ï¿½ï¿½ï¿½ï¿½",33));  
         map.put("users",users);  
         sprint("04.ftl");  
         fprint("04.ftl","04.html");  
     }  
-    //5¡¢½«°üº¬Ò³Ãæ¾²Ì¬»¯  
+    //5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½æ¾²Ì¬ï¿½ï¿½  
     @Test  
     public void test05() {  
-        map.put("username", "¹ÜÀíÔ±");  
-        List<User> users = Arrays.asList(new User(1,"ÕÅÈı",22),new User(2,"ÀîËÄ",33));  
+        map.put("username", "ï¿½ï¿½ï¿½ï¿½Ô±");  
+        List<User> users = Arrays.asList(new User(1,"ï¿½ï¿½ï¿½ï¿½",22),new User(2,"ï¿½ï¿½ï¿½ï¿½",33));  
         map.put("users",users);  
         sprint("05.ftl");  
         fprint("05.ftl","05.html");  
     }  
-    //6 freemarker ´¦Àí¿ÕÖµ  
+    //6 freemarker ï¿½ï¿½ï¿½ï¿½ï¿½Öµ  
     @Test  
     public void test06() {  
-        //´ËÊ±user¶ÔÏó²¢Ã»ÓĞgroupµÄÖµ£¬ÕâÊ±Èç¹ûÔÚÒ³ÃæÏÔÊ¾groupÖ±½Ó±¨´í  
-        //freemarker²»»á´¦Àí¿ÕÖµ  
-        map.put("user",new User(1,"µØµã",22));  
+        //ï¿½ï¿½Ê±userï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½groupï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Ê¾groupÖ±ï¿½Ó±ï¿½ï¿½ï¿½  
+        //freemarkerï¿½ï¿½ï¿½á´¦ï¿½ï¿½ï¿½Öµ  
+        map.put("user",new User(1,"ï¿½Øµï¿½",22));  
         sprint("06.ftl");  
     }  
        */
-    private void sprint(String dir,String name) {  
+    private void sprint(String dir,String name,Map<String,Object> map) {  
         fu.print(dir,name, map);  
     }  
-    private void fprint(String dir,String name,String filename) {  
+    private void fprint(String dir,String name,String filename,Map<String,Object> map) {  
         fu.fprint(dir,name, map, filename);  
     } 
+    @Test
     public void test07() {  
-    	System.out.println("¿ªÊ¼Éú³É´úÂë.");
+    	System.out.println("begin...");
     	FtlConfig bean = new FtlConfig();
     	bean.setClassName("LogSetting");
-    	bean.setPackagePath("");
-    	bean.setBusinessName("ÈÕÖ¾ÅäÖÃ");
+    	bean.setDomain("com.stomato");
+    	bean.setBusinessName("æ—¥å¿—é…ç½®");
     	bean.setAuthorName("Jiandong");
     	
+    	bean.setMetaData( new FtlMetaData("t_logsetting","","æ—¥å¿—é…ç½®"));
+    	
     	List<FtlAttribute> attributes = new ArrayList<FtlAttribute>();
-    	attributes.add(new FtlAttribute("id","Integer","ÈÕÖ¾ID",true));
-    	attributes.add(new FtlAttribute("tableName","String","±íÃû",false));
-    	attributes.add(new FtlAttribute("businessName","String","ÒµÎñÃû³Æ",false));
-    	attributes.add(new FtlAttribute("createUserId","Integer","´´½¨ÓÃ»§ID",true));
-    	attributes.add(new FtlAttribute("createTime","Date","´´½¨Ê±¼ä",true));
+    	FtlAttribute attribute = new FtlAttribute("id","Integer","å”¯ä¸€ä¸»é”®ID",true);
+    	attribute.setMetaData(new FtlMetaData("id","int","å”¯ä¸€ä¸»é”®ID"));
+    	attributes.add(attribute);
+    	
+    	attribute = new FtlAttribute("tableName","String","è¡¨å",false);
+    	attribute.setMetaData(new FtlMetaData("table_name","varchar","è¡¨å"));
+    	attributes.add(attribute);
+    	
+    	attribute = new FtlAttribute("businessName","String","ä¸šåŠ¡åç§°",false);
+    	attribute.setMetaData(new FtlMetaData("business_name","varchar","ä¸šåŠ¡åç§°"));
+    	attributes.add(attribute);
+
+    	attribute = new FtlAttribute("createUserId","Integer","åˆ›å»ºç”¨æˆ·ID",true);
+    	attribute.setMetaData(new FtlMetaData("create_user_id","int","è¡¨å"));
+    	attributes.add(attribute);
+    	
+    	attribute = new FtlAttribute("createTime","java.util.Date","åˆ›å»ºæ—¶é—´",false);
+    	attribute.setMetaData(new FtlMetaData("create_time","datetime","åˆ›å»ºæ—¶é—´"));
+    	attributes.add(attribute);
+
     	bean.setAttributes(attributes);
     	
-        map.put("bean", bean);  
-        String ftlDir = "/ftl";
-        
-        fprint(ftlDir,"bean.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/bean/LogSetting.java");  
-        fprint(ftlDir,"service.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/service/LogSettingService.java");  
-        fprint(ftlDir,"dao.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/dao/LogSettingDao.java");
-        fprint(ftlDir,"controller.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/controller/LogSettingController.java");
-        fprint(ftlDir,"form.ftl","D:/jiandong/project/tbkshop/src/freemarket/src/form/LogSettingForm.java");
-
-        fprint(ftlDir+"/web","listPage.ftl","D:/jiandong/project/tbkshop/src/freemarket/web/logSeting/LogSettingList.jsp");
-        fprint(ftlDir+"/web","editPage.ftl","D:/jiandong/project/tbkshop/src/freemarket/web/logSeting/LogSettingEdit.jsp");
-        System.out.println("Éú³ÉÍê³É.");
-    } 
-    @Test  
-    public void testGenerateProject() {  
-    	Connection conn = DBUtil.openConn("MySQL", "localhost", "3306", "adplatform", "root", "123456");
+        generateProject(bean);
+    }
     
-    	DBUtil.query
+    private void generateProject(FtlConfig config){
+    	String ftlDir = "/ftl";
+        
+        String projectSrcDri = "F:/JD/project_svn/adPlatform-master/trunck/project/portal/src/com/stomato";
+        String projectWebDri = "F:/JD/project_svn/adPlatform-master/trunck/project/portal/WebContent/WEB-INF/views/portal";
+        
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("bean", config);  
+        fprint(ftlDir,"bean.ftl",projectSrcDri+"/domain/"+config.getClassName()+".java",map);  
+        System.out.println("genernate domain finish.");
+        fprint(ftlDir,"service.ftl",projectSrcDri+"/service/"+config.getClassName()+"Service.java",map);
+        System.out.println("genernate service finish.");
+        fprint(ftlDir,"dao.ftl",projectSrcDri+"/dao/"+config.getClassName()+"Dao.java",map);
+        System.out.println("genernate dao finish.");
+        fprint(ftlDir,"controller.ftl",projectSrcDri+"/controller/"+config.getClassName()+"Controller.java",map);
+        System.out.println("genernate controller finish.");
+        fprint(ftlDir,"form.ftl",projectSrcDri+"/form/"+config.getClassName()+"Form.java",map);
+        System.out.println("genernate formbean finish.");
+        fprint(ftlDir,"ibatisMap.ftl",projectSrcDri+"/dao/"+config.getClassName()+"Dao.xml",map);
+        System.out.println("genernate ibatisMap xml finish.");
+        fprint(ftlDir+"/web","listPage.ftl",projectWebDri+"/"+config.getClassName()+"/"+config.getClassName()+"List.jsp",map);
+        System.out.println("genernate list page finish.");
+        fprint(ftlDir+"/web","editPage.ftl",projectWebDri+"/"+config.getClassName()+"/"+config.getClassName()+"Edit.jsp",map);
+        System.out.println("genernate edit page finish.");
+        System.out.println("--generate project success.");
+        
+    }
+    /**
+     * ä¸‹åˆ’çº¿_æˆªå–å­—ç¬¦ä¸²ï¼Œè¿”å›å­—ç¬¦ä¸²é©¼å³°å‘½å
+     * @param str
+     * @return
+     */
+    private String getCamelCase(String str){
+    	String []words = str.trim().split("_");
+    	
+    	String camelCaseStr = "";
+    	for (int i = 0; i < words.length; i++) {
+    		if( i == 0 ){
+    			camelCaseStr = words[i];
+    		}else{
+    			camelCaseStr += StringUtil.initcap(words[i]);
+    		}
+		}
+    	return camelCaseStr;
+    }
+    
+    private String getDataTypeName(String dataType){
+    	if(dataType.toLowerCase().equals("datetime")){
+    		return "java.util.Date";
+    	}else if(dataType.toLowerCase().equals("int")){
+    		return "java.lang.Integer";
+    	}else if(dataType.toLowerCase().equals("double")){
+    		return "java.lang.Double";
+    	}else if(dataType.toLowerCase().equals("float")){
+    		return "java.lang.Float";
+    	}else{
+    		return "java.lang.String";
+    	}
+    }
+    
+   @Test  
+    public void testGenerateProject() {  
+	   	String tableName = "t_log_setting";
+	   	String domain = "com.stomato";
+    	 //åˆ›å»ºè¿æ¥
+       	Connection con = DBUtil.openConn("MySql", "localhost", "3306", "adplatform", "powerall", "123456");
+    		//æŸ¥è¦ç”Ÿæˆå®ä½“ç±»çš„è¡¨
+       	String sql = "select * from "+tableName;
+       	PreparedStatement pStemt = null;
+       	try {
+    			pStemt = con.prepareStatement(sql);
+    			ResultSetMetaData rsmd = pStemt.getMetaData();
+    			int size = rsmd.getColumnCount();	//ç»Ÿè®¡åˆ—
+    			List<FtlAttribute> attributes = new ArrayList<FtlAttribute>();
+    			for (int i = 0; i < size; i++) {
+    				String columnName = rsmd.getColumnName(i + 1);
+    				String colType = rsmd.getColumnTypeName(i + 1);
+    				int colSize = rsmd.getColumnDisplaySize(i + 1);
+    				String schema = rsmd.getSchemaName(i + 1);
+    				FtlAttribute attribute = new FtlAttribute(getCamelCase(columnName),getDataTypeName(colType),schema,false);
+        	    	attribute.setMetaData(new FtlMetaData(columnName,colType,schema));
+        	    	attributes.add(attribute);
+    			}
+    			FtlConfig config = new FtlConfig();
+    			config.setClassName(StringUtil.initcap(getCamelCase(tableName.replaceFirst("t_", ""))));
+    			config.setDomain(domain);
+    			config.setBusinessName("æ—¥å¿—é…ç½®");
+    			config.setAuthorName("Administrator");
+    			config.setMetaData( new FtlMetaData(tableName,"","æ—¥å¿—é…ç½®"));
+    			config.setAttributes(attributes);
+    			
+    	    	
+    	        generateProject(config);
+    	        
+    		} catch (SQLException e) {
+    			e.printStackTrace();
+    		} finally{
+    			try {
+					if( !pStemt.isClosed() ){
+						pStemt.close();
+					}
+					if( !con.isClosed() ){
+	    				con.close();
+	    			}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+    			
+    		}
     }
 }
