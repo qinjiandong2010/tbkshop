@@ -79,48 +79,11 @@ public class FreemarkerTest {
     private void fprint(String dir,String name,String filename,Map<String,Object> map) {  
         fu.fprint(dir,name, map, filename);  
     } 
-    @Test
-    public void test07() {  
-    	System.out.println("begin...");
-    	FtlConfig bean = new FtlConfig();
-    	bean.setClassName("LogSetting");
-    	bean.setDomain("com.stomato");
-    	bean.setBusinessName("日志配置");
-    	bean.setAuthorName("Jiandong");
-    	
-    	bean.setMetaData( new FtlMetaData("t_logsetting","","日志配置"));
-    	
-    	List<FtlAttribute> attributes = new ArrayList<FtlAttribute>();
-    	FtlAttribute attribute = new FtlAttribute("id","Integer","唯一主键ID",true);
-    	attribute.setMetaData(new FtlMetaData("id","int","唯一主键ID"));
-    	attributes.add(attribute);
-    	
-    	attribute = new FtlAttribute("tableName","String","表名",false);
-    	attribute.setMetaData(new FtlMetaData("table_name","varchar","表名"));
-    	attributes.add(attribute);
-    	
-    	attribute = new FtlAttribute("businessName","String","业务名称",false);
-    	attribute.setMetaData(new FtlMetaData("business_name","varchar","业务名称"));
-    	attributes.add(attribute);
-
-    	attribute = new FtlAttribute("createUserId","Integer","创建用户ID",true);
-    	attribute.setMetaData(new FtlMetaData("create_user_id","int","表名"));
-    	attributes.add(attribute);
-    	
-    	attribute = new FtlAttribute("createTime","java.util.Date","创建时间",false);
-    	attribute.setMetaData(new FtlMetaData("create_time","datetime","创建时间"));
-    	attributes.add(attribute);
-
-    	bean.setAttributes(attributes);
-    	
-        generateProject(bean);
-    }
-    
     private void generateProject(FtlConfig config){
     	String ftlDir = "/ftl";
         
-        String projectSrcDri = "F:/JD/project_svn/adPlatform-master/trunck/project/portal/src/com/stomato";
-        String projectWebDri = "F:/JD/project_svn/adPlatform-master/trunck/project/portal/WebContent/WEB-INF/views/portal";
+        String projectSrcDri = "D:/jiandong/project/adPlatform-master/trunck/project/portal/src/com/stomato";
+        String projectWebDri = "D:/jiandong/project/adPlatform-master/trunck/project/portal/WebContent/WEB-INF/views/portal";
         
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("bean", config);  
@@ -133,6 +96,8 @@ public class FreemarkerTest {
         fprint(ftlDir,"controller.ftl",projectSrcDri+"/controller/"+config.getClassName()+"Controller.java",map);
         System.out.println("genernate controller finish.");
         fprint(ftlDir,"form.ftl",projectSrcDri+"/form/"+config.getClassName()+"Form.java",map);
+        System.out.println("genernate formbean finish.");
+        fprint(ftlDir,"formParam.ftl",projectSrcDri+"/form/"+config.getClassName()+"SearchForm.java",map);
         System.out.println("genernate formbean finish.");
         fprint(ftlDir,"ibatisMap.ftl",projectSrcDri+"/dao/"+config.getClassName()+"Dao.xml",map);
         System.out.println("genernate ibatisMap xml finish.");
@@ -177,53 +142,51 @@ public class FreemarkerTest {
     }
     
    @Test  
-    public void testGenerateProject() {  
-	   	String tableName = "t_log_setting";
+    public void testGenerateProject() throws SQLException {  
+	   	String tableName = "t_log_operation";
 	   	String domain = "com.stomato";
     	 //创建连接
-       	Connection con = DBUtil.openConn("MySql", "localhost", "3306", "adplatform", "powerall", "123456");
+       	Connection conn = DBUtil.openConn("MySql", "localhost", "3306", "information_schema", "root", "");
     		//查要生成实体类的表
-       	String sql = "select * from "+tableName;
-       	PreparedStatement pStemt = null;
+       	String schemaTableSql = "select * from TABLES where TABLE_SCHEMA='adplatform' and TABLE_NAME=?";
+       	String schemaColumnSql = "select * from COLUMNS where TABLE_SCHEMA='adplatform' and TABLE_NAME=?";
        	try {
-    			pStemt = con.prepareStatement(sql);
-    			ResultSetMetaData rsmd = pStemt.getMetaData();
-    			int size = rsmd.getColumnCount();	//统计列
-    			List<FtlAttribute> attributes = new ArrayList<FtlAttribute>();
-    			for (int i = 0; i < size; i++) {
-    				String columnName = rsmd.getColumnName(i + 1);
-    				String colType = rsmd.getColumnTypeName(i + 1);
-    				int colSize = rsmd.getColumnDisplaySize(i + 1);
-    				String schema = rsmd.getSchemaName(i + 1);
-    				FtlAttribute attribute = new FtlAttribute(getCamelCase(columnName),getDataTypeName(colType),schema,false);
-        	    	attribute.setMetaData(new FtlMetaData(columnName,colType,schema));
-        	    	attributes.add(attribute);
+       		Map<String, Object> tMetaData = DBUtil.queryMap(conn, schemaTableSql, tableName);
+       		FtlConfig config = new FtlConfig();
+			config.setClassName(StringUtil.initcap(getCamelCase(tableName.replaceFirst("t_", ""))));
+			config.setDomain(domain);
+			config.setBusinessName(tMetaData.get("TABLE_COMMENT").toString());
+			config.setAuthorName("Administrator");
+			config.setMetaData( new FtlMetaData(tableName,"",config.getBusinessName()));
+
+			List<FtlAttribute> attributes = new ArrayList<FtlAttribute>();
+			List<Map<String, Object>> columnsMetaData = DBUtil.queryMapList(conn, schemaColumnSql, tableName);
+			for (Map<String, Object> columnMetaData : columnsMetaData) {
+				String columnName = columnMetaData.get("COLUMN_NAME")+"";
+				String colType = columnMetaData.get("DATA_TYPE")+"";
+				boolean isNull = Boolean.parseBoolean(columnMetaData.get("IS_NULLABLE")+"");
+				int colSize =StringUtil.getIntParameter(columnMetaData,"CHARACTER_MAXIMUM_LENGTH");
+				String comment = columnMetaData.get("COLUMN_COMMENT")+"";
+				FtlAttribute attribute = new FtlAttribute(getCamelCase(columnName),
+														  getDataTypeName(colType),
+														  colSize,
+														  comment,
+														  isNull);
+    	    	attribute.setMetaData(new FtlMetaData(columnName,colType,comment));
+    	    	attributes.add(attribute);
+			}
+			config.setAttributes(attributes);
+			
+    		generateProject(config);
+		} finally{
+			try {
+				if( !conn.isClosed() ){
+					conn.close();
     			}
-    			FtlConfig config = new FtlConfig();
-    			config.setClassName(StringUtil.initcap(getCamelCase(tableName.replaceFirst("t_", ""))));
-    			config.setDomain(domain);
-    			config.setBusinessName("日志配置");
-    			config.setAuthorName("Administrator");
-    			config.setMetaData( new FtlMetaData(tableName,"","日志配置"));
-    			config.setAttributes(attributes);
-    			
-    	    	
-    	        generateProject(config);
-    	        
-    		} catch (SQLException e) {
-    			e.printStackTrace();
-    		} finally{
-    			try {
-					if( !pStemt.isClosed() ){
-						pStemt.close();
-					}
-					if( !con.isClosed() ){
-	    				con.close();
-	    			}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-    			
-    		}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
     }
 }

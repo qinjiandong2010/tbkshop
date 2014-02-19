@@ -113,18 +113,29 @@ public class FtlConfig {
 		private String description;
 
 		private Boolean isNull = true;
+		
+		private int size;
 
 		private FtlMetaData metaData;
 
 		public FtlAttribute() {
 		}
 
-		public FtlAttribute(String name, String dataType, String description,
+		public FtlAttribute(String name, String dataType, int size,String description,
 				boolean isNull) {
 			this.name = name;
 			this.dataType = dataType;
+			this.size = size;
 			this.description = description;
 			this.isNull = isNull;
+		}
+
+		public int getSize() {
+			return size;
+		}
+
+		public void setSize(int size) {
+			this.size = size;
 		}
 
 		public String getName() {

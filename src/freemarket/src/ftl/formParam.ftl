@@ -4,6 +4,6 @@ package ${bean.domain}.form;
  * 
  * @author ${bean.authorName}
  */
-public class ${bean.className}FormParam extends PublicFormParam{
+public class ${bean.className}SearchForm extends PublicFormParam{
 
 }

@@ -8,33 +8,33 @@
 	<ul class="breadcrumb">
 		<li><a href="/"><i class="icon-home"></i></a><span
 			class="divider">&nbsp;</span></li>
-		<li><a href="#">${bean.businessName}¹ÜÀí</a> <span class="divider">&nbsp;</span></li>
-		<li><a href="#">±à¼­${bean.businessName}</a><span class="divider-last">&nbsp;</span></li>
+		<li><a href="#">${bean.businessName}ç®¡ç†</a> <span class="divider">&nbsp;</span></li>
+		<li><a href="#">ç¼–è¾‘${bean.businessName}</a><span class="divider-last">&nbsp;</span></li>
 	</ul>
 
 	<div class="widget">
-		<form:form commandName="adPushForm" method="POST" class="form-horizontal form-wizard">
+		<form:form commandName="beanForm" method="POST" class="form-horizontal form-wizard">
 			<div class="widget-header">
-				<h5>±à¼­${bean.businessName}</h5>
+				<h5>ç¼–è¾‘à¼­${bean.businessName}</h5>
 			</div>
 			<div class="widget-content no-padding">
 				<c:if test="${'$'}{success != null}">
                 <div class="note ${'$'}{success ? 'note-success' :'note-danger'}" style="margin: 20px 30px;">
-                    <button type="button" class="close note-remove">¡Á</button>
+                    <button type="button" class="close note-remove">x</button>
                     <strong><fmt:message key="tips"/></strong> 
                     <c:choose>
                     	<c:when test="${'$'}{success}">
-                    		ĞŞ¸Ä${bean.businessName}³É¹¦¡£
+                    		ä¿®æ”¹${bean.businessName}æˆåŠŸã€‚
                     	</c:when>
                     	<c:otherwise>
-                    		ĞŞ¸Ä${bean.businessName}Ê§°Ü¡£
+                    		ä¿®æ”¹${bean.businessName}å¤±è´¥ã€‚
                     	</c:otherwise>
                     </c:choose>
                 </div>
                 </c:if>
                 <#list bean.attributes as attribute>
 				<div class="form-row">
-					<label class="field-name" for="topPush">${attribute.description}£º</label>
+					<label class="field-name" for="topPush">${attribute.description}ï¼š</label>
 					<div class="field">
 						<div class="input-prepend input-append">
 							<form:input path="${attribute.name}" class="span12"/>
@@ -44,7 +44,7 @@
 				</div>
 				</#list>
 				<div class="form-row" style="padding-left: 180px;">
-					<button type="submit" class="button button-blue">±£´æĞŞ¸Ä</button>
+					<button type="submit" class="button button-blue">ä¿å­˜ä¿®æ”¹</button>
 				</div>
 			</div>
 		</form:form>

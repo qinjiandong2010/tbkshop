@@ -11,7 +11,7 @@
 			<ul class="breadcrumb">
 				<li><a href="/"><i class="icon-home"></i></a><span
 					class="divider">&nbsp;</span></li>
-				<li><a href="#">${bean.businessName}¹ÜÀí</a> <span class="divider">&nbsp;</span></li>
+				<li><a href="#">${bean.businessName}ç®¡ç†</a> <span class="divider">&nbsp;</span></li>
 				<li><a href="#">${bean.businessName}</a><span class="divider-last">&nbsp;</span></li>
 			</ul>
 		</div>
@@ -21,8 +21,8 @@
 		<div class="span12">
 			<div class="widget">
 				<div class="widget-header">
-					<h5>${bean.businessName}ÁĞ±í</h5>
-					<form:form id="searchForm" commandName="formParam" method="post" class="form-inline">
+					<h5>${bean.businessName}åˆ—è¡¨</h5>
+					<form:form id="searchForm" commandName="searchForm" method="post" class="form-inline">
                     <form:hidden path="pageNum" id="pageNum"/>
                     <form:hidden path="startDate" id="search_start" />
                     <form:hidden path="endDate" id="search_end" />
@@ -36,7 +36,7 @@
 						<#list bean.attributes as attribute>
 						<li class="search-col"><form:input path="${attribute.name}" type="text" class="search-input" maxlength="20" placeholder="${attribute.description}"/></li>
 						</#list>
-						<li class="search-col"><button type="submit" class="button button-turquoise small-button">²éÑ¯</button></li>
+						<li class="search-col"><button type="submit" class="button button-turquoise small-button">æŸ¥è¯¢</button></li>
 					</ul>
 					</form:form>
 				</div>
@@ -49,7 +49,7 @@
 									<#list bean.attributes as attribute>
 									<th class="sorting">${attribute.name}</th>
 									</#list>
-									<th class="sorting">²Ù×÷</th>
+									<th class="sorting">æ“ä½œ</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -60,16 +60,16 @@
 										<td>${attribute.name}</td>
 										</#list> 
 				                        <td class=" ">
-				                        	<a href="/${bean.className}/${'$'}{item.id }/edit.html">±à¼­</a>
-				                        	<a href="/${bean.className}/${'$'}{item.id }/delete.html">É¾³ı</a>
-				                        	<a href="/${bean.className}/${'$'}{item.id }/detail.html">ÏêÏ¸</a>
+				                        	<a href="/${bean.className}/${'$'}{item.id }/edit.html">ç¼–è¾‘à¼­</a>
+				                        	<a href="/${bean.className}/${'$'}{item.id }/delete.html">åˆ é™¤</a>
+				                        	<a href="/${bean.className}/${'$'}{item.id }/detail.html">è¯¦ç»†</a>
 				                        </td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<div class="tableFooter">
-							<p:page pageNum="${'$'}{formParam.pageNum}" pageTotal="${'$'}{formParam.pageTotal}"></p:page>
+							<p:page pageNum="${'$'}{searchForm.pageNum}" pageTotal="${'$'}{searchForm.pageTotal}"></p:page>
 						</div>
 					</div>
 				</div>
