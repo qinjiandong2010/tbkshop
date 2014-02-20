@@ -17,7 +17,7 @@
 		)
 		values(
 			   <#list bean.columns as column>
-	 		 	${column.nameI}<#if (column_index+1) != (bean.columns?size)>,</#if>
+	 		 	${'#{'}${column.nameI}${'}'}<#if (column_index+1) != (bean.columns?size)>,</#if>
 			   </#list>  
 			 )
 	</insert>

@@ -78,12 +78,12 @@ public class FreemarkerTest {
     private void generateProject(TableSchema table){
     	String ftlDir = "/ftl";
         
-        String projectSrcDri = "F:/JD/project_svn/adPlatform-master/trunck/project/portal/src/com/stomato";
-        String projectWebDri = "F:/JD/project_svn/adPlatform-master/trunck/project/portal/WebContent/WEB-INF/views/portal";
+        String projectSrcDri = "D:/jiandong/project/adPlatform-master/trunck/project/portal/src/com/stomato";
+        String projectWebDri = "D:/jiandong/project/adPlatform-master/trunck/project/portal/WebContent/WEB-INF/views/portal";
         
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("bean", table);  
-       /* fprint(ftlDir,"bean.ftl",projectSrcDri+"/domain/"+table.getName()+".java",map);  
+        fprint(ftlDir,"bean.ftl",projectSrcDri+"/domain/"+table.getName()+".java",map);  
         System.out.println("genernate domain finish.");
         fprint(ftlDir,"service.ftl",projectSrcDri+"/service/"+table.getName()+"Service.java",map);
         System.out.println("genernate service finish.");
@@ -96,7 +96,7 @@ public class FreemarkerTest {
         fprint(ftlDir,"formParam.ftl",projectSrcDri+"/form/"+table.getName()+"FormParam.java",map);
         System.out.println("genernate formbean finish.");
         fprint(ftlDir,"ibatisMap.ftl",projectSrcDri+"/dao/"+table.getName()+"Dao.xml",map);
-        System.out.println("genernate ibatisMap xml finish.");*/
+        System.out.println("genernate ibatisMap xml finish.");
         fprint(ftlDir+"/web","listPage.ftl",projectWebDri+"/"+table.getNameI()+"/"+table.getNameI()+"List.jsp",map);
         System.out.println("genernate list page finish.");
         fprint(ftlDir+"/web","editPage.ftl",projectWebDri+"/"+table.getNameI()+"/"+table.getNameI()+"Edit.jsp",map);
@@ -106,13 +106,12 @@ public class FreemarkerTest {
         System.out.println("--generate project success.");
         
     }
-    
    @Test  
     public void testGenerateProject() throws SQLException {  
-	   	String tableName = "t_log_setting";
+	   	String tableName = "t_log_operation";
 	   	String domain = "com.stomato";
     	 //创建连接
-       	Connection conn = DBUtil.openConn("MySql", "localhost", "3306", "information_schema", "powerall", "123456");
+       	Connection conn = DBUtil.openConn("MySql", "localhost", "3306", "information_schema", "root", "");
     	//查要生成实体类的表
        	String schemaTableSql = "select * from TABLES where TABLE_SCHEMA='adplatform' and TABLE_NAME=?";
        	String schemaColumnSql = "select * from COLUMNS where TABLE_SCHEMA='adplatform' and TABLE_NAME=?";
