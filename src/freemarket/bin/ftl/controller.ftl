@@ -17,65 +17,65 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.stomato.domain.${bean.className};
-import com.stomato.form.${bean.className}Form;
-import com.stomato.form.${bean.className}SearchForm;
-import com.stomato.service.${bean.className}Service;
+import com.stomato.domain.${bean.name};
+import com.stomato.form.${bean.name}Form;
+import com.stomato.form.${bean.name}FormParam;
+import com.stomato.service.${bean.name}Service;
  /**
- * ${bean.businessName}
+ * ${bean.comment}
  * 
  * @author ${bean.authorName}
  */
 @Controller
-@RequestMapping(value="/${bean.className}")
-public class ${bean.className}Controller {
+@RequestMapping(value="/${bean.nameI}")
+public class ${bean.name}Controller {
 	
 	@Autowired
-	private ${bean.className}Service ${bean.className}Service;
+	private ${bean.name}Service ${bean.nameI}Service;
  
 	@RequestMapping(value="/list.html")
-	public String ${bean.className}List(@ModelAttribute("formParam") ${bean.className}SearchForm searchForm,BindingResult result,HttpServletRequest request,Model model){
-		int total = ${bean.className}Service.listTotal(searchForm);
-		searchForm.setTotalCount(total);
-		List<${bean.className}> dataList = ${bean.className}Service.list(searchForm);
+	public String ${bean.name}List(@ModelAttribute("formParam") ${bean.name}FormParam formParam,BindingResult result,HttpServletRequest request,Model model){
+		int total = ${bean.nameI}Service.listTotal(formParam);
+		formParam.setTotalCount(total);
+		List<${bean.name}> dataList = ${bean.nameI}Service.list(formParam);
 		model.addAttribute("dataList", dataList);
-		return "portal/${bean.className}/${bean.className}List";
+		return "portal/${bean.nameI}/${bean.nameI}List";
 	}
 
 	@RequestMapping(value="/add.html",method=RequestMethod.GET)
-	public String add${bean.className}(@ModelAttribute("beanForm") ${bean.className}Form beanForm){
-		return "portal/${bean.className}/${bean.className}Form";
+	public String add${bean.name}(@ModelAttribute("beanForm") ${bean.name}Form beanForm){
+		return "portal/${bean.nameI}/${bean.nameI}Form";
 	}
 
 	@RequestMapping(value="/add.html",method=RequestMethod.POST)
-	public String add${bean.className}(@Valid @ModelAttribute("beanForm") ${bean.className}Form beanForm, BindingResult result,HttpServletRequest request,Model model){
+	public String add${bean.name}(@Valid @ModelAttribute("beanForm") ${bean.name}Form beanForm, BindingResult result,HttpServletRequest request,Model model){
 		
 		if(result.hasErrors()){
-			return "portal/${bean.className}/${bean.className}Form";
+			return "portal/${bean.nameI}/${bean.nameI}Form";
 		}
-		${bean.className} bean = beanForm.asPojo();
-		${bean.className}Service.add(bean);
+		${bean.name} bean = beanForm.asPojo();
+		${bean.nameI}Service.add(bean);
 		//清空表单
-		BeanUtils.copyProperties(new ${bean.className}Form(), beanForm);
+		BeanUtils.copyProperties(new ${bean.name}Form(), beanForm);
 		model.addAttribute("success", true);
-		return "portal/${bean.className}/${bean.className}Form";
+		return "portal/${bean.nameI}/${bean.nameI}Form";
 	}
 	
 	@RequestMapping(value="/{id}/edit.html",method=RequestMethod.GET)
-	public String update${bean.className}(@PathVariable int id,@ModelAttribute("beanForm")${bean.className}Form beanForm,BindingResult result) throws ParseException, IOException{
-		${bean.className} bean = ${bean.className}Service.get(id);
+	public String update${bean.name}(@PathVariable int id,@ModelAttribute("beanForm")${bean.name}Form beanForm,BindingResult result) throws ParseException, IOException{
+		${bean.name} bean = ${bean.nameI}Service.get(id);
 		BeanUtils.copyProperties(bean, beanForm);
-		return "portal/${bean.className}/${bean.className}Edit";
+		return "portal/${bean.nameI}/${bean.nameI}Edit";
 	}
 	
 	@RequestMapping(value="/{id}/edit.html",method=RequestMethod.POST)
-	public String update${bean.className}(@PathVariable int id,@Valid @ModelAttribute("beanForm")${bean.className}Form beanForm,BindingResult result,Model model) throws ParseException, IOException{
+	public String update${bean.name}(@PathVariable int id,@Valid @ModelAttribute("beanForm")${bean.name}Form beanForm,BindingResult result,Model model) throws ParseException, IOException{
 		if( result.hasErrors()){
-			return "portal/${bean.className}/${bean.className}Edit";
+			return "portal/${bean.nameI}/${bean.nameI}Edit";
 		}
 		beanForm.setId(id);
-		${bean.className}Service.update(beanForm.asPojo());
+		${bean.nameI}Service.update(beanForm.asPojo());
 		model.addAttribute("success", true);
-		return update${bean.className}(id, beanForm, result);
+		return update${bean.name}(id, beanForm, result);
 	}
 }

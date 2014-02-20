@@ -1,30 +1,31 @@
 package ${bean.domain}.domain;
 /**
- * ${bean.businessName}
+ * ${bean.comment}
  * 
  * @author ${bean.authorName}
  */
-public class ${bean.className}{
-	<#list bean.attributes as attribute>
-	//${attribute.description}
-	private ${attribute.dataType} ${attribute.name};
+public class ${bean.name}{
+	<#list bean.columns as column>
+	//${column.comment}
+	private ${column.dataType} ${column.nameI};
 	</#list>  
 
-	public ${bean.className}() {
+	public ${bean.name}() {
 	}
 
- 	<#list bean.attributes as attribute>
+ 	<#list bean.columns as column>
 	/*
-	 *${attribute.description}
+	 *${column.comment}
 	 */
-	public ${attribute.dataType} get${attribute.initcapName}() {
-		return ${attribute.name};
+	public ${column.dataType} get${column.name}() {
+		return ${column.nameI};
 	}
+	
 	/*
-	 *${attribute.description}
+	 *${column.comment}
 	 */
-	public void set${attribute.initcapName}(${attribute.dataType} ${attribute.name}) {
-		this.${attribute.name} = ${attribute.name};
+	public void set${column.name}(${column.dataType} ${column.nameI}) {
+		this.${column.nameI} = ${column.nameI};
 	}
 	</#list>  
 

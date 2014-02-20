@@ -8,14 +8,14 @@
 	<ul class="breadcrumb">
 		<li><a href="/"><i class="icon-home"></i></a><span
 			class="divider">&nbsp;</span></li>
-		<li><a href="#">${bean.businessName}管理</a> <span class="divider">&nbsp;</span></li>
-		<li><a href="#">编辑${bean.businessName}</a><span class="divider-last">&nbsp;</span></li>
+		<li><a href="#">${bean.comment}管理</a> <span class="divider">&nbsp;</span></li>
+		<li><a href="#">编辑${bean.comment}</a><span class="divider-last">&nbsp;</span></li>
 	</ul>
 
 	<div class="widget">
 		<form:form commandName="beanForm" method="POST" class="form-horizontal form-wizard">
 			<div class="widget-header">
-				<h5>编辑༭${bean.businessName}</h5>
+				<h5>编辑༭${bean.comment}</h5>
 			</div>
 			<div class="widget-content no-padding">
 				<c:if test="${'$'}{success != null}">
@@ -24,24 +24,27 @@
                     <strong><fmt:message key="tips"/></strong> 
                     <c:choose>
                     	<c:when test="${'$'}{success}">
-                    		修改${bean.businessName}成功。
+                    		修改${bean.comment}成功。
                     	</c:when>
                     	<c:otherwise>
-                    		修改${bean.businessName}失败。
+                    		修改${bean.comment}失败。
                     	</c:otherwise>
                     </c:choose>
                 </div>
                 </c:if>
-                <#list bean.attributes as attribute>
-				<div class="form-row">
-					<label class="field-name" for="topPush">${attribute.description}：</label>
+                <#list bean.columns as column>
+                <#if !column.priKey>
+                <div class="form-row">
+					<label class="field-name" for="${column.nameI}">${column.comment}：</label>
 					<div class="field">
 						<div class="input-prepend input-append">
-							<form:input path="${attribute.name}" class="span12"/>
+							<form:input path="${column.nameI}" maxlength="50" /> 
+							<span class="add-on">*</span>
 						</div>
-						<form:errors path="${attribute.name}" cssClass="error"/>
+						<form:errors path="${column.nameI}" cssClass="error"/>
 					</div>
 				</div>
+				</#if>
 				</#list>
 				<div class="form-row" style="padding-left: 180px;">
 					<button type="submit" class="button button-blue">保存修改</button>

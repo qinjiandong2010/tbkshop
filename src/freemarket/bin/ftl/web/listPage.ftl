@@ -11,8 +11,8 @@
 			<ul class="breadcrumb">
 				<li><a href="/"><i class="icon-home"></i></a><span
 					class="divider">&nbsp;</span></li>
-				<li><a href="#">${bean.businessName}管理</a> <span class="divider">&nbsp;</span></li>
-				<li><a href="#">${bean.businessName}</a><span class="divider-last">&nbsp;</span></li>
+				<li><a href="#">${bean.comment}管理</a> <span class="divider">&nbsp;</span></li>
+				<li><a href="#">${bean.comment}</a><span class="divider-last">&nbsp;</span></li>
 			</ul>
 		</div>
 	</div>
@@ -21,8 +21,8 @@
 		<div class="span12">
 			<div class="widget">
 				<div class="widget-header">
-					<h5>${bean.businessName}列表</h5>
-					<form:form id="searchForm" commandName="searchForm" method="post" class="form-inline">
+					<h5>${bean.comment}列表</h5>
+					<form:form id="searchForm" commandName="formParam" method="post" class="form-inline">
                     <form:hidden path="pageNum" id="pageNum"/>
                     <form:hidden path="startDate" id="search_start" />
                     <form:hidden path="endDate" id="search_end" />
@@ -33,8 +33,10 @@
 						<li>
 							<%@include file="../includes/pagesize.jsp" %>
 						</li>
-						<#list bean.attributes as attribute>
-						<li class="search-col"><form:input path="${attribute.name}" type="text" class="search-input" maxlength="20" placeholder="${attribute.description}"/></li>
+						<#list bean.columns as column>
+						<#if !column.priKey>
+						<li class="search-col"><form:input path="${column.nameI}" type="text" class="search-input" maxlength="20" placeholder="${column.comment}"/></li>
+						</#if>
 						</#list>
 						<li class="search-col"><button type="submit" class="button button-turquoise small-button">查询</button></li>
 					</ul>
@@ -46,23 +48,27 @@
 							<thead>
 								<tr align="left">
 									<th class="sorting">#</th>
-									<#list bean.attributes as attribute>
-									<th class="sorting">${attribute.name}</th>
+									<#list bean.columns as column>
+									<#if !column.priKey>
+						            <th class="sorting">${column.comment}</th>
+									</#if>
 									</#list>
 									<th class="sorting">操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${'$'}{adPushList}" var="item" varStatus="stat">
+								<c:forEach items="${'$'}{dataList}" var="item" varStatus="stat">
 									<tr class="${'$'}{(stat.index%2) == 0 ? 'odd':'even' }">
 										<td>${'$'}{stat.index+1}</td>
-				                        <#list bean.attributes as attribute>
-										<td>${attribute.name}</td>
-										</#list> 
+										<#list bean.columns as column>
+						                <#if !column.priKey>
+						                <td>${'$'}{${column.nameI}}</td>
+										</#if>
+										</#list>
 				                        <td class=" ">
-				                        	<a href="/${bean.className}/${'$'}{item.id }/edit.html">编辑༭</a>
-				                        	<a href="/${bean.className}/${'$'}{item.id }/delete.html">删除</a>
-				                        	<a href="/${bean.className}/${'$'}{item.id }/detail.html">详细</a>
+				                        	<a href="/${bean.nameI}/${'$'}{item.id }/edit.html">编辑༭</a>
+				                        	<a href="/${bean.nameI}/${'$'}{item.id }/delete.html">删除</a>
+				                        	<a href="/${bean.nameI}/${'$'}{item.id }/detail.html">详细</a>
 				                        </td>
 									</tr>
 								</c:forEach>

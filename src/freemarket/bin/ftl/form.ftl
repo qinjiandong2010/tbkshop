@@ -3,38 +3,38 @@ package ${bean.domain}.form;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
-import com.stomato.domain.${bean.className};
+import com.stomato.domain.${bean.name};
 /**
- * ${bean.businessName}
+ * ${bean.comment}
  * 
  * @author ${bean.authorName}
  */
-public class ${bean.className}Form {
-<#list bean.attributes as attribute>
-	//${attribute.description}
-	<#if attribute.dataType == "String">
-		<#if !attribute.isNull>@NotEmpty</#if>
-		<#if attribute.size > 0 >@Size(min=1, max=${attribute.size}) </#if>
+public class ${bean.name}Form {
+<#list bean.columns as column>
+	//${column.comment}
+	<#if column.dataType == "String">
+		<#if !column.isNull>@NotEmpty</#if>
+		<#if column.size > 0 >@Size(min=1, max=${column.size}) </#if>
 	</#if>
-	private ${attribute.dataType} ${attribute.name};
+	private ${column.dataType} ${column.name};
 </#list>  
 
-	public ${bean.className}Form() {
+	public ${bean.name}Form() {
 	}
 
-<#list bean.attributes as attribute>
+<#list bean.columns as column>
 	/*
-	 *${attribute.description}
+	 *${column.comment}
 	 */
-	public ${attribute.dataType} get${attribute.initcapName}() {
-		return ${attribute.name};
+	public ${column.dataType} get${column.name}() {
+		return ${column.name};
 	}
 	
 	/*
-	 *${attribute.description}
+	 *${column.comment}
 	 */
-	public void set${attribute.initcapName}(${attribute.dataType} ${attribute.name}) {
-		this.${attribute.name} = ${attribute.name};
+	public void set${column.name}(${column.dataType} ${column.name}) {
+		this.${column.name} = ${column.name};
 	}
 </#list>  
 
@@ -43,8 +43,8 @@ public class ${bean.className}Form {
 		return new Gson().toJson(this);
 	}
 
-	public ${bean.className} asPojo() {
-		${bean.className} param = new ${bean.className}();
+	public ${bean.name} asPojo() {
+		${bean.name} param = new ${bean.name}();
 		BeanUtils.copyProperties(this, param);
 		return param;
 	}

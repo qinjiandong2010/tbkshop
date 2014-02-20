@@ -1,11 +1,11 @@
 package ${bean.domain}.dao;
 
-import ${bean.domain}.domain.${bean.className};
+import ${bean.domain}.domain.${bean.name};
 /**
- * ${bean.businessName}
+ * ${bean.comment}
  * 
  * @author ${bean.authorName}
  */
-public interface ${bean.className}Dao extends BaseDao<${bean.className}> {
+public interface ${bean.name}Dao extends BaseDao<${bean.name}> {
 
 }
